@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdk0hbks018on"]
+
+[ext_resource type="PackedScene" uid="uid://dt7gcos037akf" path="res://levels/world_5/castle_pillar/pillar.glb" id="1_jxybb"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_t8xnn"]
+[ext_resource type="Material" uid="uid://do7ex5hwwsgp6" path="res://levels/world_5/castle_pillar/castle_pillar.material" id="3_tgw48"]
+
+[node name="Pillar" groups=["entity"] instance=ExtResource("1_jxybb")]
+script = ExtResource("2_t8xnn")
+
+[node name="CastlePillar" parent="." index="0"]
+surface_material_override/0 = ExtResource("3_tgw48")

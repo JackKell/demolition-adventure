@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqo6rvo7hopdr"]
+
+[ext_resource type="PackedScene" uid="uid://2unshcy6q1lk" path="res://levels/world_1/sand_tile/sand_tile.tscn" id="1_5fe4g"]
+[ext_resource type="PackedScene" uid="uid://bgp2iclph4bk5" path="res://levels/common/oil_splat.tscn" id="2_63vgm"]
+
+[node name="SandOilTile" instance=ExtResource("1_5fe4g")]
+type = 3
+
+[node name="OilSplat" parent="." index="2" instance=ExtResource("2_63vgm")]

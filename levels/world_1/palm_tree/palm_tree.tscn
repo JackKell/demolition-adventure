@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://s22e2rw7yjm7"]
+
+[ext_resource type="PackedScene" uid="uid://cdk7bok8tcvon" path="res://levels/world_1/palm_tree/palm_tree.glb" id="1_pty8u"]
+[ext_resource type="Material" uid="uid://bs68urij5uktt" path="res://levels/world_1/palm_tree/palm_leaf.material" id="2_pty8u"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_t0auw"]
+[ext_resource type="Material" uid="uid://d1r4ei5x5llqf" path="res://levels/world_1/palm_tree/palm_bark.material" id="3_aao1m"]
+[ext_resource type="Material" uid="uid://bj6ka8dogqnnu" path="res://levels/world_1/palm_tree/palm_tree_sand.material" id="4_mj235"]
+
+[node name="PalmTree" groups=["entity"] instance=ExtResource("1_pty8u")]
+script = ExtResource("2_t0auw")
+
+[node name="Trunk" parent="." index="0"]
+surface_material_override/0 = ExtResource("3_aao1m")
+surface_material_override/1 = ExtResource("4_mj235")
+
+[node name="Leafs_001" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_pty8u")

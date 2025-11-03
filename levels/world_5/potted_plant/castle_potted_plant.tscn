@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c71dbwbtasego"]
+
+[ext_resource type="PackedScene" uid="uid://cb2yo3f50kr6s" path="res://levels/world_5/potted_plant/castle_potted_plant.glb" id="1_nt1l2"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_wh6oj"]
+
+[node name="castle_potted_plant" groups=["entity"] instance=ExtResource("1_nt1l2")]
+script = ExtResource("2_wh6oj")

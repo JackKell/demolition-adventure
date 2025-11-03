@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://byplcdhatkr4f"]
+
+[ext_resource type="PackedScene" uid="uid://cata773r76geh" path="res://levels/common/tile.glb" id="1_xyqlq"]
+[ext_resource type="Material" uid="uid://b4ki8ndljmu6a" path="res://levels/world_1/grass_tree_base_tile.material" id="2_gsnmt"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="3_qwlsy"]
+
+[node name="TreeBaseTile" groups=["tile"] instance=ExtResource("1_xyqlq")]
+
+[node name="Tile" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_gsnmt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33325195, 0)
+shape = ExtResource("3_qwlsy")

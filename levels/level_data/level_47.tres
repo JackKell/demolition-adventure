@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BomberIslandLevelData" load_steps=5 format=3 uid="uid://cr656bhoru2g7"]
+
+[ext_resource type="Script" uid="uid://b3cc2d36t7wn5" path="res://levels/common/entity_config.gd" id="1_b2fg7"]
+[ext_resource type="Script" uid="uid://cgbxclgrk3852" path="res://levels/level_data/level_data.gd" id="2_gvrhf"]
+[ext_resource type="PackedScene" uid="uid://dg30w25u5sxrt" path="res://levels/world_5/level_47.tscn" id="2_xrb3h"]
+[ext_resource type="Texture2D" uid="uid://dm5gyh1wxat1n" path="res://levels/thumbnails/level_47.png" id="4_xrb3h"]
+
+[resource]
+script = ExtResource("2_gvrhf")
+world = 5
+stage = 47
+thumbnail = ExtResource("4_xrb3h")
+level_scene = ExtResource("2_xrb3h")
+metadata/_custom_type_script = "uid://cgbxclgrk3852"

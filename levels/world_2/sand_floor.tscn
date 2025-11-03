@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwst3mn6thxlm"]
+
+[ext_resource type="Script" uid="uid://ya4cc8gdsqkl" path="res://levels/world_2/sand_zone.gd" id="2_ckq4t"]
+[ext_resource type="Material" uid="uid://cqdvvnj2fhw55" path="res://levels/world_2/sand_floor.material" id="2_ryhr7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tetty"]
+top_radius = 1000.0
+bottom_radius = 1000.0
+height = 0.1
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_tetty"]
+plane = Plane(0, 0, 0, 0)
+
+[node name="SandFloor" type="Node3D"]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66, 0)
+mesh = SubResource("CylinderMesh_tetty")
+surface_material_override/0 = ExtResource("2_ryhr7")
+metadata/_edit_lock_ = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+gravity_space_override = 3
+gravity = 0.3
+linear_damp_space_override = 3
+linear_damp = 0.8
+angular_damp_space_override = 3
+angular_damp = 0.8
+script = ExtResource("2_ckq4t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("WorldBoundaryShape3D_tetty")

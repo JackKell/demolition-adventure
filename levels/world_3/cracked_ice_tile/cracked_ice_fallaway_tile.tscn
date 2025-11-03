@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c388ljydvmqti"]
+
+[ext_resource type="PackedScene" uid="uid://c1iiegc7g8kng" path="res://levels/common/fallaway_tile.glb" id="1_bqhuw"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="2_hdrry"]
+[ext_resource type="Material" uid="uid://dnxuo6km277jj" path="res://levels/world_3/cracked_ice_tile/cracked_ice_fallaway_tile.material" id="2_um4ds"]
+
+[node name="fallaway_tile" node_paths=PackedStringArray("mesh") groups=["tile"] instance=ExtResource("1_bqhuw")]
+mesh = NodePath("FallawayTileMesh")
+
+[node name="FallawayTileMesh" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_um4ds")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = ExtResource("2_hdrry")

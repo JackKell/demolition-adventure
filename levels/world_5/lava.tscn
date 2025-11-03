@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bj8ad3r2p685q"]
+
+[ext_resource type="PlaneMesh" uid="uid://dj82n7ywglljg" path="res://levels/common/level_floor_plane.tres" id="1_pgb3f"]
+
+[sub_resource type="Gradient" id="Gradient_jo8om"]
+colors = PackedColorArray(0.97, 0.21016671, 0, 1, 0.74, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pgb3f"]
+gradient = SubResource("Gradient_jo8om")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8504273, 0.15811966)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pugg"]
+albedo_texture = SubResource("GradientTexture2D_pgb3f")
+uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qpibc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qpibc"]
+size = Vector3(101.2207, 67.77612, 117.64087)
+
+[node name="LavaFloor" type="Area3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_pgb3f")
+surface_material_override/0 = SubResource("StandardMaterial3D_8pugg")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("WorldBoundaryShape3D_qpibc")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+collision_layer = 2
+gravity_space_override = 3
+gravity_point_center = Vector3(0, 1, 0)
+gravity_direction = Vector3(0, 1, 0)
+gravity = 7.0
+wind_force_magnitude = 2.064
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34.32898, 0)
+shape = SubResource("BoxShape3D_qpibc")

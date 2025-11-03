@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmfyb1am0tf3q"]
+
+[ext_resource type="PackedScene" uid="uid://bfwn3wkgdoimw" path="res://levels/world_1/bush/bush.tscn" id="1_k7xer"]
+[ext_resource type="PackedScene" uid="uid://cpi21cves2wf4" path="res://levels/world_1/grass_tile/grass_tile.tscn" id="3_po17e"]
+
+[node name="BushTile" type="Node3D"]
+
+[node name="Bush" parent="." instance=ExtResource("1_k7xer")]
+
+[node name="GrassTile" parent="." instance=ExtResource("3_po17e")]

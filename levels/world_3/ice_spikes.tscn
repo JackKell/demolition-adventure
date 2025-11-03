@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://pg3baofu0wf4"]
+
+[ext_resource type="PackedScene" uid="uid://bdpn7um6d23bu" path="res://levels/world_3/ice_spikes.glb" id="1_vdkeb"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_1yxh2"]
+[ext_resource type="Texture2D" uid="uid://cpwcwwj6b5jde" path="res://levels/world_3/ice_crystal_spike.png" id="2_jua5u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yxh2"]
+albedo_texture = ExtResource("2_jua5u")
+
+[node name="IceSpikes" groups=["entity"] instance=ExtResource("1_vdkeb")]
+script = ExtResource("2_1yxh2")
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1yxh2")

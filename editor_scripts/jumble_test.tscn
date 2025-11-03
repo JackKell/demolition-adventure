@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://gvian6ebpr8f"]
+
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="1_imtmf"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SandyBrickTile" parent="." instance=ExtResource("1_imtmf")]
+
+[node name="SandyBrickTile2" parent="." instance=ExtResource("1_imtmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="SandyBrickTile3" parent="." instance=ExtResource("1_imtmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="SandyBrickTile4" parent="." instance=ExtResource("1_imtmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="SandyBrickTile5" parent="." instance=ExtResource("1_imtmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="SandyBrickTile6" parent="." instance=ExtResource("1_imtmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="SandyBrickTile7" parent="." instance=ExtResource("1_imtmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="SandyBrickTile8" parent="." instance=ExtResource("1_imtmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="SandyBrickTile9" parent="." instance=ExtResource("1_imtmf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)

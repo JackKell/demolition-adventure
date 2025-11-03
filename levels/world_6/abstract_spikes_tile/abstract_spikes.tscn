@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbxdtxyo7n6mu"]
+
+[ext_resource type="Script" uid="uid://hi7k2q0j18nh" path="res://levels/common/tile.gd" id="1_cpabx"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="2_of3d3"]
+[ext_resource type="PackedScene" uid="uid://blsndwfd3o41h" path="res://levels/common/spikes.glb" id="3_d3h8a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_of3d3"]
+size = Vector3(1, 0.25, 1)
+
+[node name="AbstractSpikes" type="RigidBody3D"]
+script = ExtResource("1_cpabx")
+type = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = ExtResource("2_of3d3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34132606, 0)
+mesh = SubResource("BoxMesh_of3d3")
+
+[node name="spikes" parent="." instance=ExtResource("3_d3h8a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25155222, 0)

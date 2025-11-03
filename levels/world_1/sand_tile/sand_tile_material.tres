@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://t3ecaduprula"]
+
+[ext_resource type="Texture2D" uid="uid://blb1o2f80uugk" path="res://levels/world_1/sand_tile/sand_tile.png" id="1_y2e8e"]
+
+[resource]
+shading_mode = 2
+diffuse_mode = 3
+albedo_texture = ExtResource("1_y2e8e")
+texture_filter = 0
+texture_repeat = false
+proximity_fade_distance = 3.25

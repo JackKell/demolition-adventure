@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvnan3gqbbisf"]
+
+[ext_resource type="PackedScene" uid="uid://c2m1bo7fhmwmn" path="res://levels/world_6/abstract_tile/abstract_tile_c.tscn" id="1_mj3td"]
+[ext_resource type="Texture2D" uid="uid://cs7y1n6ww2ns3" path="res://levels/world_6/ice_cream_puddle.png" id="2_emmbb"]
+
+[node name="AbstractTileCOil" instance=ExtResource("1_mj3td")]
+type = 3
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+pixel_size = 0.03
+axis = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_emmbb")

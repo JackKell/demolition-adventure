@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bbxfxk5fy7536"]
+
+[ext_resource type="Texture2D" uid="uid://ugnuqd4thix1" path="res://levels/world_3/compacted_ice_tile/compacted_ice_tile.png" id="1_wh2ry"]
+
+[resource]
+shading_mode = 2
+diffuse_mode = 3
+albedo_texture = ExtResource("1_wh2ry")

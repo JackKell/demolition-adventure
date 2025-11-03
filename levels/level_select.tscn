@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://cy80ieemiif8g"]
+
+[ext_resource type="Script" uid="uid://dwy5h2si5f7rq" path="res://levels/level_select.gd" id="1_ygvyp"]
+[ext_resource type="Resource" uid="uid://1ohqoraweu5i" path="res://levels/level_data/levels.tres" id="2_ribxa"]
+[ext_resource type="Texture2D" uid="uid://dd8ogoal8nxx" path="res://levels/common/world_icons/world_1_icon.tres" id="3_j1p3j"]
+[ext_resource type="Texture2D" uid="uid://brx7prig8i3hc" path="res://levels/common/world_icons/world_2_icon.tres" id="4_0mjce"]
+[ext_resource type="Texture2D" uid="uid://cn4rqk32r0rhy" path="res://levels/common/world_icons/world_3_icon.tres" id="5_iy8wl"]
+[ext_resource type="Texture2D" uid="uid://d3wqhsyg66ba5" path="res://levels/common/world_icons/world_4_icon.tres" id="6_abuhv"]
+[ext_resource type="Texture2D" uid="uid://catn5pupjogxy" path="res://levels/common/world_icons/world_5_icon.tres" id="7_fuqbe"]
+[ext_resource type="Texture2D" uid="uid://jtfxckleugpf" path="res://levels/common/world_icons/world_6_icon.tres" id="8_ribxa"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ygvyp")
+levels_data = ExtResource("2_ribxa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldTabs" type="TabBar" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+current_tab = 0
+tab_alignment = 1
+tab_count = 6
+tab_0/title = "World 1"
+tab_0/icon = ExtResource("3_j1p3j")
+tab_1/title = "World 2"
+tab_1/icon = ExtResource("4_0mjce")
+tab_2/title = "World 3"
+tab_2/icon = ExtResource("5_iy8wl")
+tab_3/title = "World 4"
+tab_3/icon = ExtResource("6_abuhv")
+tab_4/title = "World 5"
+tab_4/icon = ExtResource("7_fuqbe")
+tab_5/title = "World 6"
+tab_5/icon = ExtResource("8_ribxa")
+
+[node name="LevelOptions" type="GridContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 50
+columns = 5

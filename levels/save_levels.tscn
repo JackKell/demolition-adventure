@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4jyv2ian1gu0"]
+
+[ext_resource type="Script" uid="uid://bl534mslsaww8" path="res://levels/save_level_images.gd" id="1_4u10b"]
+[ext_resource type="Resource" uid="uid://1ohqoraweu5i" path="res://levels/level_data/levels.tres" id="2_da2jy"]
+
+[node name="SaveLevels" type="Node3D"]
+script = ExtResource("1_4u10b")
+levels_data = ExtResource("2_da2jy")

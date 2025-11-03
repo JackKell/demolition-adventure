@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://bp340q1flrqij"]
+
+[ext_resource type="Environment" uid="uid://bcqnxtjbw4l6v" path="res://levels/world_1/tropical.enivorment.tres" id="1_8c2cp"]
+[ext_resource type="PackedScene" uid="uid://df3sydjumabp2" path="res://levels/world_1/ocean.tscn" id="1_f85rc"]
+[ext_resource type="Script" uid="uid://by06hqs7fmw4n" path="res://levels/common/level.gd" id="1_g01l2"]
+[ext_resource type="PackedScene" uid="uid://2unshcy6q1lk" path="res://levels/world_1/sand_tile/sand_tile.tscn" id="2_twk4m"]
+[ext_resource type="PackedScene" uid="uid://dc1w26fhhlpo1" path="res://levels/common/character/character.tscn" id="4_3lyjk"]
+[ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="6_hqy52"]
+[ext_resource type="PackedScene" uid="uid://d4lchf6ybpb4g" path="res://levels/common/bombs/bomb_1.tscn" id="7_1owt0"]
+
+[sub_resource type="Animation" id="Animation_g01l2"]
+resource_name = "intro"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:input_direction")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.1, 2.5, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(-1, 0), Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"try_ignite"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hqy52"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:input_direction")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1owt0"]
+_data = {
+&"RESET": SubResource("Animation_hqy52"),
+&"intro": SubResource("Animation_g01l2")
+}
+
+[node name="Level1Intro" type="Node3D"]
+script = ExtResource("1_g01l2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_8c2cp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="OceanFllor" parent="." instance=ExtResource("1_f85rc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66, 0)
+
+[node name="SandTile" parent="." instance=ExtResource("2_twk4m")]
+
+[node name="SandTile2" parent="." instance=ExtResource("2_twk4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="SandTile3" parent="." instance=ExtResource("2_twk4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="SandTile4" parent="." instance=ExtResource("2_twk4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.95502, 0.13462688, -0.2642204, 0, 0.8910067, 0.45399016, 0.2965414, -0.4335697, 0.85092926, -2.6919317, 1.954787, 3.0054386)
+
+[node name="Character" parent="." instance=ExtResource("4_3lyjk")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_1owt0")
+}
+autoplay = "intro"
+
+[node name="StartBomb" parent="." instance=ExtResource("6_hqy52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="BombSize1" parent="." instance=ExtResource("7_1owt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)

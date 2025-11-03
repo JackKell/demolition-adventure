@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://boq2aqxuf8ipl"]
+
+[ext_resource type="PackedScene" uid="uid://cata773r76geh" path="res://levels/common/tile.glb" id="1_8hmjp"]
+[ext_resource type="Texture2D" uid="uid://qsipwhhleato" path="res://levels/world_3/ice_tile.png" id="2_odaqg"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="3_dkd78"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkd78"]
+albedo_texture = ExtResource("2_odaqg")
+texture_filter = 0
+
+[node name="IcyTile" groups=["tile"] instance=ExtResource("1_8hmjp")]
+type = 5
+
+[node name="Tile" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dkd78")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = ExtResource("3_dkd78")

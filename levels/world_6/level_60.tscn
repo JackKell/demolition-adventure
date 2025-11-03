@@ -1,0 +1,478 @@
+[gd_scene load_steps=11 format=3 uid="uid://dmvf5siugvm8x"]
+
+[ext_resource type="Script" uid="uid://by06hqs7fmw4n" path="res://levels/common/level.gd" id="1_ld0is"]
+[ext_resource type="PackedScene" uid="uid://d1rd6rl051fef" path="res://levels/world_6/abstract_tile/abstract_tile_a.tscn" id="2_n4sma"]
+[ext_resource type="PackedScene" uid="uid://c2m1bo7fhmwmn" path="res://levels/world_6/abstract_tile/abstract_tile_c.tscn" id="3_ub3pt"]
+[ext_resource type="PackedScene" uid="uid://d4lchf6ybpb4g" path="res://levels/common/bombs/bomb_1.tscn" id="4_ys45q"]
+[ext_resource type="PackedScene" uid="uid://pvjcb13f1crx" path="res://levels/world_6/abstract_tile/abstract_tile_b.tscn" id="5_hnlq8"]
+[ext_resource type="PackedScene" uid="uid://dolnh02350x0i" path="res://levels/common/bombs/bomb_2.tscn" id="5_l7tf5"]
+[ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="6_gfnog"]
+[ext_resource type="PackedScene" uid="uid://dwc5ywcc4m8pb" path="res://levels/common/bombs/bomb_3.tscn" id="9_tmn2c"]
+[ext_resource type="PackedScene" uid="uid://dc1w26fhhlpo1" path="res://levels/common/character/character.tscn" id="9_xykob"]
+[ext_resource type="PackedScene" uid="uid://b1n8vhq75up21" path="res://levels/world_1/sun.tscn" id="10_svw26"]
+
+[node name="Level52" type="Node3D"]
+script = ExtResource("1_ld0is")
+metadata/_custom_type_script = "uid://by06hqs7fmw4n"
+
+[node name="Tiles" type="Node3D" parent="."]
+
+[node name="AbstractTileA" parent="Tiles" instance=ExtResource("2_n4sma")]
+
+[node name="AbstractTileA2" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="AbstractTileA3" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="AbstractTileA4" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="AbstractTileA5" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="AbstractTileA6" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="AbstractTileA7" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="AbstractTileA8" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="AbstractTileA9" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="AbstractTileA10" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4)
+
+[node name="AbstractTileA11" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="AbstractTileA12" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
+
+[node name="AbstractTileA13" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="AbstractTileA14" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+
+[node name="AbstractTileA15" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="AbstractTileA16" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+
+[node name="AbstractTileA17" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="AbstractTileA18" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 6)
+
+[node name="AbstractTileA19" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 7)
+
+[node name="AbstractTileA20" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
+
+[node name="AbstractTileA21" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+
+[node name="AbstractTileA22" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6)
+
+[node name="AbstractTileA23" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 7)
+
+[node name="AbstractTileA24" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
+
+[node name="AbstractTileA25" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 8)
+
+[node name="AbstractTileA26" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 8)
+
+[node name="AbstractTileA27" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9)
+
+[node name="AbstractTileA28" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 9)
+
+[node name="AbstractTileA29" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="AbstractTileA30" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 8)
+
+[node name="AbstractTileA31" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 9)
+
+[node name="AbstractTileA32" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 9)
+
+[node name="AbstractTileA33" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 8)
+
+[node name="AbstractTileA34" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 8)
+
+[node name="AbstractTileA35" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 9)
+
+[node name="AbstractTileA36" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 9)
+
+[node name="AbstractTileA37" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 10)
+
+[node name="AbstractTileA38" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 10)
+
+[node name="AbstractTileA39" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 11)
+
+[node name="AbstractTileA40" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 11)
+
+[node name="AbstractTileA41" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 12)
+
+[node name="AbstractTileA42" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 12)
+
+[node name="AbstractTileA43" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 13)
+
+[node name="AbstractTileA44" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 13)
+
+[node name="AbstractTileA45" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 14)
+
+[node name="AbstractTileA46" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 14)
+
+[node name="AbstractTileA47" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 15)
+
+[node name="AbstractTileA48" parent="Tiles" instance=ExtResource("2_n4sma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 15)
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Character" parent="Entities" instance=ExtResource("9_xykob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="DirectionalLight3D" parent="." instance=ExtResource("10_svw26")]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -6, 0, 0)
+
+[node name="AbstractTileB" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 8)
+
+[node name="AbstractTileB2" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+
+[node name="AbstractTileB3" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 8)
+
+[node name="AbstractTileB4" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+
+[node name="AbstractTileB5" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9)
+
+[node name="AbstractTileB9" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+
+[node name="AbstractTileB10" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9)
+
+[node name="AbstractTileB6" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9)
+
+[node name="AbstractTileB7" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9)
+
+[node name="AbstractTileB8" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9)
+
+[node name="AbstractTileB11" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 10)
+
+[node name="AbstractTileB12" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="AbstractTileB13" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
+
+[node name="AbstractTileB14" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
+
+[node name="AbstractTileB15" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 11)
+
+[node name="AbstractTileB17" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 11)
+
+[node name="AbstractTileB18" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 11)
+
+[node name="AbstractTileB19" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 12)
+
+[node name="AbstractTileB20" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="AbstractTileB21" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
+
+[node name="AbstractTileB22" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 13)
+
+[node name="AbstractTileB23" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 13)
+
+[node name="AbstractTileB24" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 13)
+
+[node name="AbstractTileB25" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 14)
+
+[node name="AbstractTileB36" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 15)
+
+[node name="AbstractTileB26" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 14)
+
+[node name="AbstractTileB27" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 14)
+
+[node name="AbstractTileB28" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 13)
+
+[node name="AbstractTileB29" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+
+[node name="AbstractTileB31" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 14)
+
+[node name="AbstractTileB32" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
+
+[node name="AbstractTileB30" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 14)
+
+[node name="AbstractTileB33" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 15)
+
+[node name="AbstractTileB34" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 15)
+
+[node name="AbstractTileB35" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 15)
+
+[node name="AbstractTileB16" parent="." instance=ExtResource("5_hnlq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
+
+[node name="AbstractTileC" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+
+[node name="AbstractTileC2" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 7)
+
+[node name="AbstractTileC3" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
+
+[node name="AbstractTileC4" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 6)
+
+[node name="AbstractTileC5" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 6)
+
+[node name="AbstractTileC6" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 7)
+
+[node name="AbstractTileC7" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 7)
+
+[node name="AbstractTileC8" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 6)
+
+[node name="AbstractTileC10" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 5)
+
+[node name="AbstractTileC11" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
+
+[node name="AbstractTileC17" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 5)
+
+[node name="AbstractTileC18" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6)
+
+[node name="AbstractTileC19" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 6)
+
+[node name="AbstractTileC20" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 5)
+
+[node name="AbstractTileC21" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 3)
+
+[node name="AbstractTileC22" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
+
+[node name="AbstractTileC23" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 4)
+
+[node name="AbstractTileC24" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3)
+
+[node name="AbstractTileC33" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
+
+[node name="AbstractTileC34" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
+
+[node name="AbstractTileC35" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+
+[node name="AbstractTileC36" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="AbstractTileC37" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+
+[node name="AbstractTileC25" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 3)
+
+[node name="AbstractTileC26" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4)
+
+[node name="AbstractTileC27" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 4)
+
+[node name="AbstractTileC28" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 3)
+
+[node name="AbstractTileC29" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 1)
+
+[node name="AbstractTileC30" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
+
+[node name="AbstractTileC31" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 2)
+
+[node name="AbstractTileC32" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 1)
+
+[node name="AbstractTileC38" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2)
+
+[node name="AbstractTileC40" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 2)
+
+[node name="AbstractTileC39" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 1)
+
+[node name="AbstractTileC14" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5)
+
+[node name="AbstractTileC15" parent="." instance=ExtResource("3_ub3pt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 5)
+
+[node name="BombSize2" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="BombSize3" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="BombSize22" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="BombSize4" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
+
+[node name="BombSize5" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 1)
+
+[node name="BombSize6" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 2)
+
+[node name="BombSize7" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 6)
+
+[node name="BombSize8" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 7)
+
+[node name="BombSize9" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 7)
+
+[node name="BombSize10" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5)
+
+[node name="BombSize11" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 8)
+
+[node name="BombSize12" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 9)
+
+[node name="BombSize29" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 12)
+
+[node name="BombSize13" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 9)
+
+[node name="BombSize14" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 9)
+
+[node name="BombSize15" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 6)
+
+[node name="BombSize16" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+
+[node name="BombSize18" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 7)
+
+[node name="BombSize24" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 14)
+
+[node name="BombSize25" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 8)
+
+[node name="BombSize26" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9)
+
+[node name="BombSize27" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9)
+
+[node name="BombSize19" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="BombSize20" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+
+[node name="BombSize17" parent="." instance=ExtResource("5_l7tf5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
+
+[node name="BombSize1" parent="." instance=ExtResource("4_ys45q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
+
+[node name="BombSize28" parent="." instance=ExtResource("4_ys45q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 2)
+
+[node name="BombSize23" parent="." instance=ExtResource("4_ys45q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 14)
+
+[node name="BombSize21" parent="." instance=ExtResource("4_ys45q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="bomb3" parent="." instance=ExtResource("9_tmn2c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 12)
+
+[node name="StartBomb" parent="." instance=ExtResource("6_gfnog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9)

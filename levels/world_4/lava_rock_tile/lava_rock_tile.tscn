@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddrwykfta1rvq"]
+
+[ext_resource type="PackedScene" uid="uid://cata773r76geh" path="res://levels/common/tile.glb" id="1_hnjcd"]
+[ext_resource type="Material" uid="uid://chgukqcj0e41d" path="res://levels/world_4/lava_rock_tile/lava_rock.material" id="2_na5jj"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="3_nnvyf"]
+
+[node name="LavalRockTile" groups=["tile"] instance=ExtResource("1_hnjcd")]
+
+[node name="Tile" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_na5jj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33320475, 0)
+visible = false
+shape = ExtResource("3_nnvyf")

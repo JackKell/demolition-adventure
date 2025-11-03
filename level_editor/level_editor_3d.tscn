@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc6i4cfw7kyab"]
+
+[ext_resource type="Script" uid="uid://b8bgimwx6cp2u" path="res://level_editor/level_editor_3d.gd" id="1_goklc"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_mlk5u"]
+
+[node name="LevelEditor3D" type="Node3D"]
+script = ExtResource("1_goklc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Layer Select"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Tiles"
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Entity"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_mlk5u")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 12.995951, 10.348371)

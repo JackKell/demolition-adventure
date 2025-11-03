@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc073xu5yq0wj"]
+
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="1_dcs1t"]
+[ext_resource type="Material" uid="uid://bmlnr7rquel48" path="res://levels/world_2/sandy_brick_tile/sandy_brick_2.material" id="2_y6mnv"]
+
+[node name="SandyBrick2Tile" instance=ExtResource("1_dcs1t")]
+
+[node name="Tile" parent="tile" index="0"]
+surface_material_override/0 = ExtResource("2_y6mnv")
+
+[editable path="tile"]

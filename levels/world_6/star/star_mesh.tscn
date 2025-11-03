@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba4qfonjrcg18"]
+
+[ext_resource type="PackedScene" uid="uid://xkbf8h05vkms" path="res://levels/world_6/star/star.glb" id="1_l1k37"]
+[ext_resource type="Material" uid="uid://8rhbei2u2dd6" path="res://levels/world_6/star/star.material" id="2_neplm"]
+
+[node name="star" instance=ExtResource("1_l1k37")]
+
+[node name="Circle" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_neplm")

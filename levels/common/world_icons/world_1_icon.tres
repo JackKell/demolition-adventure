@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dd8ogoal8nxx"]
+
+[ext_resource type="Texture2D" uid="uid://c3umlqs27lrqo" path="res://levels/common/world_icons/world_icons.png" id="1_ib27k"]
+
+[resource]
+atlas = ExtResource("1_ib27k")
+region = Rect2(0, 0, 16, 16)
+filter_clip = true

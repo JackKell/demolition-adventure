@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkyjl1lweujsy"]
+
+[ext_resource type="PackedScene" uid="uid://cq85emc3uo15v" path="res://levels/common/bridge.tscn" id="2_ybfp2"]
+[ext_resource type="PackedScene" uid="uid://dmmjyhan0s7yu" path="res://levels/world_4/lava_tile.tscn" id="2_yox2i"]
+
+[node name="LavaBridgeTile" type="Node3D"]
+
+[node name="LavaTile" parent="." instance=ExtResource("2_yox2i")]
+type = 0
+
+[node name="bridge" parent="LavaTile" instance=ExtResource("2_ybfp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+skeleton = NodePath("../..")

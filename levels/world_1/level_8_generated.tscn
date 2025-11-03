@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=4 uid="uid://c5r55q70crj4u"]
+
+[ext_resource type="Script" uid="uid://by06hqs7fmw4n" path="res://levels/common/level.gd" id="1_x8wbt"]
+[ext_resource type="Script" uid="uid://dbtkgyavbtewk" path="res://misc/map_data.gd" id="2_gfr58"]
+[ext_resource type="TileSet" uid="uid://b23psfks6fooe" path="res://map_generation/tile_tileset.tres" id="3_fkpev"]
+[ext_resource type="TileSet" uid="uid://bcxcjwnvggtyl" path="res://map_generation/entity_tileset.tres" id="4_hxj87"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2upyg"]
+sky_top_color = Color(0.43529412, 0.7019608, 0.98039216, 1)
+sky_horizon_color = Color(1.078362, 1.1852248, 1.3411071, 1)
+ground_bottom_color = Color(0.26666668, 0.42745098, 0.77254903, 1)
+ground_horizon_color = Color(1.078362, 1.1852248, 1.3411071, 1)
+
+[sub_resource type="Sky" id="Sky_8vr3t"]
+sky_material = SubResource("ProceduralSkyMaterial_2upyg")
+
+[sub_resource type="Environment" id="Environment_6biej"]
+background_mode = 2
+sky = SubResource("Sky_8vr3t")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_x8wbt")
+metadata/_custom_type_script = "uid://by06hqs7fmw4n"
+
+[node name="MapData" type="Node2D" parent="."]
+texture_filter = 1
+script = ExtResource("2_gfr58")
+
+[node name="Tiles" type="TileMapLayer" parent="MapData"]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAAAAQAAAACAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAMAAAAEAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAMAAAACAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAEAAAAEAAYAAAADAAAAAAAEAAcAAAACAAAAAAAFAAMAAAABAAAAAAAFAAQAAAABAAAAAAAFAAYAAAABAAAAAAAFAAcAAAABAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAADAAAAAAAGAAcAAAADAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAADAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAEAAAAAAAHAAIAAAACAAAAAAAIAAIAAAAAAAAAAAAJAAIAAAAAAAAAAAAKAAIAAAACAAAAAAAAAAgAAAADAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAAFAAUAAAAFAAAAAAADAAgAAAAEAAAAAAA=")
+tile_set = ExtResource("3_fkpev")
+
+[node name="Entities" type="TileMapLayer" parent="MapData"]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAADAAYAAAAEAAAAAAACAAYAAAADAAAAAAABAAcAAAABAAAAAAAJAAUAAAABAAEAAAACAAQAAAAAAAAAAAAIAAQAAAABAAAAAAAHAAYAAAABAAAAAAA=")
+tile_set = ExtResource("4_hxj87")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.6486381, 0.761097, 0, -0.761097, 0.6486381, 5.365284, 7.506899, 11.790918)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6biej")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -20, 0, 0)
+shadow_enabled = true

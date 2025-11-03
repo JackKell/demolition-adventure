@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5m0b72dpg5v1"]
+
+[ext_resource type="Texture2D" uid="uid://mkp101l2iaho" path="res://levels/common/blob_shadow.png" id="1_cmwby"]
+
+[node name="BlobShadow" type="Node3D"]
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+cast_shadow = 0
+modulate = Color(1, 1, 1, 0.98039216)
+pixel_size = 0.03
+axis = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_cmwby")

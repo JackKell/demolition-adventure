@@ -1,0 +1,248 @@
+[gd_scene load_steps=13 format=3 uid="uid://rk38jiekoall"]
+
+[ext_resource type="Script" uid="uid://by06hqs7fmw4n" path="res://levels/common/level.gd" id="1_l4luq"]
+[ext_resource type="PackedScene" uid="uid://l7cu77vkfdy6" path="res://levels/world_5/castle_floor_tile/castle_rock_tile.tscn" id="2_0i725"]
+[ext_resource type="PackedScene" uid="uid://dc1w26fhhlpo1" path="res://levels/common/character/character.tscn" id="3_sy7bd"]
+[ext_resource type="PackedScene" uid="uid://drc34m6q6wpah" path="res://levels/world_5/castle_rug_tile/castle_rug_tile.tscn" id="4_sy7bd"]
+[ext_resource type="PackedScene" uid="uid://vti5fjpcic8j" path="res://levels/world_5/castle_pillar/castle_broken_pillar.tscn" id="5_u65o5"]
+[ext_resource type="PackedScene" uid="uid://dwc5ywcc4m8pb" path="res://levels/common/bombs/bomb_3.tscn" id="6_u65o5"]
+[ext_resource type="PackedScene" uid="uid://d4lchf6ybpb4g" path="res://levels/common/bombs/bomb_1.tscn" id="7_1kkaj"]
+[ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="8_c5g4v"]
+[ext_resource type="PackedScene" uid="uid://bdk0hbks018on" path="res://levels/world_5/castle_pillar/castle_pillar.tscn" id="9_c5g4v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_go0te"]
+sky_top_color = Color(0.43529412, 0.7019608, 0.98039216, 1)
+sky_horizon_color = Color(1.078362, 1.1852248, 1.3411071, 1)
+ground_bottom_color = Color(0.26666668, 0.42745098, 0.77254903, 1)
+ground_horizon_color = Color(1.078362, 1.1852248, 1.3411071, 1)
+
+[sub_resource type="Sky" id="Sky_i2t4f"]
+sky_material = SubResource("ProceduralSkyMaterial_go0te")
+
+[sub_resource type="Environment" id="Environment_1slgu"]
+background_mode = 2
+sky = SubResource("Sky_i2t4f")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[node name="Level41" type="Node3D"]
+script = ExtResource("1_l4luq")
+metadata/_custom_type_script = "uid://by06hqs7fmw4n"
+
+[node name="Tiles" type="Node3D" parent="."]
+
+[node name="CastleRockTile" parent="Tiles" instance=ExtResource("2_0i725")]
+
+[node name="CastleRockTile2" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="CastleRockTile3" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="CastleRockTile4" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="CastleRockTile5" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="CastleRockTile6" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="CastleRockTile7" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="CastleRockTile8" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="CastleRockTile9" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="CastleRockTile10" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="CastleRockTile11" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="CastleRockTile12" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="CastleRockTile13" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="CastleRockTile14" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="CastleRockTile15" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="CastleRockTile16" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="CastleRockTile17" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+
+[node name="CastleRockTile18" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="CastleRockTile19" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="CastleRockTile20" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="CastleRockTile21" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="CastleRockTile22" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4)
+
+[node name="CastleRockTile23" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="CastleRockTile24" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="CastleRockTile25" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4)
+
+[node name="CastleRockTile26" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="CastleRockTile27" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
+
+[node name="CastleRockTile28" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 5)
+
+[node name="CastleRockTile29" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5)
+
+[node name="CastleRockTile30" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
+
+[node name="CastleRockTile31" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="CastleRockTile32" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
+
+[node name="CastleRockTile33" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="CastleRockTile34" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="CastleRockTile35" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+
+[node name="CastleRockTile36" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="CastleRockTile37" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
+
+[node name="CastleRockTile38" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 7)
+
+[node name="CastleRockTile39" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 7)
+
+[node name="CastleRockTile40" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+
+[node name="CastleRockTile41" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="CastleRockTile42" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 8)
+
+[node name="CastleRockTile43" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8)
+
+[node name="CastleRockTile44" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+
+[node name="CastleRockTile45" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 8)
+
+[node name="CastleRockTile46" parent="Tiles" instance=ExtResource("2_0i725")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 12)
+
+[node name="CastleRugTile" parent="Tiles" instance=ExtResource("4_sy7bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 11)
+
+[node name="CastleRugTile2" parent="Tiles" instance=ExtResource("4_sy7bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 12)
+
+[node name="CastleRugTile3" parent="Tiles" instance=ExtResource("4_sy7bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 13)
+
+[node name="CastleRugTile4" parent="Tiles" instance=ExtResource("4_sy7bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 13)
+
+[node name="CastleRugTile5" parent="Tiles" instance=ExtResource("4_sy7bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 12)
+
+[node name="CastleRugTile6" parent="Tiles" instance=ExtResource("4_sy7bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 11)
+
+[node name="CastleRugTile7" parent="Tiles" instance=ExtResource("4_sy7bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 11)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -10, 0, 3)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1slgu")
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Character" parent="Entities" instance=ExtResource("3_sy7bd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+
+[node name="castle_broken_pillar2" parent="Entities" instance=ExtResource("5_u65o5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="castle_broken_pillar3" parent="Entities" instance=ExtResource("5_u65o5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="castle_broken_pillar4" parent="Entities" instance=ExtResource("5_u65o5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="bomb3" parent="Entities" instance=ExtResource("6_u65o5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="BombSize1" parent="Entities" instance=ExtResource("7_1kkaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="BombSize2" parent="Entities" instance=ExtResource("7_1kkaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+
+[node name="BombSize3" parent="Entities" instance=ExtResource("7_1kkaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4)
+
+[node name="BombSize4" parent="Entities" instance=ExtResource("7_1kkaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
+
+[node name="BombSize6" parent="Entities" instance=ExtResource("7_1kkaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 8)
+
+[node name="BombSize5" parent="Entities" instance=ExtResource("7_1kkaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
+
+[node name="BombSize7" parent="Entities" instance=ExtResource("7_1kkaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
+
+[node name="BombSize8" parent="Entities" instance=ExtResource("7_1kkaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="StartBomb" parent="Entities" instance=ExtResource("8_c5g4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
+
+[node name="Pillar" parent="Entities" instance=ExtResource("9_c5g4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Pillar2" parent="Entities" instance=ExtResource("9_c5g4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 12)

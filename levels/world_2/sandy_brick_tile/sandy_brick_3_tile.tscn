@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnabsi3t3jusq"]
+
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="1_bxj45"]
+[ext_resource type="Texture2D" uid="uid://cxftbjuxx2coc" path="res://levels/world_2/sandy_brick_tile/sandy_brick_3_tile.png" id="2_plofi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxj45"]
+albedo_texture = ExtResource("2_plofi")
+texture_filter = 0
+
+[node name="SandyBrick3Tile" instance=ExtResource("1_bxj45")]
+
+[node name="Tile" parent="tile" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bxj45")
+
+[editable path="tile"]

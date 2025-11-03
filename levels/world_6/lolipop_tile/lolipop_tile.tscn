@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1o4y8m0ni3p8"]
+
+[ext_resource type="PackedScene" uid="uid://ds7qolyjymk4k" path="res://levels/common/tile.tscn" id="1_gf54h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cl4k"]
+albedo_color = Color(0.72, 1, 0.9906667, 1)
+
+[node name="LolipopTile" instance=ExtResource("1_gf54h")]
+type = 5
+
+[node name="Tile" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8cl4k")

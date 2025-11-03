@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://vkt0a53dlmh6"]
+
+[ext_resource type="PackedScene" uid="uid://dms3lpej1s5mp" path="res://levels/world_2/ruin/desert_ruin.glb" id="1_i7ol2"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_tnsvn"]
+[ext_resource type="Texture2D" uid="uid://dcajyo0hd87wt" path="res://levels/world_2/ruin/desert_ruin_sand.png" id="3_tnsvn"]
+[ext_resource type="Material" uid="uid://3712o45mt3r1" path="res://levels/world_2/desert_pillar.material" id="4_3oatp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ji2rw"]
+albedo_texture = ExtResource("3_tnsvn")
+
+[node name="desert_ruin" groups=["entity"] instance=ExtResource("1_i7ol2")]
+script = ExtResource("2_tnsvn")
+
+[node name="BrickWwall" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39999998, 0, 0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_ji2rw")
+surface_material_override/1 = ExtResource("4_3oatp")

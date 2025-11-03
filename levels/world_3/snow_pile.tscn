@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://slxmkhtsbns"]
+
+[ext_resource type="PackedScene" uid="uid://bps055fkyu0eo" path="res://levels/world_3/snow_pile.glb" id="1_uvj0d"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_kkh86"]
+[ext_resource type="Texture2D" uid="uid://c6u2gvxphf80e" path="res://levels/world_3/snow_pile.png" id="2_vkh10"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkh86"]
+albedo_texture = ExtResource("2_vkh10")
+texture_filter = 0
+
+[node name="SnowPile" groups=["entity"] instance=ExtResource("1_uvj0d")]
+script = ExtResource("2_kkh86")
+
+[node name="SnowPile" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kkh86")

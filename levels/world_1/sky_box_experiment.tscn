@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlw2evdg4dqis"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_t72y3"]
+flip_faces = true
+radius = 200.0
+height = 200.0
+is_hemisphere = true
+
+[sub_resource type="Gradient" id="Gradient_t72y3"]
+colors = PackedColorArray(0.49300006, 0.6477, 0.85, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t72y3"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ipid1"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_t72y3")
+color_ramp = SubResource("Gradient_t72y3")
+seamless = true
+invert = true
+in_3d_space = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_clf3o"]
+albedo_texture = SubResource("NoiseTexture2D_ipid1")
+
+[node name="SkyBox" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_t72y3")
+surface_material_override/0 = SubResource("StandardMaterial3D_clf3o")

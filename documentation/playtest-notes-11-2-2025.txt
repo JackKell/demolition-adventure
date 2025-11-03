@@ -1,0 +1,17 @@
+- feature: Add losing state for getting hit by the bomb
+- feature: add go to next level ui
+- feature: don't do starting animation on reset
+- feature: be able to ignite bomb from any direction
+- bug: make it so falling tiles can be undone
+- feature: remember the player camera preference
+- bug: undoing adds steps
+- feature: add oil falling animation and oil failed push animation
+- feature: add intro cut scenes to levels
+- bug : conveyor belt turn off when winning the level
+- feature: should be able to zoom in and out of the top view
+	- stage 11 - looks really far away in game
+- feature: in game level editor 
+- check: stage 50 layout
+- feature: texture potted plant in castle level
+- feature: texture polished metal lava level
+- feature: texture all falling tiles

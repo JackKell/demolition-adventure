@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://drc34m6q6wpah"]
+
+[ext_resource type="PackedScene" uid="uid://cata773r76geh" path="res://levels/common/tile.glb" id="1_bx3gv"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="2_1va32"]
+[ext_resource type="Material" uid="uid://dglypolf1uf38" path="res://levels/world_5/castle_rug_tile/castle_rug.material" id="2_4g28h"]
+
+[node name="CastleRugTile" groups=["tile"] instance=ExtResource("1_bx3gv")]
+
+[node name="Tile" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_4g28h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.333, 0)
+shape = ExtResource("2_1va32")

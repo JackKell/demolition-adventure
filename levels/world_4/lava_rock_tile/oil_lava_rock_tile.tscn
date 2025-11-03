@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://clh8w3sr33xxx"]
+
+[ext_resource type="PackedScene" uid="uid://ddrwykfta1rvq" path="res://levels/world_4/lava_rock_tile/lava_rock_tile.tscn" id="1_nv2s2"]
+[ext_resource type="PackedScene" uid="uid://bgp2iclph4bk5" path="res://levels/common/oil_splat.tscn" id="2_7ml26"]
+
+[node name="OilLavalRockTile" instance=ExtResource("1_nv2s2")]
+type = 3
+
+[node name="OilSplat" parent="." index="2" instance=ExtResource("2_7ml26")]

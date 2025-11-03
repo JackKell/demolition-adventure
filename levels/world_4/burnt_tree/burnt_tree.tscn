@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca1b2u5sm5l6t"]
+
+[ext_resource type="PackedScene" uid="uid://biv2fsqk4gtxw" path="res://levels/world_4/burnt_tree/burnt_tree.glb" id="1_eq4lk"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_jod8e"]
+[ext_resource type="Material" uid="uid://557cdm1amkgy" path="res://levels/world_4/burnt_tree/burnt_tree.material" id="2_nhriu"]
+
+[node name="BurntTree" groups=["entity"] instance=ExtResource("1_eq4lk")]
+script = ExtResource("2_jod8e")
+
+[node name="burnt_tree" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_nhriu")

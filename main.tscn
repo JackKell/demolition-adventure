@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cycsjfieh6k2k"]
+
+[ext_resource type="Script" uid="uid://kv2sy8s5q4a6" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Resource" uid="uid://1ohqoraweu5i" path="res://levels/level_data/levels.tres" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bydj2us25qme5" path="res://levels/play_ui.tscn" id="19_cegan"]
+[ext_resource type="PackedScene" uid="uid://cy80ieemiif8g" path="res://levels/level_select.tscn" id="20_82xsv"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ig7tw")
+levels = ExtResource("2_1bvp3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayUi" parent="CanvasLayer" instance=ExtResource("19_cegan")]
+visible = false
+
+[node name="LevelSelect" parent="CanvasLayer" instance=ExtResource("20_82xsv")]
+offset_top = 71.0
+offset_bottom = -71.0
+
+[node name="Ticker" type="Timer" parent="."]

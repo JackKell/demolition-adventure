@@ -1,0 +1,83 @@
+[gd_scene load_steps=16 format=3 uid="uid://c5jonhaqlcu2j"]
+
+[ext_resource type="PackedScene" uid="uid://bajmuvwvhoqen" path="res://levels/common/bombs/start_bomb.glb" id="1_we2si"]
+[ext_resource type="Script" uid="uid://bv83kipaws5mj" path="res://levels/common/bombs/start_bomb.gd" id="2_rvwi2"]
+[ext_resource type="Material" uid="uid://dpbdc6i42vyv1" path="res://levels/common/bombs/start_bomb.material" id="3_rvwi2"]
+[ext_resource type="Texture2D" uid="uid://cfx51f6x7gmcv" path="res://levels/common/bombs/rope.png" id="4_q43nb"]
+[ext_resource type="AudioStream" uid="uid://cwarsce112f3e" path="res://levels/common/bombs/bomb.ogg" id="5_q43nb"]
+[ext_resource type="AudioStream" uid="uid://blijux151vopl" path="res://levels/common/bombs/fuse-lit.wav" id="6_rvwi2"]
+[ext_resource type="PackedScene" uid="uid://c5m0b72dpg5v1" path="res://levels/common/bombs/blob_shadow.tscn" id="7_q43nb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhvto"]
+albedo_texture = ExtResource("4_q43nb")
+
+[sub_resource type="Curve" id="Curve_we2si"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, -360), 0.0, 1008.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vfj3u"]
+curve = SubResource("Curve_we2si")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rvwi2"]
+angle_curve = SubResource("CurveTexture_vfj3u")
+inherit_velocity_ratio = -1.2
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+
+[sub_resource type="Gradient" id="Gradient_q43nb"]
+offsets = PackedFloat32Array(0.34697217, 0.7855974, 0.86415714, 0.87725043)
+colors = PackedColorArray(0.91, 0.91, 0.91, 1, 0.91, 0.7735, 0, 1, 0.93739134, 0.8424348, 0.30434793, 0.69565207, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ipvlt"]
+gradient = SubResource("Gradient_q43nb")
+fill = 1
+fill_from = Vector2(0.52991456, 0.47435898)
+fill_to = Vector2(0.8974359, 0.0982906)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2noqo"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_texture = SubResource("GradientTexture2D_ipvlt")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_7y4w6"]
+material = SubResource("StandardMaterial3D_2noqo")
+size = Vector2(0.1, 0.1)
+
+[node name="StartBomb" groups=["bomb", "entity"] instance=ExtResource("1_we2si")]
+script = ExtResource("2_rvwi2")
+size = 2
+
+[node name="start_bomb" parent="." index="0"]
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_rvwi2")
+surface_material_override/1 = SubResource("StandardMaterial3D_dhvto")
+
+[node name="Fuse" type="Marker3D" parent="start_bomb" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39052677, 0)
+
+[node name="SparksEmitter" type="GPUParticles3D" parent="start_bomb/Fuse" index="0"]
+unique_name_in_owner = true
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_rvwi2")
+draw_pass_1 = SubResource("QuadMesh_7y4w6")
+
+[node name="Explosion" type="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("5_q43nb")
+volume_db = -30.0
+
+[node name="FuseLit" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("6_rvwi2")
+volume_db = -30.0
+
+[node name="BlobShadow" parent="." index="3" instance=ExtResource("7_q43nb")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)

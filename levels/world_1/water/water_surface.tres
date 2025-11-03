@@ -1,0 +1,41 @@
+[gd_resource type="AnimatedTexture" load_steps=8 format=3 uid="uid://ca0j4fy7l3nlc"]
+
+[ext_resource type="Texture2D" uid="uid://hw0d3ckj1gim" path="res://levels/world_1/water/water_surface.png" id="1_5dxvv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38sw8"]
+atlas = ExtResource("1_5dxvv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwvxx"]
+atlas = ExtResource("1_5dxvv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87aa1"]
+atlas = ExtResource("1_5dxvv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqyim"]
+atlas = ExtResource("1_5dxvv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct5bp"]
+atlas = ExtResource("1_5dxvv")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqqtf"]
+atlas = ExtResource("1_5dxvv")
+region = Rect2(160, 0, 32, 32)
+
+[resource]
+frames = 6
+frame_0/texture = SubResource("AtlasTexture_38sw8")
+frame_1/texture = SubResource("AtlasTexture_fwvxx")
+frame_1/duration = 1.0
+frame_2/texture = SubResource("AtlasTexture_87aa1")
+frame_2/duration = 1.0
+frame_3/texture = SubResource("AtlasTexture_jqyim")
+frame_3/duration = 1.0
+frame_4/texture = SubResource("AtlasTexture_ct5bp")
+frame_4/duration = 1.0
+frame_5/texture = SubResource("AtlasTexture_gqqtf")
+frame_5/duration = 1.0

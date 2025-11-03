@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1rd6rl051fef"]
+
+[ext_resource type="PackedScene" uid="uid://ds7qolyjymk4k" path="res://levels/common/tile.tscn" id="1_dcflg"]
+[ext_resource type="Material" uid="uid://ml47ukkwy4n0" path="res://levels/world_6/abstract_tile/abstract_tile_a.material" id="2_gfx6m"]
+
+[node name="AbstractTileA" instance=ExtResource("1_dcflg")]
+
+[node name="Tile" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_gfx6m")

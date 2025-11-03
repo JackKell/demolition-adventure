@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://s8w87vnl08pw"]
+
+[ext_resource type="Script" uid="uid://cmb6ksj2bx2jp" path="res://levels/common/bouncer.gd" id="1_3h68b"]
+[ext_resource type="PackedScene" uid="uid://dalu0xt84s11s" path="res://levels/world_6/jello_bouncer/jello.glb" id="2_s0g7i"]
+[ext_resource type="Material" uid="uid://b34uengcesh8l" path="res://levels/world_6/jello_bouncer/jello_red.material" id="3_s0g7i"]
+
+[node name="JelloBouncerRed" type="Node3D" node_paths=PackedStringArray("mesh") groups=["entity"]]
+script = ExtResource("1_3h68b")
+mesh = NodePath("jello/Cylinder")
+metadata/_custom_type_script = "uid://cmb6ksj2bx2jp"
+
+[node name="jello" parent="." instance=ExtResource("2_s0g7i")]
+
+[node name="Cylinder" parent="jello" index="0"]
+surface_material_override/0 = ExtResource("3_s0g7i")
+
+[editable path="jello"]

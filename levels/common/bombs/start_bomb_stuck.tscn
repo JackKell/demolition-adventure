@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkcsd860ho78j"]
+
+[ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="1_8jg5n"]
+
+[node name="StartBomb" instance=ExtResource("1_8jg5n")]
+pushable = false
+
+[node name="start_bomb" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

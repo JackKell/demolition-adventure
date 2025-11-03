@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmymdk6dmqgi6"]
+
+[ext_resource type="Texture2D" uid="uid://d0lwb84h1hu0v" path="res://editor_scripts/icon.svg" id="1_4k3gf"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.5695779, 0.7018331, 0.47885787, 1)
+position = Vector2(137.66962, 133.66962)
+rotation = -0.64904845
+texture = ExtResource("1_4k3gf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.2795065, 0.37388209, 0.39309412, 1)
+position = Vector2(443.66962, 150.66962)
+rotation = -0.06549811
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("1_4k3gf")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.88647115, 0.65637153, 0.6774978, 1)
+position = Vector2(151.66962, 338.66962)
+rotation = -1.1762816
+scale = Vector2(0.390625, 0.390625)
+texture = ExtResource("1_4k3gf")

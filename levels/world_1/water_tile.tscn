@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://bngyaahdtwuuu"]
+
+[ext_resource type="Script" uid="uid://hi7k2q0j18nh" path="res://levels/common/tile.gd" id="1_aup3q"]
+[ext_resource type="Material" uid="uid://dsjijx8cxfsjg" path="res://levels/world_1/water_surface.material" id="2_0dqmv"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="2_xg6te"]
+[ext_resource type="SpriteFrames" uid="uid://b3qwqtqsq8mq1" path="res://levels/world_1/water/water_sprite_frames.tres" id="4_cnfce"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_aup3q"]
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aup3q"]
+cull_mode = 2
+albedo_color = Color(0.35227725, 0, 0.0074631665, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ojabi"]
+material = ExtResource("2_0dqmv")
+orientation = 1
+
+[node name="WaterTile" type="RigidBody3D" groups=["tile"]]
+collision_mask = 2
+script = ExtResource("1_aup3q")
+type = 1
+
+[node name="underwater" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.48909402, 0)
+mesh = SubResource("QuadMesh_aup3q")
+surface_material_override/0 = SubResource("StandardMaterial3D_aup3q")
+
+[node name="surfacewater" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18873185, 0)
+visible = false
+mesh = SubResource("QuadMesh_ojabi")
+surface_material_override/0 = ExtResource("2_0dqmv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = ExtResource("2_xg6te")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.1830051, 0)
+cast_shadow = 0
+modulate = Color(1, 1, 1, 0.49803922)
+pixel_size = 0.0313
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_cnfce")
+autoplay = "default"
+frame_progress = 0.038057577
+speed_scale = 0.25
+
+[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-1, -1.509958e-07, -1.980071e-15, 0, -4.371139e-08, 0.3, -1.509958e-07, 1, 1.3113417e-08, 0, -0.3362897, 0.5)
+cast_shadow = 0
+modulate = Color(1, 1, 1, 0.49803922)
+pixel_size = 0.0313
+axis = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_cnfce")
+autoplay = "default"
+frame_progress = 0.038057577
+speed_scale = 0.25
+
+[node name="AnimatedSprite3D3" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, -1.7484555e-07, -2.2928227e-15, 0, -4.371139e-08, 0.3, -1.7484555e-07, -1, -1.3113417e-08, 0, -0.3362897, -0.5)
+cast_shadow = 0
+modulate = Color(1, 1, 1, 0.49803922)
+pixel_size = 0.0313
+axis = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_cnfce")
+autoplay = "default"
+frame_progress = 0.038057577
+speed_scale = 0.25
+
+[node name="AnimatedSprite3D4" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 1.3113417e-08, 0, -4.371139e-08, 0.3, 1, 4.371139e-08, 5.7320567e-16, 0.5, -0.3362897, 0)
+cast_shadow = 0
+modulate = Color(1, 1, 1, 0.49803922)
+pixel_size = 0.0313
+axis = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_cnfce")
+autoplay = "default"
+frame_progress = 0.038057577
+speed_scale = 0.25
+
+[node name="AnimatedSprite3D5" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, -1.3113417e-08, 0, -4.371139e-08, 0.3, -1, 4.371139e-08, 5.7320567e-16, -0.5, -0.3362897, 0)
+cast_shadow = 0
+modulate = Color(1, 1, 1, 0.49803922)
+pixel_size = 0.0313
+axis = 1
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("4_cnfce")
+autoplay = "default"
+frame_progress = 0.038057577
+speed_scale = 0.25

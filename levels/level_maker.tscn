@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://uv7ovmpwtpps"]
+
+[ext_resource type="Script" uid="uid://chi8fuehq5ubm" path="res://levels/level_maker.gd" id="1_wc0hv"]
+[ext_resource type="TileSet" uid="uid://b23psfks6fooe" path="res://map_generation/tile_tileset.tres" id="2_wc0hv"]
+[ext_resource type="TileSet" uid="uid://bcxcjwnvggtyl" path="res://map_generation/entity_tileset.tres" id="3_bvhd3"]
+
+[node name="LevelMaker" type="Node2D"]
+script = ExtResource("1_wc0hv")
+
+[node name="MapData" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="Tiles" type="TileMapLayer" parent="MapData"]
+unique_name_in_owner = true
+tile_set = ExtResource("2_wc0hv")
+
+[node name="Entities" type="TileMapLayer" parent="MapData"]
+unique_name_in_owner = true
+tile_set = ExtResource("3_bvhd3")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc1w26fhhlpo1"]
+
+[ext_resource type="Script" uid="uid://dcxe2atgg0pbp" path="res://levels/common/character/character.gd" id="1_glpr6"]
+[ext_resource type="AudioStream" uid="uid://cqss4nn608vbm" path="res://levels/common/character/character_steps_randomizer.tres" id="2_pjt0s"]
+[ext_resource type="Material" uid="uid://bypvn1fd4cnxj" path="res://levels/common/character/character.material" id="2_wfnr8"]
+[ext_resource type="PackedScene" uid="uid://c5m0b72dpg5v1" path="res://levels/common/bombs/blob_shadow.tscn" id="3_wa5vi"]
+[ext_resource type="PackedScene" uid="uid://b3lbtngrs5hvd" path="res://levels/common/character/character.glb" id="4_wfnr8"]
+
+[node name="Character" type="Node3D" node_paths=PackedStringArray("body", "animation_player") groups=["character", "entity"]]
+script = ExtResource("1_glpr6")
+body = NodePath("character")
+animation_player = NodePath("character/AnimationPlayer")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_pjt0s")
+volume_db = -31.15
+pitch_scale = 0.9
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.88418996, 0.46712753, 0, -0.46712753, 0.88418996, 0, 2.6785018, 3.954369)
+
+[node name="BlobShadow" parent="." instance=ExtResource("3_wa5vi")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="character" parent="." instance=ExtResource("4_wfnr8")]
+
+[node name="Cone" parent="character/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_wfnr8")
+
+[editable path="character"]

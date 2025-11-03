@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq1ovo25j01o5"]
+
+[ext_resource type="PackedScene" uid="uid://cata773r76geh" path="res://levels/common/tile.glb" id="1_rh8vi"]
+[ext_resource type="Script" uid="uid://ydtwsej63low" path="res://levels/common/fallaway_tile.gd" id="2_7sway"]
+[ext_resource type="Texture2D" uid="uid://00whnoqptw25" path="res://levels/world_4/cracked_stone/cracked_stone.png" id="3_7sway"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="3_doyvo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_doyvo"]
+albedo_texture = ExtResource("3_7sway")
+uv1_scale = Vector3(1.01, 1.01, 1.01)
+
+[node name="CrackedFallawayTile" node_paths=PackedStringArray("mesh") groups=["tile"] instance=ExtResource("1_rh8vi")]
+script = ExtResource("2_7sway")
+mesh = NodePath("Tile")
+
+[node name="Tile" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_doyvo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = ExtResource("3_doyvo")

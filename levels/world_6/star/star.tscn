@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxujo7sgwqlpn"]
+
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="1_ok5d2"]
+[ext_resource type="Texture2D" uid="uid://b7hlbflipflda" path="res://levels/world_6/star/star_crack.png" id="2_gt00r"]
+[ext_resource type="PackedScene" uid="uid://ba4qfonjrcg18" path="res://levels/world_6/star/star_mesh.tscn" id="4_2jooj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1t31r"]
+size = Vector3(0.75, 0.265, 0.75)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwv1x"]
+albedo_color = Color(1, 0.97333336, 0.19999999, 1)
+
+[node name="Star" type="Node3D" groups=["entity"]]
+script = ExtResource("1_ok5d2")
+metadata/_custom_type_script = "uid://dtmdgo2vfw6tt"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9392036, -0.19673005, 0.28141415, 0.32748708, 0.75956035, -0.5619788, -0.10319304, 0.61997205, 0.7778083, 0.008148499, 0.3943677, 0.10919003)
+visible = false
+mesh = SubResource("BoxMesh_1t31r")
+surface_material_override/0 = SubResource("StandardMaterial3D_lwv1x")
+
+[node name="FloorCrack" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+pixel_size = 0.03
+axis = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_gt00r")
+
+[node name="star2" parent="." instance=ExtResource("4_2jooj")]
+transform = Transform3D(0.7365209, -0.19945621, 0.20458314, 0.28572196, 0.51414895, -0.527365, 0, 0.5656572, 0.55148154, 0.030635834, 0.51782227, -0.0513916)

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccu8qovgq5r5g"]
+
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="1_ncr4p"]
+[ext_resource type="PackedScene" uid="uid://otlsdwel7uo5" path="res://levels/world_2/brick_pile/brick_pile.glb" id="3_dxvvh"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="3_hk0sq"]
+[ext_resource type="Material" uid="uid://druve4tu1g13y" path="res://levels/world_2/brick_pile/brick_pile.material" id="3_lgmrt"]
+
+[node name="BrickPileTile" type="Node3D"]
+
+[node name="BrickTile" parent="." instance=ExtResource("1_ncr4p")]
+
+[node name="CollisionShape3D" parent="BrickTile/tile" index="1"]
+visible = false
+
+[node name="BrickPile" parent="BrickTile" groups=["entity"] instance=ExtResource("3_dxvvh")]
+script = ExtResource("3_hk0sq")
+
+[node name="Plane" parent="BrickTile/BrickPile" index="0"]
+surface_material_override/0 = ExtResource("3_lgmrt")
+
+[editable path="BrickTile"]
+[editable path="BrickTile/tile"]
+[editable path="BrickTile/BrickPile"]

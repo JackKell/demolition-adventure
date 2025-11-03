@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://bqr6oecngaoep"]
+
+[ext_resource type="Script" uid="uid://by06hqs7fmw4n" path="res://levels/common/level.gd" id="1_w0bhb"]
+[ext_resource type="PackedScene" uid="uid://uebe0u2iklik" path="res://levels/world_3/compacted_ice_tile.tscn" id="2_0wusv"]
+[ext_resource type="Environment" uid="uid://c7pf4jg2b8bdv" path="res://levels/world_3/ice_world.enivroment.tres" id="2_qugfa"]
+[ext_resource type="PackedScene" uid="uid://ccsjq85p8cbis" path="res://levels/world_3/ice_ocean.tscn" id="3_sl6xq"]
+[ext_resource type="CameraAttributesPractical" uid="uid://bd5sfd2stw6ey" path="res://levels/world_3/ice_world.camera_attributes.tres" id="3_tqpod"]
+[ext_resource type="PackedScene" uid="uid://dc1w26fhhlpo1" path="res://levels/common/character/character.tscn" id="4_pohq0"]
+[ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="5_shn06"]
+[ext_resource type="PackedScene" uid="uid://c388ljydvmqti" path="res://levels/world_3/cracked_ice_tile/cracked_ice_fallaway_tile.tscn" id="6_l1u2p"]
+[ext_resource type="PackedScene" uid="uid://dwc5ywcc4m8pb" path="res://levels/common/bombs/bomb_3.tscn" id="7_wqxua"]
+
+[node name="Level23" type="Node3D"]
+script = ExtResource("1_w0bhb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_qugfa")
+camera_attributes = ExtResource("3_tqpod")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -8, 0, -9)
+shadow_enabled = true
+
+[node name="Tiles" type="Node3D" parent="."]
+
+[node name="CompactedIceTile97" parent="Tiles" instance=ExtResource("2_0wusv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="CompactedIceTile98" parent="Tiles" instance=ExtResource("2_0wusv")]
+
+[node name="IcyOcean" parent="." instance=ExtResource("3_sl6xq")]
+transform = Transform3D(0.36, 0, 0, 0, 0.36, 0, 0, 0, 0.36, 0, -0.5, 0)
+metadata/_edit_lock_ = true
+
+[node name="Character" parent="." instance=ExtResource("4_pohq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="StartBomb" parent="." instance=ExtResource("5_shn06")]
+
+[node name="fallaway_tile" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="fallaway_tile2" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="fallaway_tile3" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="fallaway_tile4" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="fallaway_tile5" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="fallaway_tile6" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="fallaway_tile7" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="fallaway_tile8" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="fallaway_tile9" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="fallaway_tile10" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="fallaway_tile12" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="fallaway_tile14" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="fallaway_tile15" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="fallaway_tile16" parent="." instance=ExtResource("6_l1u2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="bomb3" parent="." instance=ExtResource("7_wqxua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="bomb4" parent="." instance=ExtResource("7_wqxua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="bomb5" parent="." instance=ExtResource("7_wqxua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="bomb6" parent="." instance=ExtResource("7_wqxua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)

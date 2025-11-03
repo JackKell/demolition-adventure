@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4lchf6ybpb4g"]
+
+[ext_resource type="Material" uid="uid://bp3assrtgq6ot" path="res://levels/common/bombs/bomb_material.tres" id="1_0ui2l"]
+[ext_resource type="PackedScene" uid="uid://bkta6dt3k3mqw" path="res://levels/common/bombs/bomb.glb" id="1_5qwpq"]
+[ext_resource type="Script" uid="uid://248iemv408vt" path="res://levels/common/bombs/bomb.gd" id="1_68285"]
+[ext_resource type="Material" uid="uid://c12a6lrixr64b" path="res://levels/common/bombs/number_1.material" id="3_5qwpq"]
+[ext_resource type="AudioStream" uid="uid://cwarsce112f3e" path="res://levels/common/bombs/bomb.ogg" id="5_6blin"]
+[ext_resource type="PackedScene" uid="uid://c5m0b72dpg5v1" path="res://levels/common/bombs/blob_shadow.tscn" id="6_nvr28"]
+
+[node name="BombSize1" groups=["bomb", "entity"] instance=ExtResource("1_5qwpq")]
+script = ExtResource("1_68285")
+
+[node name="bomb" parent="." index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_5qwpq")
+surface_material_override/1 = ExtResource("1_0ui2l")
+
+[node name="Explosion" type="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("5_6blin")
+
+[node name="BlobShadow" parent="." index="2" instance=ExtResource("6_nvr28")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)

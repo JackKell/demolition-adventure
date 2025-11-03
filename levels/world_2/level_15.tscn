@@ -1,0 +1,363 @@
+[gd_scene load_steps=13 format=3 uid="uid://dkmyi807nom82"]
+
+[ext_resource type="Script" uid="uid://by06hqs7fmw4n" path="res://levels/common/level.gd" id="1_t1ilq"]
+[ext_resource type="Environment" uid="uid://ww2h0dunhwre" path="res://levels/world_2/desert_environment.tres" id="2_opkrv"]
+[ext_resource type="PackedScene" uid="uid://dnabsi3t3jusq" path="res://levels/world_2/sandy_brick_tile/sandy_brick_3_tile.tscn" id="3_mk81w"]
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="3_opkrv"]
+[ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="4_0axyk"]
+[ext_resource type="PackedScene" uid="uid://bc073xu5yq0wj" path="res://levels/world_2/sandy_brick_tile/sandy_brick_2_tile.tscn" id="4_brivd"]
+[ext_resource type="PackedScene" uid="uid://dc1w26fhhlpo1" path="res://levels/common/character/character.tscn" id="5_mk81w"]
+[ext_resource type="PackedScene" uid="uid://d4lchf6ybpb4g" path="res://levels/common/bombs/bomb_1.tscn" id="8_oxvkv"]
+[ext_resource type="PackedScene" uid="uid://card7c87fvbw" path="res://levels/world_2/brick_pile/brick_pile.tscn" id="9_0axyk"]
+[ext_resource type="PackedScene" uid="uid://bq6mptqatm01n" path="res://levels/world_2/broken_pillar/desert_broken_pillar.tscn" id="9_mk81w"]
+[ext_resource type="PackedScene" uid="uid://dolnh02350x0i" path="res://levels/common/bombs/bomb_2.tscn" id="9_opkrv"]
+[ext_resource type="PackedScene" uid="uid://bwst3mn6thxlm" path="res://levels/world_2/sand_floor.tscn" id="9_oxvkv"]
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_t1ilq")
+metadata/_custom_type_script = "uid://by06hqs7fmw4n"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_opkrv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -20, 0, 0)
+shadow_enabled = true
+
+[node name="Tiles" type="Node3D" parent="."]
+
+[node name="SandyBrick3Tile" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="SandyBrick2Tile" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="SandyBrickTile" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="SandyBrick3Tile2" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="SandyBrickTile2" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="SandyBrick2Tile2" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="SandyBrickTile3" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="SandyBrick3Tile3" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="SandyBrick2Tile3" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+
+[node name="SandyBrick3Tile4" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="SandyBrick2Tile4" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="SandyBrick2Tile5" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="SandyBrick3Tile5" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="SandyBrick3Tile6" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="SandyBrickTile4" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="SandyBrick2Tile6" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="SandyBrick2Tile7" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="SandyBrick2Tile8" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+
+[node name="SandyBrick2Tile9" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+
+[node name="SandyBrickTile5" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="SandyBrick3Tile7" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="SandyBrick2Tile10" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="SandyBrickTile6" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="SandyBrick3Tile8" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="SandyBrick2Tile11" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="SandyBrick3Tile9" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="SandyBrickTile7" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+
+[node name="SandyBrickTile8" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
+
+[node name="SandyBrick2Tile12" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+
+[node name="SandyBrickTile9" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
+
+[node name="SandyBrick3Tile10" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="SandyBrickTile10" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
+
+[node name="SandyBrick2Tile13" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -2)
+
+[node name="SandyBrick3Tile11" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -1)
+
+[node name="SandyBrick3Tile12" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5)
+
+[node name="SandyBrick2Tile14" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+
+[node name="SandyBrick3Tile13" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="SandyBrick2Tile15" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4)
+
+[node name="SandyBrick2Tile16" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="SandyBrickTile11" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6)
+
+[node name="SandyBrick2Tile17" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 5)
+
+[node name="SandyBrick2Tile18" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+
+[node name="SandyBrickTile12" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 7)
+
+[node name="SandyBrick3Tile14" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+
+[node name="SandyBrickTile13" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 5)
+
+[node name="SandyBrickTile14" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4)
+
+[node name="SandyBrick2Tile19" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="SandyBrick2Tile20" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
+
+[node name="SandyBrickTile15" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+
+[node name="SandyBrickTile16" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
+
+[node name="SandyBrickTile17" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="SandyBrick2Tile21" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="SandyBrick3Tile15" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="SandyBrick3Tile16" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="SandyBrickTile18" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 6)
+
+[node name="SandyBrickTile19" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 7)
+
+[node name="SandyBrickTile20" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
+
+[node name="SandyBrick3Tile17" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+
+[node name="SandyBrick2Tile22" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -1)
+
+[node name="SandyBrick3Tile18" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2)
+
+[node name="SandyBrick3Tile19" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -2)
+
+[node name="SandyBrick3Tile20" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+
+[node name="SandyBrickTile21" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
+
+[node name="SandyBrick3Tile21" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+
+[node name="SandyBrick2Tile23" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+
+[node name="SandyBrickTile22" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6)
+
+[node name="SandyBrick3Tile22" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="SandyBrick3Tile23" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
+
+[node name="SandyBrickTile23" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
+
+[node name="SandyBrick2Tile24" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="SandyBrick3Tile24" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6)
+
+[node name="SandyBrickTile24" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="SandyBrickTile25" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+
+[node name="SandyBrick3Tile25" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="SandyBrick2Tile25" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="SandyBrick2Tile26" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="SandyBrickTile26" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+
+[node name="SandyBrickTile27" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+
+[node name="SandyBrick2Tile27" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="SandyBrick3Tile26" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="SandyBrick2Tile28" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="SandyBrickTile28" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="SandyBrickTile29" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="SandyBrick2Tile29" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+
+[node name="SandyBrick3Tile27" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+
+[node name="SandyBrickTile30" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="SandyBrick3Tile28" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="SandyBrick3Tile29" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("3_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="SandyBrick2Tile30" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="SandyBrick2Tile31" type="Node3D" parent="Tiles" groups=["sandy_brick_tile"] instance=ExtResource("4_brivd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="SandFloor" parent="." instance=ExtResource("9_oxvkv")]
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="StartBomb" parent="Entities" instance=ExtResource("4_0axyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Character" parent="Entities" instance=ExtResource("5_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="BombSize1" parent="Entities" instance=ExtResource("8_oxvkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="BombSize3" parent="Entities" instance=ExtResource("8_oxvkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="BombSize5" parent="Entities" instance=ExtResource("8_oxvkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="BombSize6" parent="Entities" instance=ExtResource("8_oxvkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="BombSize2" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="BombSize9" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="BombSize10" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="BombSize11" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="BombSize12" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="BombSize13" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="BombSize4" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="BombSize7" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="BombSize8" parent="Entities" instance=ExtResource("9_opkrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="BrickPile" parent="Entities" instance=ExtResource("9_0axyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="BrickPile2" parent="Entities" instance=ExtResource("9_0axyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="BrickPile3" parent="Entities" instance=ExtResource("9_0axyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="BrickPile4" parent="Entities" instance=ExtResource("9_0axyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="DesertBrokenPillar" parent="Entities" instance=ExtResource("9_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6)
+
+[node name="DesertBrokenPillar2" parent="Entities" instance=ExtResource("9_mk81w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6)

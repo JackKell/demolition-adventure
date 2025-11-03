@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://lojca6j7mr3f"]
+
+[ext_resource type="PackedScene" uid="uid://bkta6dt3k3mqw" path="res://levels/common/bombs/bomb.glb" id="1_s3cvn"]
+
+[node name="bomb_mesh" instance=ExtResource("1_s3cvn")]

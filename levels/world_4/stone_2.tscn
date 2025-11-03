@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctw3md8cpa30e"]
+
+[ext_resource type="PackedScene" uid="uid://bf8jwali6bqk5" path="res://levels/world_4/stone_2.glb" id="1_68ghw"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_prqim"]
+[ext_resource type="Material" uid="uid://sp347vtl3hhh" path="res://levels/world_4/stone.material" id="3_xlvon"]
+
+[node name="Stone2" groups=["entity"] instance=ExtResource("1_68ghw")]
+script = ExtResource("2_prqim")
+
+[node name="Cylinder_003" parent="." index="0"]
+surface_material_override/0 = ExtResource("3_xlvon")

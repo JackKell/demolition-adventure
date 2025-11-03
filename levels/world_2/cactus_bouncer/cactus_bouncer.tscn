@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnaga4t64psqv"]
+
+[ext_resource type="PackedScene" uid="uid://846c5ri2imy1" path="res://levels/world_2/cactus_bouncer/cactus_bouncer.glb" id="1_eb6yd"]
+[ext_resource type="Script" uid="uid://cmb6ksj2bx2jp" path="res://levels/common/bouncer.gd" id="2_p8kt4"]
+[ext_resource type="Material" uid="uid://cy588u2cdj5m4" path="res://levels/world_2/cactus_bouncer/cactus_bouncer.material" id="2_w7ig1"]
+
+[node name="cactus_bouncer" node_paths=PackedStringArray("mesh") groups=["entity"] instance=ExtResource("1_eb6yd")]
+script = ExtResource("2_p8kt4")
+mesh = NodePath("Cylinder")
+
+[node name="Cylinder" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_w7ig1")

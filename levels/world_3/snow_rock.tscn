@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxcjhjnjlbjkt"]
+
+[ext_resource type="PackedScene" uid="uid://b2fq0thplwac4" path="res://levels/world_3/rock.glb" id="1_t6gdw"]
+[ext_resource type="Texture2D" uid="uid://c6u2gvxphf80e" path="res://levels/world_3/snow_pile.png" id="2_bnk7j"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_qi3t5"]
+[ext_resource type="PackedScene" uid="uid://slxmkhtsbns" path="res://levels/world_3/snow_pile.tscn" id="3_auk0f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi3t5"]
+albedo_texture = ExtResource("2_bnk7j")
+
+[node name="rock" groups=["entity"] instance=ExtResource("1_t6gdw")]
+script = ExtResource("2_qi3t5")
+
+[node name="Sphere" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+surface_material_override/0 = SubResource("StandardMaterial3D_qi3t5")
+
+[node name="SnowPile" parent="." index="1" instance=ExtResource("3_auk0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+visible = false
+
+[node name="SnowPile2" parent="." index="2" instance=ExtResource("3_auk0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+visible = false
+
+[node name="SnowPile3" parent="." index="3" instance=ExtResource("3_auk0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+visible = false
+
+[node name="SnowPile4" parent="." index="4" instance=ExtResource("3_auk0f")]
+visible = false

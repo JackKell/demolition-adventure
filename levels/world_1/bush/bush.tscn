@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfwn3wkgdoimw"]
+
+[ext_resource type="PackedScene" uid="uid://bjn8q85x3hj1r" path="res://levels/world_1/bush/bush.glb" id="1_8cy4n"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_28u5p"]
+
+[node name="bush" groups=["entity"] instance=ExtResource("1_8cy4n")]
+script = ExtResource("2_28u5p")

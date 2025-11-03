@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj26yll0wue6n"]
+
+[ext_resource type="Script" uid="uid://hi7k2q0j18nh" path="res://levels/common/tile.gd" id="1_s2ny2"]
+[ext_resource type="CylinderMesh" uid="uid://b2g7ignxmpwgs" path="res://levels/common/spike_mesh.tres" id="1_wc16h"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="3_i7edb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s2ny2"]
+size = Vector3(1, 0.25, 1)
+
+[node name="SpikeTile" type="RigidBody3D" groups=["tile"]]
+script = ExtResource("1_s2ny2")
+type = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = SubResource("BoxMesh_s2ny2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.062, -0.35)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.062, -0.35)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.062, 0)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.062, 0)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4901161e-08, -0.062, 0)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.062, -0.35)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.062, 0.35)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.062, 0.35)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4901161e-08, -0.062, 0.35)
+mesh = ExtResource("1_wc16h")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = ExtResource("3_i7edb")

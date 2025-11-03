@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf7aseurr7jde"]
+
+[ext_resource type="Script" uid="uid://c4x81oveiscqj" path="res://addons/jumble/range_select.gd" id="1_s7oto"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02ow2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7oto"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7oto"]
+bg_color = Color(0.77506316, 0.77506346, 0.7750634, 1)
+corner_detail = 6
+
+[node name="RangeSelect" type="Control"]
+custom_minimum_size = Vector2(145, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_s7oto")
+
+[node name="MinSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 16.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_02ow2")
+max_value = 255.0
+ticks_position = 2
+
+[node name="MaxSlider" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 25.0
+offset_right = 300.0
+offset_bottom = 41.0
+theme_override_styles/slider = SubResource("StyleBoxEmpty_s7oto")
+max_value = 255.0
+value = 255.0
+ticks_position = 2
+
+[node name="BackgroundBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 300.0
+offset_bottom = 26.0
+show_percentage = false
+
+[node name="FillBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 110.0
+offset_bottom = 26.0
+theme_override_styles/background = SubResource("StyleBoxFlat_s7oto")
+show_percentage = false

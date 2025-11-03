@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds6dy16lttu16"]
+
+[ext_resource type="PackedScene" uid="uid://cata773r76geh" path="res://levels/common/tile.glb" id="1_6qmdb"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="2_o07l6"]
+[ext_resource type="Texture2D" uid="uid://lhhtlyijqe61" path="res://levels/world_2/desert_rock.png" id="2_odfph"]
+[ext_resource type="Script" uid="uid://ydtwsej63low" path="res://levels/common/fallaway_tile.gd" id="2_qe1mt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe1mt"]
+albedo_texture = ExtResource("2_odfph")
+texture_filter = 0
+
+[node name="DesertFallwayTile" node_paths=PackedStringArray("mesh") instance=ExtResource("1_6qmdb")]
+script = ExtResource("2_qe1mt")
+mesh = NodePath("Tile")
+
+[node name="Tile" parent="." index="0" groups=["tile"]]
+surface_material_override/0 = SubResource("StandardMaterial3D_qe1mt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 0)
+shape = ExtResource("2_o07l6")

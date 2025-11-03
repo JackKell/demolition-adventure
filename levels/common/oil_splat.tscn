@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgp2iclph4bk5"]
+
+[ext_resource type="Texture2D" uid="uid://0qajm4m2cxyw" path="res://levels/common/oil_splatter.png" id="1_6ei74"]
+
+[node name="OilSplat" type="Node3D"]
+
+[node name="Decal" type="Decal" parent="."]
+visible = false
+size = Vector3(0.8, 0.1, 0.8)
+texture_albedo = ExtResource("1_6ei74")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+pixel_size = 0.03
+axis = 1
+double_sided = false
+texture_filter = 4
+texture = ExtResource("1_6ei74")

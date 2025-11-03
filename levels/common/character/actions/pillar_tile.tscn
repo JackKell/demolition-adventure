@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjj2jctb6lic0"]
+
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="1_we33f"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="2_bqwsv"]
+[ext_resource type="PackedScene" uid="uid://cb41s3m83io53" path="res://levels/world_2/desert_piller.glb" id="3_ibp0h"]
+[ext_resource type="Material" uid="uid://3712o45mt3r1" path="res://levels/world_2/desert_pillar.material" id="4_b6yul"]
+
+[node name="PillarTile" type="Node3D"]
+
+[node name="BrickTile" parent="." instance=ExtResource("1_we33f")]
+
+[node name="DesertPillar" parent="." groups=["entity"] instance=ExtResource("3_ibp0h")]
+script = ExtResource("2_bqwsv")
+
+[node name="Cube" parent="DesertPillar" index="0"]
+surface_material_override/0 = ExtResource("4_b6yul")
+
+[editable path="BrickTile"]
+[editable path="BrickTile/tile"]
+[editable path="DesertPillar"]

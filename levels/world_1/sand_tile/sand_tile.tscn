@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://2unshcy6q1lk"]
+
+[ext_resource type="PackedScene" uid="uid://cata773r76geh" path="res://levels/common/tile.glb" id="1_xixd5"]
+[ext_resource type="Material" uid="uid://upuv68bil126" path="res://levels/world_1/sand_tile/sand_tile.material" id="2_lyefv"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="3_lyefv"]
+
+[node name="SandTile" groups=["tile"] instance=ExtResource("1_xixd5")]
+
+[node name="Tile" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_lyefv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 0)
+shape = ExtResource("3_lyefv")

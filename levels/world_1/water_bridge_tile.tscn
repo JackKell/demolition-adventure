@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cglkdarvim6gv"]
+
+[ext_resource type="PackedScene" uid="uid://bngyaahdtwuuu" path="res://levels/world_1/water_tile.tscn" id="2_y6e8r"]
+[ext_resource type="PackedScene" uid="uid://cq85emc3uo15v" path="res://levels/common/bridge.tscn" id="3_sno8s"]
+[ext_resource type="Material" uid="uid://dcvd31turskbt" path="res://levels/common/bridge/tropical_bridge.tres" id="3_trdes"]
+[ext_resource type="PackedScene" uid="uid://c0ui40cd8ri53" path="res://levels/common/bridge/bridge.glb" id="4_sno8s"]
+
+[node name="WaterBridgeTile" type="Node3D"]
+
+[node name="WaterTile" parent="." instance=ExtResource("2_y6e8r")]
+type = 0
+
+[node name="bridge" parent="WaterTile" instance=ExtResource("3_sno8s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+visible = false
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_trdes")
+
+[node name="bridge2" parent="WaterTile" instance=ExtResource("4_sno8s")]
+
+[node name="Cube_001" parent="WaterTile/bridge2" index="0"]
+surface_material_override/0 = ExtResource("3_trdes")
+
+[editable path="WaterTile/bridge2"]

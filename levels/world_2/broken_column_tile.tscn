@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsjjiru08558c"]
+
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="1_vvt5y"]
+[ext_resource type="PackedScene" uid="uid://d13uwyscexqjl" path="res://levels/world_2/broken_pillar/desert_broken_pillar.glb" id="2_2w6o6"]
+[ext_resource type="Script" uid="uid://dtmdgo2vfw6tt" path="res://levels/common/entity.gd" id="3_yxylx"]
+[ext_resource type="Texture2D" uid="uid://d12vonwnmg2g7" path="res://levels/world_2/broken_pillar/desert_broken_pillar.png" id="4_u3dn3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agcu8"]
+albedo_texture = ExtResource("4_u3dn3")
+
+[node name="BrokenColumnTile" type="Node3D"]
+
+[node name="BrickTile" parent="." instance=ExtResource("1_vvt5y")]
+
+[node name="desert_broken_pillar" parent="." groups=["entity"] instance=ExtResource("2_2w6o6")]
+script = ExtResource("3_yxylx")
+
+[node name="Cylinder" parent="desert_broken_pillar" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_agcu8")
+
+[editable path="BrickTile"]
+[editable path="BrickTile/tile"]
+[editable path="desert_broken_pillar"]

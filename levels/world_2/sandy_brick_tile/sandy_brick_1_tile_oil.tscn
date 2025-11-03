@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2g4k251eoppl"]
+
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="1_d3tm5"]
+[ext_resource type="PackedScene" uid="uid://bgp2iclph4bk5" path="res://levels/common/oil_splat.tscn" id="2_nyuda"]
+
+[node name="SandyBrickTileOil" instance=ExtResource("1_d3tm5")]
+
+[node name="tile" parent="." index="0"]
+type = 3
+
+[node name="OilSplat" parent="tile" index="2" instance=ExtResource("2_nyuda")]
+
+[editable path="tile"]
