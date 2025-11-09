@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GameWorld" load_steps=5 format=3 uid="uid://bx5nmyhmtv4qp"]
+
+[ext_resource type="Script" uid="uid://bj8320v1txt5u" path="res://level_editor/icons/game_world.gd" id="1_n3vvs"]
+[ext_resource type="Texture2D" uid="uid://dd8ogoal8nxx" path="res://levels/common/world_icons/world_1_icon.tres" id="1_ovf1i"]
+[ext_resource type="Environment" uid="uid://bcqnxtjbw4l6v" path="res://levels/world_1/tropical.enivorment.tres" id="1_xd4lw"]
+[ext_resource type="PackedScene" uid="uid://df3sydjumabp2" path="res://levels/world_1/ocean.tscn" id="4_lm4yp"]
+
+[resource]
+script = ExtResource("1_n3vvs")
+name = "Tropical"
+icon = ExtResource("1_ovf1i")
+enviorment = ExtResource("1_xd4lw")
+world_floor = ExtResource("4_lm4yp")
+metadata/_custom_type_script = "uid://bj8320v1txt5u"

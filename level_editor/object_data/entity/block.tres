@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://m5e618respvg"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_2318u"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_oan6m"]
+[ext_resource type="PackedScene" uid="uid://lnisr4xy3lqw" path="res://levels/world_6/abstract_obstacle/abstract_obstetrical.tscn" id="2_433ob"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqheb"]
+atlas = ExtResource("1_2318u")
+region = Rect2(0, 112, 16, 16)
+
+[resource]
+script = ExtResource("1_oan6m")
+id = 20
+name = "obstacle"
+icon = SubResource("AtlasTexture_sqheb")
+scene = ExtResource("2_433ob")
+world_theme = 5
+metadata/_custom_type_script = "uid://vv4klj232v1h"

@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bcxcjwnvggtyl"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_yt6is"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ybwx6"]
+texture = ExtResource("1_yt6is")
+0:0/0 = 0
+0:0/0/custom_data_0 = "uid://crm2wvx5uta01"
+1:0/0 = 0
+1:0/0/custom_data_0 = "uid://x5og8u3mxc1m"
+2:0/0 = 0
+2:0/0/custom_data_0 = "uid://dtmwj4paoe1ox"
+3:0/0 = 0
+3:0/0/custom_data_0 = "uid://d4hqxnvkk6p0v"
+4:0/0 = 0
+4:0/0/custom_data_0 = "uid://dc1w26fhhlpo1"
+0:1/0 = 0
+0:1/0/custom_data_0 = "uid://ibyppityy40g"
+1:1/0 = 0
+1:1/0/custom_data_0 = "uid://lyx1loacnwvk"
+2:1/0 = 0
+2:1/0/custom_data_0 = "uid://dld7sf31c7032"
+3:1/0 = 0
+
+[resource]
+custom_data_layer_0/name = "SceneUID"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_ybwx6")

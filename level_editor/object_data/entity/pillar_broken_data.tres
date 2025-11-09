@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://ch8nkh5eedf4j"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_3rrhv"]
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_x5g4g"]
+[ext_resource type="PackedScene" uid="uid://vti5fjpcic8j" path="res://levels/world_5/castle_pillar/castle_broken_pillar.tscn" id="2_ahvb4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ahvh"]
+atlas = ExtResource("1_x5g4g")
+region = Rect2(32, 96, 16, 16)
+
+[resource]
+script = ExtResource("1_3rrhv")
+id = 15
+name = "column broken"
+icon = SubResource("AtlasTexture_4ahvh")
+scene = ExtResource("2_ahvb4")
+world_theme = 4
+metadata/_custom_type_script = "uid://vv4klj232v1h"

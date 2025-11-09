@@ -12,6 +12,6 @@ albedo_texture = ExtResource("3_tnsvn")
 script = ExtResource("2_tnsvn")
 
 [node name="BrickWwall" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39999998, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 surface_material_override/0 = SubResource("StandardMaterial3D_ji2rw")
 surface_material_override/1 = ExtResource("4_3oatp")

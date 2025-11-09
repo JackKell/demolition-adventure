@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://dp3fdrujf08p5"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_puj6d"]
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_x0faf"]
+[ext_resource type="PackedScene" uid="uid://cj13emd1uigcw" path="res://levels/common/bombs/bouncer.tscn" id="2_cdy8e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdy8e"]
+atlas = ExtResource("1_x0faf")
+region = Rect2(48, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_puj6d")
+id = 3
+name = "buoy"
+icon = SubResource("AtlasTexture_cdy8e")
+scene = ExtResource("2_cdy8e")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"

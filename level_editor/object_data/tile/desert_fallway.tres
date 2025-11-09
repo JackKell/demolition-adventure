@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://d0ar0gdkmr01u"]
+
+[ext_resource type="Texture2D" uid="uid://lhhtlyijqe61" path="res://levels/world_2/desert_rock.png" id="1_858hq"]
+[ext_resource type="PackedScene" uid="uid://ds6dy16lttu16" path="res://levels/world_2/desert_fallway_tile.tscn" id="2_2c53q"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_kpe5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6s5y"]
+atlas = ExtResource("1_858hq")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("3_kpe5r")
+id = 8
+name = "desert fallaway"
+icon = SubResource("AtlasTexture_s6s5y")
+scene = ExtResource("2_2c53q")
+world_theme = 1
+metadata/_custom_type_script = "uid://vv4klj232v1h"

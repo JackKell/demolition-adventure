@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://bereccrohhhte"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_f8scf"]
+[ext_resource type="Texture2D" uid="uid://ugnuqd4thix1" path="res://levels/world_3/compacted_ice_tile/compacted_ice_tile.png" id="1_id8gp"]
+[ext_resource type="PackedScene" uid="uid://uebe0u2iklik" path="res://levels/world_3/compacted_ice_tile.tscn" id="2_v5psj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5psj"]
+atlas = ExtResource("1_id8gp")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_f8scf")
+id = 11
+name = "compacted ice"
+icon = SubResource("AtlasTexture_v5psj")
+scene = ExtResource("2_v5psj")
+world_theme = 2
+metadata/_custom_type_script = "uid://vv4klj232v1h"

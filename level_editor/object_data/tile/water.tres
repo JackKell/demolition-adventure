@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://b0dllb77hpnhq"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_hn3id"]
+[ext_resource type="Texture2D" uid="uid://hw0d3ckj1gim" path="res://levels/world_1/water/water_surface.png" id="1_ltwxt"]
+[ext_resource type="PackedScene" uid="uid://bngyaahdtwuuu" path="res://levels/world_1/water_tile.tscn" id="2_ltwxt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gujwv"]
+atlas = ExtResource("1_ltwxt")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_hn3id")
+id = 1
+name = "water"
+icon = SubResource("AtlasTexture_gujwv")
+scene = ExtResource("2_ltwxt")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"

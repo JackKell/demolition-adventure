@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://y74ugcutpt5y"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_60udd"]
+[ext_resource type="Texture2D" uid="uid://bxdgwdajuds3w" path="res://levels/common/conveyor_belt/conveyor_belt.png" id="1_u1j7u"]
+[ext_resource type="PackedScene" uid="uid://cyvys5a3qohns" path="res://levels/common/convery_belt_tile.tscn" id="2_y4w4q"]
+
+[resource]
+script = ExtResource("1_60udd")
+id = 21
+name = "converyor belt"
+icon = ExtResource("1_u1j7u")
+scene = ExtResource("2_y4w4q")
+metadata/_custom_type_script = "uid://vv4klj232v1h"

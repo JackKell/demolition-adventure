@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://clc6j5rwj3ooa"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_7ud4r"]
+[ext_resource type="PackedScene" uid="uid://btsded8joccpx" path="res://levels/world_6/jello_bouncer/jello_bouncer_yellow.tscn" id="1_opgbw"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_x56i6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_614r7"]
+atlas = ExtResource("1_7ud4r")
+region = Rect2(32, 112, 16, 16)
+
+[resource]
+script = ExtResource("1_x56i6")
+id = 18
+name = "jello yellow"
+icon = SubResource("AtlasTexture_614r7")
+scene = ExtResource("1_opgbw")
+world_theme = 5
+metadata/_custom_type_script = "uid://vv4klj232v1h"

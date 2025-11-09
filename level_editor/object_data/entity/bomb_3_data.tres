@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://combk75nieb2o"]
+
+[ext_resource type="Texture2D" uid="uid://bhfu1h8nfsj4w" path="res://level_editor/icons/entity/bomb3.tres" id="1_82ffv"]
+[ext_resource type="PackedScene" uid="uid://dwc5ywcc4m8pb" path="res://levels/common/bombs/bomb_3.tscn" id="2_82ffv"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_my2lw"]
+
+[resource]
+script = ExtResource("3_my2lw")
+id = 25
+name = "bomb 3"
+icon = ExtResource("1_82ffv")
+scene = ExtResource("2_82ffv")
+metadata/_custom_type_script = "uid://vv4klj232v1h"

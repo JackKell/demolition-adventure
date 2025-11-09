@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=3 format=3 uid="uid://bgu4l2bkuihas"]
+
+[ext_resource type="PackedScene" uid="uid://ctw3md8cpa30e" path="res://levels/world_4/stone_2.tscn" id="1_7psb0"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_xch5h"]
+
+[resource]
+script = ExtResource("1_xch5h")
+id = 10
+name = "stone 2"
+scene = ExtResource("1_7psb0")
+world_theme = 3
+metadata/_custom_type_script = "uid://vv4klj232v1h"

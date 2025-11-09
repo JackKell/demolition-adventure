@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://86ewx6pvo8xh"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_1yqls"]
+[ext_resource type="Texture2D" uid="uid://cvhhcwfciqi4l" path="res://levels/world_5/castle_rug_tile/castle_rug_tile.png" id="1_ana2h"]
+[ext_resource type="PackedScene" uid="uid://drc34m6q6wpah" path="res://levels/world_5/castle_rug_tile/castle_rug_tile.tscn" id="2_ana2h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx8bo"]
+atlas = ExtResource("1_ana2h")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_1yqls")
+id = 15
+name = "castle_rug"
+icon = SubResource("AtlasTexture_vx8bo")
+scene = ExtResource("2_ana2h")
+world_theme = 4
+metadata/_custom_type_script = "uid://vv4klj232v1h"

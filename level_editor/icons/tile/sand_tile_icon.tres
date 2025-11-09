@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c11f3ypgikerc"]
+
+[ext_resource type="Texture2D" uid="uid://blb1o2f80uugk" path="res://levels/world_1/sand_tile/sand_tile.png" id="1_n767j"]
+
+[resource]
+atlas = ExtResource("1_n767j")
+region = Rect2(0, 0, 32, 32)

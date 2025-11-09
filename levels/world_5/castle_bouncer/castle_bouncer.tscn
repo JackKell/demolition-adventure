@@ -8,6 +8,7 @@
 shading_mode = 2
 diffuse_mode = 1
 albedo_texture = ExtResource("3_jy66v")
+texture_filter = 0
 
 [node name="CastleBouncer" node_paths=PackedStringArray("mesh") groups=["entity"] instance=ExtResource("1_1vknv")]
 script = ExtResource("2_tch3v")

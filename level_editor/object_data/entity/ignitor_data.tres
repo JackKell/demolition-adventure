@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://ftn4fdqand5f"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_6iagp"]
+[ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="2_hpprv"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_6wfef"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpprv"]
+atlas = ExtResource("1_6iagp")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+script = ExtResource("3_6wfef")
+id = 22
+name = "ignitor"
+icon = SubResource("AtlasTexture_hpprv")
+scene = ExtResource("2_hpprv")
+metadata/_custom_type_script = "uid://vv4klj232v1h"

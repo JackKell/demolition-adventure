@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://b3dymhu5y81xg"]
+
+[ext_resource type="Texture2D" uid="uid://dkqym021jjr2e" path="res://level_editor/icons/entity/bomb_3_grounded.tres" id="1_60o4q"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_qlm7d"]
+[ext_resource type="PackedScene" uid="uid://ibyppityy40g" path="res://levels/common/bombs/bomb_3_stuck.tscn" id="2_61nef"]
+
+[resource]
+script = ExtResource("1_qlm7d")
+id = 24
+name = "bomb 3g"
+icon = ExtResource("1_60o4q")
+scene = ExtResource("2_61nef")
+metadata/_custom_type_script = "uid://vv4klj232v1h"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://ckmbk0cixuu7w"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_1o32e"]
+[ext_resource type="Texture2D" uid="uid://qsipwhhleato" path="res://levels/world_3/ice_tile.png" id="1_p4imr"]
+[ext_resource type="PackedScene" uid="uid://boq2aqxuf8ipl" path="res://levels/world_3/icy_tile.tscn" id="2_ioj07"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioj07"]
+atlas = ExtResource("1_p4imr")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_1o32e")
+id = 12
+name = "polished_metal"
+icon = SubResource("AtlasTexture_ioj07")
+scene = ExtResource("2_ioj07")
+world_theme = 3
+metadata/_custom_type_script = "uid://vv4klj232v1h"

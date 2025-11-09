@@ -1,3 +1,6 @@
+# Project specific
+addons/resources_spreadsheet_view
+
 # Godot 4+ specific ignores
 .godot/
 .nomedia

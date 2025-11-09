@@ -6,5 +6,5 @@ extends Resource
 @export var thumbnail: Texture2D
 @export var alloted_time: int = 999
 @export var level_scene: PackedScene
-@export var tiles: Dictionary[Vector2i, Tile.TileType]
-@export var entities: Dictionary[Vector2i, EntityConfig]
+@export var tiles: Dictionary[Vector2i, BaseConfig]
+@export var entities: Dictionary[Vector2i, BaseConfig]

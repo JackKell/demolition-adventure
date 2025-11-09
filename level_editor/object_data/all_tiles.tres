@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="LevelEditorObjects" load_steps=19 format=3 uid="uid://xbpyp3rkqm6a"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_w6sy5"]
+[ext_resource type="Resource" uid="uid://bereccrohhhte" path="res://level_editor/object_data/tile/compacted_ice.tres" id="2_kgj6o"]
+[ext_resource type="Script" uid="uid://bt5ai5q4jato5" path="res://level_editor/object_data/level_editor_objects.gd" id="2_qxlq6"]
+[ext_resource type="Resource" uid="uid://y74ugcutpt5y" path="res://level_editor/object_data/tile/conveyor_belt.tres" id="3_hagdk"]
+[ext_resource type="Resource" uid="uid://balnvxpf8b3gl" path="res://level_editor/object_data/tile/cracked_ice.tres" id="4_l3ide"]
+[ext_resource type="Resource" uid="uid://d0ar0gdkmr01u" path="res://level_editor/object_data/tile/desert_fallway.tres" id="5_vfkpi"]
+[ext_resource type="Resource" uid="uid://cqbilbfjq5plc" path="res://level_editor/object_data/tile/grass_tile.tres" id="6_aj5jt"]
+[ext_resource type="Resource" uid="uid://bui5shp2l214s" path="res://level_editor/object_data/tile/ice.tres" id="7_gbwbr"]
+[ext_resource type="Resource" uid="uid://dmnghl834o5qa" path="res://level_editor/object_data/tile/lava_rock.tres" id="8_kc8fj"]
+[ext_resource type="Resource" uid="uid://ctnpa8fvapaq2" path="res://level_editor/object_data/tile/lava_rock_oil.tres" id="9_b5y8y"]
+[ext_resource type="Resource" uid="uid://ckmbk0cixuu7w" path="res://level_editor/object_data/tile/polished_metal.tres" id="10_8lqry"]
+[ext_resource type="Resource" uid="uid://5g7krlg2e4ly" path="res://level_editor/object_data/tile/sand.tres" id="11_av707"]
+[ext_resource type="Resource" uid="uid://ccml310k6kdt1" path="res://level_editor/object_data/tile/sand_brick_1.tres" id="12_wnkbq"]
+[ext_resource type="Resource" uid="uid://dtmpu21m6dw62" path="res://level_editor/object_data/tile/sand_brick_2.tres" id="13_f6cqf"]
+[ext_resource type="Resource" uid="uid://ca8tblyb1w5wp" path="res://level_editor/object_data/tile/sand_brick_3.tres" id="14_bffwl"]
+[ext_resource type="Resource" uid="uid://bhl4oe1bx6omr" path="res://level_editor/object_data/tile/sand_oil.tres" id="15_cjord"]
+[ext_resource type="Resource" uid="uid://b0dllb77hpnhq" path="res://level_editor/object_data/tile/water.tres" id="16_tbbi6"]
+[ext_resource type="Resource" uid="uid://cvneeje5ippov" path="res://level_editor/object_data/tile/water_bridge.tres" id="17_ln2u7"]
+
+[resource]
+script = ExtResource("2_qxlq6")
+objects = Array[ExtResource("1_w6sy5")]([ExtResource("2_kgj6o"), ExtResource("3_hagdk"), ExtResource("4_l3ide"), ExtResource("5_vfkpi"), ExtResource("6_aj5jt"), ExtResource("7_gbwbr"), ExtResource("8_kc8fj"), ExtResource("9_b5y8y"), ExtResource("10_8lqry"), ExtResource("11_av707"), ExtResource("12_wnkbq"), ExtResource("13_f6cqf"), ExtResource("14_bffwl"), ExtResource("15_cjord"), ExtResource("16_tbbi6"), ExtResource("17_ln2u7")])
+metadata/_custom_type_script = "uid://bt5ai5q4jato5"

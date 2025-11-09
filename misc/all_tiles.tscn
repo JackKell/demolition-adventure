@@ -1,9 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhyjikog0o2rx"]
+[gd_scene load_steps=52 format=3 uid="uid://dhyjikog0o2rx"]
 
 [ext_resource type="PackedScene" uid="uid://cglkdarvim6gv" path="res://levels/world_1/water_bridge_tile.tscn" id="1_i0ps0"]
 [ext_resource type="PackedScene" uid="uid://2unshcy6q1lk" path="res://levels/world_1/sand_tile/sand_tile.tscn" id="2_60v5i"]
 [ext_resource type="PackedScene" uid="uid://bngyaahdtwuuu" path="res://levels/world_1/water_tile.tscn" id="3_isnhr"]
 [ext_resource type="PackedScene" uid="uid://cpi21cves2wf4" path="res://levels/world_1/grass_tile/grass_tile.tscn" id="4_60v5i"]
+[ext_resource type="PackedScene" uid="uid://cq1ovo25j01o5" path="res://levels/world_4/cracked_stone/cracked_fallaway_tile.tscn" id="5_rp71p"]
+[ext_resource type="PackedScene" uid="uid://bdpthxtj6xylq" path="res://levels/world_5/castle_floor_tile/castle_rock_oil_tile.tscn" id="6_vsodi"]
+[ext_resource type="PackedScene" uid="uid://l7cu77vkfdy6" path="res://levels/world_5/castle_floor_tile/castle_rock_tile.tscn" id="7_muddc"]
+[ext_resource type="PackedScene" uid="uid://drc34m6q6wpah" path="res://levels/world_5/castle_rug_tile/castle_rug_tile.tscn" id="8_1m7r2"]
+[ext_resource type="PackedScene" uid="uid://uebe0u2iklik" path="res://levels/world_3/compacted_ice_tile.tscn" id="9_8al8g"]
+[ext_resource type="PackedScene" uid="uid://cyvys5a3qohns" path="res://levels/common/convery_belt_tile.tscn" id="10_rasoy"]
+[ext_resource type="PackedScene" uid="uid://c388ljydvmqti" path="res://levels/world_3/cracked_ice_tile/cracked_ice_fallaway_tile.tscn" id="11_3coi7"]
+[ext_resource type="PackedScene" uid="uid://ds6dy16lttu16" path="res://levels/world_2/desert_fallway_tile.tscn" id="12_vs4l7"]
+[ext_resource type="PackedScene" uid="uid://boq2aqxuf8ipl" path="res://levels/world_3/icy_tile.tscn" id="13_ieb7p"]
+[ext_resource type="PackedScene" uid="uid://mr1atvvs4qae" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile.tscn" id="14_3o6qq"]
+[ext_resource type="PackedScene" uid="uid://c2g4k251eoppl" path="res://levels/world_2/sandy_brick_tile/sandy_brick_1_tile_oil.tscn" id="15_dc1fe"]
+[ext_resource type="PackedScene" uid="uid://bc073xu5yq0wj" path="res://levels/world_2/sandy_brick_tile/sandy_brick_2_tile.tscn" id="16_dldeg"]
+[ext_resource type="PackedScene" uid="uid://dnabsi3t3jusq" path="res://levels/world_2/sandy_brick_tile/sandy_brick_3_tile.tscn" id="17_qoech"]
+[ext_resource type="PackedScene" uid="uid://cqo6rvo7hopdr" path="res://levels/world_1/sand_tile/sand_oil_tile.tscn" id="18_ieb7p"]
+[ext_resource type="PackedScene" uid="uid://cj26yll0wue6n" path="res://levels/common/spike_tile.tscn" id="19_3o6qq"]
+[ext_resource type="PackedScene" uid="uid://d1rd6rl051fef" path="res://levels/world_6/abstract_tile/abstract_tile_a.tscn" id="20_dc1fe"]
+[ext_resource type="PackedScene" uid="uid://pvjcb13f1crx" path="res://levels/world_6/abstract_tile/abstract_tile_b.tscn" id="21_dldeg"]
+[ext_resource type="PackedScene" uid="uid://c2m1bo7fhmwmn" path="res://levels/world_6/abstract_tile/abstract_tile_c.tscn" id="22_qoech"]
+[ext_resource type="PackedScene" uid="uid://cvnan3gqbbisf" path="res://levels/world_6/abstract_tile/abstract_tile_c_oil.tscn" id="23_q57ui"]
+[ext_resource type="PackedScene" uid="uid://57p60utyig6v" path="res://levels/world_6/abstract_tile/abstract_tile_d.tscn" id="24_sa0vy"]
+[ext_resource type="PackedScene" uid="uid://vkt0a53dlmh6" path="res://levels/world_2/ruin/desert_ruin.tscn" id="25_0gluv"]
+[ext_resource type="PackedScene" uid="uid://dnaga4t64psqv" path="res://levels/world_2/cactus_bouncer/cactus_bouncer.tscn" id="26_om8p7"]
+[ext_resource type="PackedScene" uid="uid://s22e2rw7yjm7" path="res://levels/world_1/palm_tree/palm_tree.tscn" id="27_54sid"]
+[ext_resource type="PackedScene" uid="uid://7lvi5v7hcvao" path="res://levels/world_1/shrub/shrub.tscn" id="28_16tli"]
+[ext_resource type="PackedScene" uid="uid://bfwn3wkgdoimw" path="res://levels/world_1/bush/bush.tscn" id="29_hlnf8"]
+[ext_resource type="PackedScene" uid="uid://ognw3yfacxxv" path="res://levels/world_5/castle_bouncer/castle_bouncer.tscn" id="30_0tr0r"]
+[ext_resource type="PackedScene" uid="uid://vti5fjpcic8j" path="res://levels/world_5/castle_pillar/castle_broken_pillar.tscn" id="31_8xqny"]
+[ext_resource type="PackedScene" uid="uid://bdk0hbks018on" path="res://levels/world_5/castle_pillar/castle_pillar.tscn" id="32_q33rg"]
+[ext_resource type="PackedScene" uid="uid://c71dbwbtasego" path="res://levels/world_5/potted_plant/castle_potted_plant.tscn" id="33_mqhgw"]
+[ext_resource type="PackedScene" uid="uid://pg3baofu0wf4" path="res://levels/world_3/ice_spikes.tscn" id="34_16tli"]
+[ext_resource type="PackedScene" uid="uid://slxmkhtsbns" path="res://levels/world_3/snow_pile.tscn" id="35_hlnf8"]
+[ext_resource type="PackedScene" uid="uid://dxcjhjnjlbjkt" path="res://levels/world_3/snow_rock.tscn" id="36_hlnf8"]
+[ext_resource type="PackedScene" uid="uid://bxujo7sgwqlpn" path="res://levels/world_6/star/star.tscn" id="37_0tr0r"]
+[ext_resource type="PackedScene" uid="uid://lnisr4xy3lqw" path="res://levels/world_6/abstract_obstacle/abstract_obstetrical.tscn" id="38_8xqny"]
+[ext_resource type="PackedScene" uid="uid://d4lchf6ybpb4g" path="res://levels/common/bombs/bomb_1.tscn" id="39_7ldfx"]
+[ext_resource type="PackedScene" uid="uid://dolnh02350x0i" path="res://levels/common/bombs/bomb_2.tscn" id="40_erryi"]
+[ext_resource type="PackedScene" uid="uid://dwc5ywcc4m8pb" path="res://levels/common/bombs/bomb_3.tscn" id="41_unti1"]
+[ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="42_s4yyy"]
+[ext_resource type="PackedScene" uid="uid://dc1w26fhhlpo1" path="res://levels/common/character/character.tscn" id="43_erryi"]
+[ext_resource type="PackedScene" uid="uid://dw66rkoj5nu66" path="res://levels/common/template_tile.tscn" id="44_unti1"]
+[ext_resource type="PackedScene" uid="uid://ddrwykfta1rvq" path="res://levels/world_4/lava_rock_tile/lava_rock_tile.tscn" id="45_jc5lv"]
+[ext_resource type="PackedScene" uid="uid://dmmjyhan0s7yu" path="res://levels/world_4/lava_tile.tscn" id="46_mqlqp"]
+[ext_resource type="PackedScene" uid="uid://ca1b2u5sm5l6t" path="res://levels/world_4/burnt_tree/burnt_tree.tscn" id="47_5ydnm"]
+[ext_resource type="PackedScene" uid="uid://dg5wryolfjftu" path="res://levels/world_4/stone.tscn" id="48_sguro"]
+[ext_resource type="PackedScene" uid="uid://ctw3md8cpa30e" path="res://levels/world_4/stone_2.tscn" id="49_n7vy4"]
+[ext_resource type="PackedScene" uid="uid://clh8w3sr33xxx" path="res://levels/world_4/lava_rock_tile/oil_lava_rock_tile.tscn" id="50_sguro"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_om8p7"]
+size = Vector2(500, 500)
 
 [node name="Tiles" type="Node3D"]
 
@@ -16,4 +65,228 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 [node name="WaterTile" parent="." instance=ExtResource("3_isnhr")]
 
 [node name="GrassTile" parent="." instance=ExtResource("4_60v5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="GrassTile2" parent="." instance=ExtResource("4_60v5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="GrassTile3" parent="." instance=ExtResource("4_60v5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="GrassTile4" parent="." instance=ExtResource("4_60v5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="CrackedFallawayTile" parent="." instance=ExtResource("5_rp71p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="CastleRockOilTile" parent="." instance=ExtResource("6_vsodi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 12)
+
+[node name="CastleRockTile" parent="." instance=ExtResource("7_muddc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="CastleRockTile2" parent="." instance=ExtResource("7_muddc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
+[node name="CastleRockTile3" parent="." instance=ExtResource("7_muddc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 12)
+
+[node name="CastleRockTile4" parent="." instance=ExtResource("7_muddc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
+
+[node name="CastleRockTile5" parent="." instance=ExtResource("7_muddc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 12)
+
+[node name="CastleRugTile" parent="." instance=ExtResource("8_1m7r2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 12)
+
+[node name="CompactedIceTile" parent="." instance=ExtResource("9_8al8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="CompactedIceTile4" parent="." instance=ExtResource("9_8al8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 6)
+
+[node name="CompactedIceTile5" parent="." instance=ExtResource("9_8al8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="CompactedIceTile6" parent="." instance=ExtResource("9_8al8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
+
+[node name="CompactedIceTile7" parent="." instance=ExtResource("9_8al8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 7)
+
+[node name="CompactedIceTile3" parent="." instance=ExtResource("9_8al8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+
+[node name="CompactedIceTile2" parent="." instance=ExtResource("9_8al8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 6)
+
+[node name="ConveryBeltTile" parent="." instance=ExtResource("10_rasoy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="fallaway_tile" parent="." instance=ExtResource("11_3coi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+
+[node name="DesertFallwayTile" parent="." instance=ExtResource("12_vs4l7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="IcyTile" parent="." instance=ExtResource("13_ieb7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="SandyBrickTile" parent="." instance=ExtResource("14_3o6qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="SandyBrickTile2" parent="." instance=ExtResource("14_3o6qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+
+[node name="SandyBrickTile3" parent="." instance=ExtResource("14_3o6qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
+
+[node name="SandyBrickTile4" parent="." instance=ExtResource("14_3o6qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="SandyBrickTile5" parent="." instance=ExtResource("14_3o6qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="SandyBrickTile6" parent="." instance=ExtResource("14_3o6qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
+
+[node name="SandyBrickTileOil" parent="." instance=ExtResource("15_dc1fe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+
+[node name="SandyBrick2Tile" parent="." instance=ExtResource("16_dldeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="SandyBrick3Tile" parent="." instance=ExtResource("17_qoech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="SandOilTile" parent="." instance=ExtResource("18_ieb7p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="SpikeTile" parent="." instance=ExtResource("19_3o6qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+
+[node name="AbstractTileA" parent="." instance=ExtResource("20_dc1fe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[node name="AbstractTileA3" parent="." instance=ExtResource("20_dc1fe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 15)
+
+[node name="AbstractTileA2" parent="." instance=ExtResource("20_dc1fe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 15)
+
+[node name="AbstractTileB" parent="." instance=ExtResource("21_dldeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 15)
+
+[node name="AbstractTileC" parent="." instance=ExtResource("22_qoech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 15)
+
+[node name="AbstractTileCOil" parent="." instance=ExtResource("23_q57ui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 15)
+
+[node name="abstract_tile_d" parent="." instance=ExtResource("24_sa0vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 15)
+
+[node name="desert_ruin" parent="." instance=ExtResource("25_0gluv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66, 0)
+mesh = SubResource("PlaneMesh_om8p7")
+metadata/_edit_lock_ = true
+
+[node name="cactus_bouncer" parent="." instance=ExtResource("26_om8p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
+
+[node name="PalmTree" parent="." instance=ExtResource("27_54sid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="shrub" parent="." instance=ExtResource("28_16tli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="bush" parent="." instance=ExtResource("29_hlnf8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="CastleBouncer" parent="." instance=ExtResource("30_0tr0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+
+[node name="castle_broken_pillar" parent="." instance=ExtResource("31_8xqny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 12)
+
+[node name="Pillar" parent="." instance=ExtResource("32_q33rg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 12)
+
+[node name="castle_potted_plant" parent="." instance=ExtResource("33_mqhgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 12)
+
+[node name="IceSpikes" parent="." instance=ExtResource("34_16tli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 6)
+
+[node name="SnowPile" parent="." instance=ExtResource("35_hlnf8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+
+[node name="rock" parent="." instance=ExtResource("36_hlnf8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 6)
+
+[node name="Star" parent="." instance=ExtResource("37_0tr0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 15)
+
+[node name="AbstractObstrical" parent="." instance=ExtResource("38_8xqny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 15)
+
+[node name="BombSize1" parent="." instance=ExtResource("39_7ldfx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 18)
+
+[node name="BombSize2" parent="." instance=ExtResource("40_erryi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 18)
+
+[node name="bomb3" parent="." instance=ExtResource("41_unti1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 18)
+
+[node name="StartBomb" parent="." instance=ExtResource("42_s4yyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 18)
+
+[node name="Character" parent="." instance=ExtResource("43_erryi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 20)
+
+[node name="TemplateTile2" parent="." instance=ExtResource("44_unti1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 18)
+
+[node name="TemplateTile3" parent="." instance=ExtResource("44_unti1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 18)
+
+[node name="TemplateTile4" parent="." instance=ExtResource("44_unti1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 18)
+
+[node name="TemplateTile5" parent="." instance=ExtResource("44_unti1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 18)
+
+[node name="TemplateTile6" parent="." instance=ExtResource("44_unti1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 20)
+
+[node name="LavalRockTile" parent="." instance=ExtResource("45_jc5lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+
+[node name="LavalRockTile2" parent="." instance=ExtResource("45_jc5lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 9)
+
+[node name="LavalRockTile3" parent="." instance=ExtResource("45_jc5lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 9)
+
+[node name="LavalRockTile4" parent="." instance=ExtResource("45_jc5lv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 9)
+
+[node name="LavaTile" parent="." instance=ExtResource("46_mqlqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9)
+
+[node name="BurntTree" parent="." instance=ExtResource("47_5ydnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 9)
+
+[node name="Stone" parent="." instance=ExtResource("48_sguro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 9)
+
+[node name="Stone2" parent="." instance=ExtResource("49_n7vy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 9)
+
+[node name="OilLavalRockTile" parent="." instance=ExtResource("50_sguro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9)

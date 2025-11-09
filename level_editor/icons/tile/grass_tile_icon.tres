@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b3vyf4414do54"]
+
+[ext_resource type="Texture2D" uid="uid://b0hxqu2lur5t7" path="res://levels/world_1/grass_tile/grass_tile.png" id="1_wbx7w"]
+
+[resource]
+atlas = ExtResource("1_wbx7w")
+region = Rect2(0, 0, 32, 32)

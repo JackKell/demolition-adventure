@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GameWorld" load_steps=4 format=3 uid="uid://c3q4halmqwdri"]
+
+[ext_resource type="Texture2D" uid="uid://d3wqhsyg66ba5" path="res://levels/common/world_icons/world_4_icon.tres" id="2_3k4rf"]
+[ext_resource type="Script" uid="uid://bj8320v1txt5u" path="res://level_editor/icons/game_world.gd" id="3_5tw33"]
+[ext_resource type="PackedScene" uid="uid://bj8ad3r2p685q" path="res://levels/world_5/lava.tscn" id="4_3k4rf"]
+
+[resource]
+script = ExtResource("3_5tw33")
+name = "Lava"
+icon = ExtResource("2_3k4rf")
+world_floor = ExtResource("4_3k4rf")
+metadata/_custom_type_script = "uid://bj8320v1txt5u"

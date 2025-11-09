@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://c23dw3ukitex0"]
+
+[ext_resource type="Texture2D" uid="uid://bf81ws75bj7a0" path="res://levels/world_6/abstract_tile/abstract_tile.png" id="1_7alse"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_wvkwg"]
+[ext_resource type="PackedScene" uid="uid://pvjcb13f1crx" path="res://levels/world_6/abstract_tile/abstract_tile_b.tscn" id="2_eicv2"]
+
+[resource]
+script = ExtResource("1_wvkwg")
+id = 19
+name = "abstract_tile_b"
+icon = ExtResource("1_7alse")
+scene = ExtResource("2_eicv2")
+world_theme = 5
+metadata/_custom_type_script = "uid://vv4klj232v1h"

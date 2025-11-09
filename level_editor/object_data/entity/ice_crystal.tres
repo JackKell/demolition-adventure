@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://cmoijt5lc3lj2"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_3mjc0"]
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_3wxl5"]
+[ext_resource type="PackedScene" uid="uid://pg3baofu0wf4" path="res://levels/world_3/ice_spikes.tscn" id="1_jyk38"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wxl5"]
+atlas = ExtResource("1_3wxl5")
+region = Rect2(0, 64, 16, 16)
+
+[resource]
+script = ExtResource("1_3mjc0")
+id = 9
+name = "ice crystal"
+icon = SubResource("AtlasTexture_3wxl5")
+scene = ExtResource("1_jyk38")
+world_theme = 2
+metadata/_custom_type_script = "uid://vv4klj232v1h"

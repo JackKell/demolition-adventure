@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://b32avuf3fl8nk"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_ku00t"]
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_kx7ba"]
+[ext_resource type="PackedScene" uid="uid://ognw3yfacxxv" path="res://levels/world_5/castle_bouncer/castle_bouncer.tscn" id="2_3mvqw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8166x"]
+atlas = ExtResource("1_kx7ba")
+region = Rect2(0, 96, 16, 16)
+
+[resource]
+script = ExtResource("1_ku00t")
+id = 16
+name = "castle bouncer"
+icon = SubResource("AtlasTexture_8166x")
+scene = ExtResource("2_3mvqw")
+world_theme = 4
+metadata/_custom_type_script = "uid://vv4klj232v1h"

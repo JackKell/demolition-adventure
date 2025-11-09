@@ -42,7 +42,12 @@ func _ready() -> void:
 func can_move_to(direction: Vector2i) -> bool:
 	var target_coords: Vector2i = direction + coords
 	var tile: Tile = level.get_tile(target_coords)
-	return tile and tile.type != Tile.TileType.OBSTICAL and not level.has_entity(target_coords)
+	if tile:
+		var not_obstical: bool = tile.type != Tile.TileType.OBSTICAL
+		var has_no_entity: bool = !level.has_entity(target_coords)
+		var can_move: bool = not_obstical and has_no_entity
+		return can_move
+	return false
 
 func try_move(direction: Vector2i) -> bool:
 	if is_moving:

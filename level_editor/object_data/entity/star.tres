@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://bulg2q8bqri83"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_l6tb7"]
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_tc5nt"]
+[ext_resource type="PackedScene" uid="uid://bxujo7sgwqlpn" path="res://levels/world_6/star/star.tscn" id="2_c67gf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f1hf"]
+atlas = ExtResource("1_tc5nt")
+region = Rect2(16, 112, 16, 16)
+
+[resource]
+script = ExtResource("1_l6tb7")
+id = 17
+name = "star"
+icon = SubResource("AtlasTexture_7f1hf")
+scene = ExtResource("2_c67gf")
+world_theme = 5
+metadata/_custom_type_script = "uid://vv4klj232v1h"

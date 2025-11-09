@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://bu3bghg8xwueh"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_58utj"]
+[ext_resource type="PackedScene" uid="uid://bq6mptqatm01n" path="res://levels/world_2/broken_pillar/desert_broken_pillar.tscn" id="2_58utj"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_jqp7m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58utj"]
+atlas = ExtResource("1_58utj")
+region = Rect2(0, 48, 16, 16)
+
+[resource]
+script = ExtResource("3_jqp7m")
+id = 5
+name = "desert broken pillar"
+icon = SubResource("AtlasTexture_58utj")
+scene = ExtResource("2_58utj")
+world_theme = 1
+metadata/_custom_type_script = "uid://vv4klj232v1h"

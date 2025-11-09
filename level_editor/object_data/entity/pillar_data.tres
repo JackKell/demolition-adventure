@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://bhff1glv0lu6j"]
+
+[ext_resource type="PackedScene" uid="uid://bdk0hbks018on" path="res://levels/world_5/castle_pillar/castle_pillar.tscn" id="1_1sqeh"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_8d8kp"]
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_dxhb2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2wcs"]
+atlas = ExtResource("1_dxhb2")
+region = Rect2(48, 96, 16, 16)
+
+[resource]
+script = ExtResource("1_8d8kp")
+id = 14
+name = "column"
+icon = SubResource("AtlasTexture_u2wcs")
+scene = ExtResource("1_1sqeh")
+world_theme = 4
+metadata/_custom_type_script = "uid://vv4klj232v1h"

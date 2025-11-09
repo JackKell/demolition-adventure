@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://bmbigrejnu4xu"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_fqi8b"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_qqv5q"]
+[ext_resource type="PackedScene" uid="uid://cfdlanuev5pw7" path="res://levels/world_2/desert_pillar.tscn" id="2_0k5wc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wexej"]
+atlas = ExtResource("1_fqi8b")
+region = Rect2(32, 48, 16, 16)
+
+[resource]
+script = ExtResource("1_qqv5q")
+id = 4
+name = "desert pillar"
+icon = SubResource("AtlasTexture_wexej")
+scene = ExtResource("2_0k5wc")
+world_theme = 1
+metadata/_custom_type_script = "uid://vv4klj232v1h"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BomberIslandLevelData" load_steps=5 format=3 uid="uid://d2v840y2o24v2"]
 
-[ext_resource type="Script" uid="uid://b3cc2d36t7wn5" path="res://levels/common/entity_config.gd" id="1_b2xv8"]
+[ext_resource type="Script" uid="uid://b3cc2d36t7wn5" path="res://levels/common/base_config.gd" id="1_b2xv8"]
 [ext_resource type="PackedScene" uid="uid://brsu3lf0j415e" path="res://levels/world_1/level_5.tscn" id="2_b2xv8"]
 [ext_resource type="Script" uid="uid://cgbxclgrk3852" path="res://levels/level_data/level_data.gd" id="3_pjug4"]
 [ext_resource type="Texture2D" uid="uid://c8b3cqtym5xqr" path="res://levels/thumbnails/level_5.png" id="4_lmvv4"]

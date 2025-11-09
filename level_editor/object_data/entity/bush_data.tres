@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://dln24yjk74slf"]
+
+[ext_resource type="Texture2D" uid="uid://cvok77kndapi8" path="res://level_editor/icons/entity/palm_tree_icon.tres" id="1_0vu5p"]
+[ext_resource type="PackedScene" uid="uid://bfwn3wkgdoimw" path="res://levels/world_1/bush/bush.tscn" id="2_5x8kh"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_nval0"]
+
+[resource]
+script = ExtResource("3_nval0")
+id = 2
+name = "bush"
+icon = ExtResource("1_0vu5p")
+scene = ExtResource("2_5x8kh")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"

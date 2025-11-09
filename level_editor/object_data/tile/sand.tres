@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://5g7krlg2e4ly"]
+
+[ext_resource type="Texture2D" uid="uid://c11f3ypgikerc" path="res://level_editor/icons/tile/sand_tile_icon.tres" id="1_3q65u"]
+[ext_resource type="PackedScene" uid="uid://2unshcy6q1lk" path="res://levels/world_1/sand_tile/sand_tile.tscn" id="2_su4jk"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_2m6x6"]
+
+[resource]
+script = ExtResource("3_2m6x6")
+id = 3
+name = "sand"
+icon = ExtResource("1_3q65u")
+scene = ExtResource("2_su4jk")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"

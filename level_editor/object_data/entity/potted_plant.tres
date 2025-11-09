@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=6 format=3 uid="uid://d1bn3v5k7eph4"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_606kt"]
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_efuxv"]
+[ext_resource type="PackedScene" uid="uid://c71dbwbtasego" path="res://levels/world_5/potted_plant/castle_potted_plant.tscn" id="2_h4ier"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4ier"]
+atlas = ExtResource("1_efuxv")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdql7"]
+atlas = SubResource("AtlasTexture_h4ier")
+
+[resource]
+script = ExtResource("1_606kt")
+id = 13
+name = "potted plant"
+icon = SubResource("AtlasTexture_gdql7")
+scene = ExtResource("2_h4ier")
+world_theme = 4
+metadata/_custom_type_script = "uid://vv4klj232v1h"

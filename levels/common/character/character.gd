@@ -26,7 +26,7 @@ func _ready() -> void:
 	
 func _on_stopped() -> void:
 	audio_stream_player_3d.stop()
-	if animation_player:
+	if animation_player.current_animation == "walk":
 		animation_player.play("idle")
 	var tile = level.get_tile(coords)
 	
@@ -43,6 +43,7 @@ func _on_stopped() -> void:
 		bounce(face_direction)
 	elif tile.type == Tile.TileType.ICY:
 		if can_move_to(input_direction):
+			animation_player.play("sliding")
 			move(input_direction)
 
 func _on_moved() -> void:
@@ -108,6 +109,7 @@ func _process(delta: float) -> void:
 						if push_entity is Bouncer:
 							entity.move(-input_direction)
 							move(input_direction)
+							play_squished()
 							push_entity.bounce(-input_direction)
 							level.add_action(push_action)
 					else:
@@ -131,6 +133,13 @@ func play_struggle():
 	tween.tween_property(body, "rotation:x", -PI / 4, .2).as_relative()
 	tween.tween_property(self, "is_animating", false, 0)
 	return tween
+
+func play_squished():
+	if is_animating:
+		return
+	is_animating = true
+	animation_player.play("flatten")
+	is_animating = false
 
 func bounce(direction: Vector2i):
 	if is_animating:

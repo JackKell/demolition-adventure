@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://ca8tblyb1w5wp"]
+
+[ext_resource type="Texture2D" uid="uid://cxftbjuxx2coc" path="res://levels/world_2/sandy_brick_tile/sandy_brick_3_tile.png" id="1_2bw2n"]
+[ext_resource type="PackedScene" uid="uid://dnabsi3t3jusq" path="res://levels/world_2/sandy_brick_tile/sandy_brick_3_tile.tscn" id="2_2bw2n"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_0jf4q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bw2n"]
+atlas = ExtResource("1_2bw2n")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("3_0jf4q")
+id = 5
+name = "sand brick 3"
+icon = SubResource("AtlasTexture_2bw2n")
+scene = ExtResource("2_2bw2n")
+world_theme = 1
+metadata/_custom_type_script = "uid://vv4klj232v1h"

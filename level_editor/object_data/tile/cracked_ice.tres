@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://balnvxpf8b3gl"]
+
+[ext_resource type="Texture2D" uid="uid://cfqx7hbst4cwj" path="res://levels/world_3/cracked_ice_tile/cracked_ice.png" id="1_0wfed"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_dl1h1"]
+[ext_resource type="PackedScene" uid="uid://c388ljydvmqti" path="res://levels/world_3/cracked_ice_tile/cracked_ice_fallaway_tile.tscn" id="2_5tsd8"]
+
+[resource]
+script = ExtResource("1_dl1h1")
+id = 10
+name = "cracked ice"
+icon = ExtResource("1_0wfed")
+scene = ExtResource("2_5tsd8")
+world_theme = 2
+metadata/_custom_type_script = "uid://vv4klj232v1h"

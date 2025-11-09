@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GameWorld" load_steps=5 format=3 uid="uid://b0nfl65uxmydh"]
+
+[ext_resource type="Environment" uid="uid://c7pf4jg2b8bdv" path="res://levels/world_3/ice_world.enivroment.tres" id="1_ri7av"]
+[ext_resource type="Texture2D" uid="uid://cn4rqk32r0rhy" path="res://levels/common/world_icons/world_3_icon.tres" id="2_ri7av"]
+[ext_resource type="Script" uid="uid://bj8320v1txt5u" path="res://level_editor/icons/game_world.gd" id="3_i2jau"]
+[ext_resource type="PackedScene" uid="uid://ccsjq85p8cbis" path="res://levels/world_3/ice_ocean.tscn" id="4_ri7av"]
+
+[resource]
+script = ExtResource("3_i2jau")
+name = "Ice"
+icon = ExtResource("2_ri7av")
+enviorment = ExtResource("1_ri7av")
+world_floor = ExtResource("4_ri7av")
+metadata/_custom_type_script = "uid://bj8320v1txt5u"

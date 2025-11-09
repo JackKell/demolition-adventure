@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GameWorld" load_steps=5 format=3 uid="uid://s21llbjpnxl0"]
+
+[ext_resource type="Environment" uid="uid://ww2h0dunhwre" path="res://levels/world_2/desert_environment.tres" id="1_db2k2"]
+[ext_resource type="Texture2D" uid="uid://brx7prig8i3hc" path="res://levels/common/world_icons/world_2_icon.tres" id="2_yg5fr"]
+[ext_resource type="Script" uid="uid://bj8320v1txt5u" path="res://level_editor/icons/game_world.gd" id="3_v2asp"]
+[ext_resource type="PackedScene" uid="uid://bwst3mn6thxlm" path="res://levels/world_2/sand_floor.tscn" id="4_db2k2"]
+
+[resource]
+script = ExtResource("3_v2asp")
+name = "Desert"
+icon = ExtResource("2_yg5fr")
+enviorment = ExtResource("1_db2k2")
+world_floor = ExtResource("4_db2k2")
+metadata/_custom_type_script = "uid://bj8320v1txt5u"

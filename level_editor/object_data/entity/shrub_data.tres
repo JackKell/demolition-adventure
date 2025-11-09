@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://bv30nys6pp3di"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_ic4nm"]
+[ext_resource type="PackedScene" uid="uid://7lvi5v7hcvao" path="res://levels/world_1/shrub/shrub.tscn" id="2_52qt7"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_4vhgr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7fko"]
+atlas = ExtResource("1_ic4nm")
+region = Rect2(16, 32, 16, 16)
+
+[resource]
+script = ExtResource("3_4vhgr")
+name = "shrub"
+icon = SubResource("AtlasTexture_k7fko")
+scene = ExtResource("2_52qt7")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"

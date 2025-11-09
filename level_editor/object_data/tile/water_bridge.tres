@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://cvneeje5ippov"]
+
+[ext_resource type="Texture2D" uid="uid://vd1m6x57jmu2" path="res://levels/common/bridge/bridge.png" id="1_1stnh"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_bfac0"]
+[ext_resource type="PackedScene" uid="uid://cglkdarvim6gv" path="res://levels/world_1/water_bridge_tile.tscn" id="2_1stnh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1stnh"]
+atlas = ExtResource("1_1stnh")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_bfac0")
+name = "water bridge"
+icon = SubResource("AtlasTexture_1stnh")
+scene = ExtResource("2_1stnh")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"

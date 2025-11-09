@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://vegcvq1wn54t"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_ob184"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_vq0mv"]
+[ext_resource type="PackedScene" uid="uid://slxmkhtsbns" path="res://levels/world_3/snow_pile.tscn" id="2_nji6r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nji6r"]
+atlas = ExtResource("1_ob184")
+region = Rect2(16, 64, 16, 16)
+
+[resource]
+script = ExtResource("1_vq0mv")
+id = 8
+name = "snow pile"
+icon = SubResource("AtlasTexture_nji6r")
+scene = ExtResource("2_nji6r")
+world_theme = 2
+metadata/_custom_type_script = "uid://vv4klj232v1h"

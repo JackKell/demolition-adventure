@@ -1,34 +1,362 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc6i4cfw7kyab"]
+[gd_scene load_steps=30 format=3 uid="uid://bc6i4cfw7kyab"]
 
 [ext_resource type="Script" uid="uid://b8bgimwx6cp2u" path="res://level_editor/level_editor_3d.gd" id="1_goklc"]
+[ext_resource type="Script" uid="uid://oqodjt6eesgk" path="res://level_editor/box_tool.gd" id="2_j0u0h"]
+[ext_resource type="Resource" uid="uid://dt8wbvyhdijew" path="res://level_editor/object_data/all_entities.tres" id="2_qkarf"]
+[ext_resource type="Resource" uid="uid://xbpyp3rkqm6a" path="res://level_editor/object_data/all_tiles.tres" id="3_dqkhq"]
+[ext_resource type="Script" uid="uid://c22qgyyx62dq" path="res://level_editor/fill_tool.gd" id="3_jxark"]
+[ext_resource type="Script" uid="uid://darvecvu3imyy" path="res://level_editor/pencil_tool.gd" id="4_2glrk"]
+[ext_resource type="Script" uid="uid://c84f3aw2psi6p" path="res://level_editor/line_tool.gd" id="5_2glrk"]
+[ext_resource type="Material" uid="uid://dnej2hh0h3fkd" path="res://level_editor/level_editor_grid.tres" id="6_2glrk"]
+[ext_resource type="Texture2D" uid="uid://b0xisx3afjpce" path="res://level_editor/pencil_tool_icon.svg" id="6_n0ovj"]
+[ext_resource type="Texture2D" uid="uid://dd8ogoal8nxx" path="res://levels/common/world_icons/world_1_icon.tres" id="6_o2i0i"]
+[ext_resource type="Texture2D" uid="uid://jtfxckleugpf" path="res://levels/common/world_icons/world_6_icon.tres" id="7_0i8y4"]
+[ext_resource type="Texture2D" uid="uid://brx7prig8i3hc" path="res://levels/common/world_icons/world_2_icon.tres" id="7_554w5"]
+[ext_resource type="Texture2D" uid="uid://cywhsb0f1s6su" path="res://level_editor/flood_fill_icon.svg" id="7_gq0eg"]
+[ext_resource type="Texture2D" uid="uid://c7u3dh1sdjsmm" path="res://level_editor/line_tool_icon.svg" id="7_h5ftm"]
+[ext_resource type="Texture2D" uid="uid://cn4rqk32r0rhy" path="res://levels/common/world_icons/world_3_icon.tres" id="8_4kjce"]
+[ext_resource type="Texture2D" uid="uid://d3wqhsyg66ba5" path="res://levels/common/world_icons/world_4_icon.tres" id="9_qkarf"]
+[ext_resource type="Texture2D" uid="uid://d26jn0xq3oyv3" path="res://level_editor/box_tool_icon.svg" id="9_snjyl"]
+[ext_resource type="Texture2D" uid="uid://catn5pupjogxy" path="res://levels/common/world_icons/world_5_icon.tres" id="10_dqkhq"]
+[ext_resource type="Texture2D" uid="uid://bqmig6mrwcjsq" path="res://level_editor/undo_icon.svg" id="10_m6tcl"]
+[ext_resource type="Texture2D" uid="uid://dvrwd642dxrs2" path="res://level_editor/redo_icon.svg" id="11_t3fpq"]
+[ext_resource type="Texture2D" uid="uid://c11f3ypgikerc" path="res://level_editor/icons/tile/sand_tile_icon.tres" id="12_t3fpq"]
+[ext_resource type="Texture2D" uid="uid://chqvhugvyaaxr" path="res://level_editor/icons/tile/template_tile_icon.atlastex" id="13_8bxfk"]
+[ext_resource type="Texture2D" uid="uid://b3vyf4414do54" path="res://level_editor/icons/tile/grass_tile_icon.tres" id="13_b1m5q"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_mlk5u"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u24qb"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_j0u0h"]
+sky_material = SubResource("ProceduralSkyMaterial_u24qb")
+
+[sub_resource type="Environment" id="Environment_jxark"]
+background_mode = 2
+sky = SubResource("Sky_j0u0h")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gq0eg"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_4bx4p"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4bx4p"]
+lightmap_size_hint = Vector2i(202, 202)
+size = Vector2(50, 50)
 
 [node name="LevelEditor3D" type="Node3D"]
 script = ExtResource("1_goklc")
+entities = ExtResource("2_qkarf")
+tiles = ExtResource("3_dqkhq")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BoxTool" type="Node" parent="."]
+script = ExtResource("2_j0u0h")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="FillTool" type="Node" parent="."]
+script = ExtResource("3_jxark")
 
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="PencilTool" type="Node" parent="."]
+script = ExtResource("4_2glrk")
+
+[node name="LineTool" type="Node" parent="."]
+script = ExtResource("5_2glrk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jxark")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="TopDownCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -0.041335106, 0.9991454, 0, -0.9991454, -0.041335106, 0, 12.860617, -0.12807083)
+projection = 1
+size = 25.0
+
+[node name="FreeCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.8580739, 0.5135263, 0, -0.5135263, 0.8580739, -0.01583159, 5.3610153, 9.09913)
+fov = 90.0
+
+[node name="Ui" type="CanvasLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 318.0
+offset_bottom = 480.0
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="CurrentToolLabel" type="Label" parent="Ui/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Layer Select"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Current Tool"
+horizontal_alignment = 1
 
-[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="ThemeOptionButton" type="OptionButton" parent="Ui/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Tiles"
+selected = 0
+item_count = 6
+popup/item_0/text = "Tropical"
+popup/item_0/icon = ExtResource("6_o2i0i")
+popup/item_0/id = 0
+popup/item_1/text = "Desert"
+popup/item_1/icon = ExtResource("7_554w5")
+popup/item_1/id = 1
+popup/item_2/text = "Ice"
+popup/item_2/icon = ExtResource("8_4kjce")
+popup/item_2/id = 2
+popup/item_3/text = "Lava"
+popup/item_3/icon = ExtResource("9_qkarf")
+popup/item_3/id = 3
+popup/item_4/text = "Castle"
+popup/item_4/icon = ExtResource("10_dqkhq")
+popup/item_4/id = 4
+popup/item_5/text = "Abstract"
+popup/item_5/icon = ExtResource("7_0i8y4")
+popup/item_5/id = 5
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="ToolsBar" type="HBoxContainer" parent="Ui/VBoxContainer"]
 layout_mode = 2
-text = "Entity"
+theme_override_constants/separation = 0
+alignment = 1
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="PencilToolButton" type="Button" parent="Ui/VBoxContainer/ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("WorldBoundaryShape3D_mlk5u")
+[node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/PencilToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_n0ovj")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 12.995951, 10.348371)
+[node name="LineToolButton" type="Button" parent="Ui/VBoxContainer/ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+
+[node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/LineToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_h5ftm")
+
+[node name="BucketToolButton" type="Button" parent="Ui/VBoxContainer/ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+
+[node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/BucketToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_gq0eg")
+
+[node name="BoxToolButton" type="Button" parent="Ui/VBoxContainer/ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+
+[node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/BoxToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_snjyl")
+
+[node name="SizeOption" type="HBoxContainer" parent="Ui/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Ui/VBoxContainer/SizeOption"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Size"
+
+[node name="SizeOptionSpinBox" type="SpinBox" parent="Ui/VBoxContainer/SizeOption"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+rounded = true
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Ui/VBoxContainer"]
+layout_mode = 2
+
+[node name="UndoRedo" type="HBoxContainer" parent="Ui/VBoxContainer"]
+layout_mode = 2
+
+[node name="UndoButton" type="Button" parent="Ui/VBoxContainer/UndoRedo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = " Undo"
+icon = ExtResource("10_m6tcl")
+expand_icon = true
+
+[node name="RedoButton" type="Button" parent="Ui/VBoxContainer/UndoRedo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Redo"
+icon = ExtResource("11_t3fpq")
+icon_alignment = 2
+expand_icon = true
+
+[node name="HSeparator" type="HSeparator" parent="Ui/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="Ui/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+placeholder_text = "Current Level Name"
+
+[node name="ClearButton" type="Button" parent="Ui/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Clear"
+
+[node name="SaveLoad" type="HBoxContainer" parent="Ui/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="Ui/VBoxContainer/SaveLoad"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="Ui/VBoxContainer/SaveLoad"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Load"
+
+[node name="SelectedTileLabel" type="Label" parent="Ui/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Selected Tile"
+
+[node name="TileOptions" type="GridContainer" parent="Ui/VBoxContainer"]
+visible = false
+layout_mode = 2
+columns = 5
+
+[node name="SandTileOption" type="Button" parent="Ui/VBoxContainer/TileOptions"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Ui/VBoxContainer/TileOptions/SandTileOption"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_t3fpq")
+expand_mode = 2
+
+[node name="GrassTileOption" type="Button" parent="Ui/VBoxContainer/TileOptions"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Ui/VBoxContainer/TileOptions/GrassTileOption"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_b1m5q")
+expand_mode = 2
+
+[node name="TemplateTileOption" type="Button" parent="Ui/VBoxContainer/TileOptions"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Ui/VBoxContainer/TileOptions/TemplateTileOption"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_8bxfk")
+expand_mode = 2
+
+[node name="TileList" type="ItemList" parent="Ui/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+max_columns = 3
+same_column_width = true
+icon_mode = 0
+icon_scale = 1.945
+
+[node name="EntityList" type="ItemList" parent="Ui/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+max_columns = 3
+same_column_width = true
+icon_mode = 0
+icon_scale = 1.945
+
+[node name="Floor" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_4bx4p")
+
+[node name="FloorPlaceholder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloorPlaceholder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+material_override = ExtResource("6_2glrk")
+mesh = SubResource("PlaneMesh_4bx4p")
+surface_material_override/0 = ExtResource("6_2glrk")

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://c8fgvflljt1xj"]
+
+[ext_resource type="Texture2D" uid="uid://beqpd3jri27by" path="res://levels/world_5/castle_floor_tile/castle_floor_tile.png" id="1_tsf2g"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_yj4s8"]
+[ext_resource type="PackedScene" uid="uid://l7cu77vkfdy6" path="res://levels/world_5/castle_floor_tile/castle_rock_tile.tscn" id="2_tsf2g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhn1p"]
+atlas = ExtResource("1_tsf2g")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_yj4s8")
+id = 16
+name = "castle_rock"
+icon = SubResource("AtlasTexture_dhn1p")
+scene = ExtResource("2_tsf2g")
+world_theme = 4
+metadata/_custom_type_script = "uid://vv4klj232v1h"

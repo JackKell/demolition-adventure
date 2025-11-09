@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://by06hqs7fmw4n" path="res://levels/common/level.gd" id="1_x8wbt"]
 [ext_resource type="Script" uid="uid://dbtkgyavbtewk" path="res://misc/map_data.gd" id="2_gfr58"]
-[ext_resource type="TileSet" uid="uid://b23psfks6fooe" path="res://map_generation/tile_tileset.tres" id="3_fkpev"]
-[ext_resource type="TileSet" uid="uid://bcxcjwnvggtyl" path="res://map_generation/entity_tileset.tres" id="4_hxj87"]
+[ext_resource type="TileSet" uid="uid://b23psfks6fooe" path="res://level_editor/map_generation/tile_tileset.tres" id="3_fkpev"]
+[ext_resource type="TileSet" uid="uid://bcxcjwnvggtyl" path="res://level_editor/map_generation/entity_tileset.tres" id="4_hxj87"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2upyg"]
 sky_top_color = Color(0.43529412, 0.7019608, 0.98039216, 1)

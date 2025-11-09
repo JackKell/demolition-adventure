@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameWorld" load_steps=3 format=3 uid="uid://bdh2w5n6s63am"]
+
+[ext_resource type="Texture2D" uid="uid://jtfxckleugpf" path="res://levels/common/world_icons/world_6_icon.tres" id="2_tsk63"]
+[ext_resource type="Script" uid="uid://bj8320v1txt5u" path="res://level_editor/icons/game_world.gd" id="3_1eajq"]
+
+[resource]
+script = ExtResource("3_1eajq")
+name = "Abstract"
+icon = ExtResource("2_tsk63")
+metadata/_custom_type_script = "uid://bj8320v1txt5u"

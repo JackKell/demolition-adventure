@@ -27,6 +27,7 @@ script = ExtResource("1_m0rpm")
 metadata/_custom_type_script = "uid://by06hqs7fmw4n"
 
 [node name="Character" parent="." instance=ExtResource("2_0bhed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_c6xj6")
@@ -115,4 +116,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="BombSize2" parent="." instance=ExtResource("5_6bw2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)

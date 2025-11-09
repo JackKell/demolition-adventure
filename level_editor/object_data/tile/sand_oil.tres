@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://bhl4oe1bx6omr"]
+
+[ext_resource type="Texture2D" uid="uid://0qajm4m2cxyw" path="res://levels/common/oil_splatter.png" id="1_lpecx"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_yfsps"]
+[ext_resource type="PackedScene" uid="uid://cqo6rvo7hopdr" path="res://levels/world_1/sand_tile/sand_oil_tile.tscn" id="2_jd5m3"]
+
+[resource]
+script = ExtResource("1_yfsps")
+id = 2
+name = "sand oil"
+icon = ExtResource("1_lpecx")
+scene = ExtResource("2_jd5m3")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://cabk3nh4himjs"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_jsjbm"]
+[ext_resource type="PackedScene" uid="uid://b3lbtngrs5hvd" path="res://levels/common/character/character.glb" id="2_jsjbm"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_f4jet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de1mn"]
+atlas = ExtResource("1_jsjbm")
+region = Rect2(64, 0, 16, 16)
+
+[resource]
+script = ExtResource("3_f4jet")
+id = 23
+name = "character"
+icon = SubResource("AtlasTexture_de1mn")
+scene = ExtResource("2_jsjbm")
+metadata/_custom_type_script = "uid://vv4klj232v1h"

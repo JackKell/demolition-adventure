@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://dmnghl834o5qa"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_pcld5"]
+[ext_resource type="Texture2D" uid="uid://dci8ihouqk3uw" path="res://levels/world_4/lava_rock_tile/lava_rock.png" id="1_xm256"]
+[ext_resource type="PackedScene" uid="uid://ddrwykfta1rvq" path="res://levels/world_4/lava_rock_tile/lava_rock_tile.tscn" id="2_8q76g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5xeg"]
+atlas = ExtResource("1_xm256")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_pcld5")
+id = 14
+name = "lava_rock"
+icon = SubResource("AtlasTexture_c5xeg")
+scene = ExtResource("2_8q76g")
+world_theme = 3
+metadata/_custom_type_script = "uid://vv4klj232v1h"

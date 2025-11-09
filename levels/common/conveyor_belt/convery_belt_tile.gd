@@ -16,7 +16,9 @@ func initalize(parent_level: Level):
 	target_position = level.map_to_world(target_coords)
 
 func _physics_process(delta: float) -> void:
-	belt_material.uv1_offset.y += fposmod(0.1 * delta, 1)
+	var total_seconds = Time.get_ticks_msec() / 1000.0
+	var x = fmod(total_seconds * 0.5, 1)
+	belt_material.uv1_offset.y = x
 	if not entity:
 		return
 	if entity.is_moving:

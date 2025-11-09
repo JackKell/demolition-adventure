@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/tile.glb-e16b3c9d72be50a71c10ca8df6a5056e.scn
 
 nodes/root_type="RigidBody3D"
 nodes/root_name=""
-nodes/root_script=Resource("uid://hi7k2q0j18nh", "res://tiles/tile.gd")
+nodes/root_script=Resource("uid://hi7k2q0j18nh", "res://levels/common/tile.gd")
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false

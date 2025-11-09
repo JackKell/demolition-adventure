@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://cqbilbfjq5plc"]
+
+[ext_resource type="Texture2D" uid="uid://b3vyf4414do54" path="res://level_editor/icons/tile/grass_tile_icon.tres" id="1_75foe"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_pilxl"]
+[ext_resource type="PackedScene" uid="uid://cpi21cves2wf4" path="res://levels/world_1/grass_tile/grass_tile.tscn" id="2_tcn3s"]
+
+[resource]
+script = ExtResource("1_pilxl")
+id = 4
+name = "grass"
+icon = ExtResource("1_75foe")
+scene = ExtResource("2_tcn3s")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"

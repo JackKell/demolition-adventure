@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=4 format=3 uid="uid://i71qdn6ufcoe"]
+
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="1_f7mma"]
+[ext_resource type="Texture2D" uid="uid://wco07obb4kmi" path="res://levels/world_4/burnt_tree/burnt_tree_texture.tres" id="1_fv2d8"]
+[ext_resource type="PackedScene" uid="uid://ca1b2u5sm5l6t" path="res://levels/world_4/burnt_tree/burnt_tree.tscn" id="2_j73kp"]
+
+[resource]
+script = ExtResource("1_f7mma")
+id = 12
+name = "burnt tree"
+icon = ExtResource("1_fv2d8")
+scene = ExtResource("2_j73kp")
+world_theme = 3
+metadata/_custom_type_script = "uid://vv4klj232v1h"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LevelEditorObjectData" load_steps=5 format=3 uid="uid://bni1kfoabdajg"]
+
+[ext_resource type="Texture2D" uid="uid://kcwldhwhw8v6" path="res://level_editor/map_generation/entities.png" id="1_5hfxl"]
+[ext_resource type="PackedScene" uid="uid://s22e2rw7yjm7" path="res://levels/world_1/palm_tree/palm_tree.tscn" id="2_dv3tq"]
+[ext_resource type="Script" uid="uid://vv4klj232v1h" path="res://level_editor/object_data/level_editor_object_data.gd" id="3_vgk4y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c70ye"]
+atlas = ExtResource("1_5hfxl")
+region = Rect2(32, 32, 16, 16)
+
+[resource]
+script = ExtResource("3_vgk4y")
+id = 1
+name = "palm tree"
+icon = SubResource("AtlasTexture_c70ye")
+scene = ExtResource("2_dv3tq")
+world_theme = 0
+metadata/_custom_type_script = "uid://vv4klj232v1h"
