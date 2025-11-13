@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=4 uid="uid://by1m784w0mg7a"]
+
+[ext_resource type="Texture2D" uid="uid://c3yxt4j17smei" path="res://level_editor/selection_wall.png" id="1_lhohf"]
+[ext_resource type="Script" uid="uid://ducety5rtcjat" path="res://selection_box.gd" id="1_yxicj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yxicj"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_lhohf"]
+sky_material = SubResource("ProceduralSkyMaterial_yxicj")
+
+[sub_resource type="Environment" id="Environment_8xnav"]
+background_mode = 2
+sky = SubResource("Sky_lhohf")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yxicj"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1, 2),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAA"),
+"format": 34359738385,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAIA/AACAvwAAAAAAAIA/AACAvwAAgD8AAIA/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAIA/AACAvwAAgD8AAIA/AACAvwAAAAAAAIC/AAAAAAAAAAAAAIC/AACAvwAAgD8AAIC/AAAAAAAAAAAAAIC/AAAAAAAAgD8AAIC/AACAvwAAgD8AAIC/AACAPwAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAAAAAAIA/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAIC/AACAPwAAAAAAAIC/AAAAAAAAgD8AAIC/AACAPwAAAAAAAIC/AACAPwAAgD8AAIC/AAAAAAAAgD8AAIC/AACAvwAAAAAAAAAAAACAvwAAAAAAAIC/AACAvwAAgD8AAIC/AACAvwAAgD8AAAAAAACAvwAAAAAAAAAAAACAvwAAgD8AAIC/AACAPwAAAAAAAIC/AACAPwAAAAAAAAAAAACAPwAAgD8AAIC/AACAPwAAAAAAAAAAAACAPwAAgD8AAAAAAACAPwAAgD8AAIC/AACAvwAAAAAAAIA/AACAvwAAAAAAAAAAAACAvwAAgD8AAAAAAACAvwAAgD8AAIA/AACAvwAAAAAAAIA/AACAvwAAgD8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAAAA")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhohf"]
+transparency = 1
+cull_mode = 2
+shading_mode = 2
+albedo_color = Color(2.5210483, 2.5210483, 2.5210483, 1)
+albedo_texture = ExtResource("1_lhohf")
+uv1_offset = Vector3(91.92653, 0, 0)
+grow_amount = 2.249
+point_size = 128.0
+fov_override = 36.5
+distance_fade_min_distance = 0.9
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8xnav")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.8966256, 0, -0.44278952, 0, 1, 0, 0.44278952, 0, 0.8966256, -0.99183947, 0, 1.3879931)
+
+[node name="SelectionBox" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_yxicj")
+surface_material_override/0 = SubResource("StandardMaterial3D_lhohf")
+script = ExtResource("1_yxicj")
+material = SubResource("StandardMaterial3D_lhohf")
+top = 1
+bottom = 1
+left = 1
+right = 1
+metadata/_custom_type_script = "uid://ducety5rtcjat"

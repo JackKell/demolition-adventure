@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://bc6i4cfw7kyab"]
+[gd_scene load_steps=40 format=4 uid="uid://bc6i4cfw7kyab"]
 
 [ext_resource type="Script" uid="uid://b8bgimwx6cp2u" path="res://level_editor/level_editor_3d.gd" id="1_goklc"]
 [ext_resource type="Script" uid="uid://oqodjt6eesgk" path="res://level_editor/box_tool.gd" id="2_j0u0h"]
 [ext_resource type="Resource" uid="uid://dt8wbvyhdijew" path="res://level_editor/object_data/all_entities.tres" id="2_qkarf"]
 [ext_resource type="Resource" uid="uid://xbpyp3rkqm6a" path="res://level_editor/object_data/all_tiles.tres" id="3_dqkhq"]
 [ext_resource type="Script" uid="uid://c22qgyyx62dq" path="res://level_editor/fill_tool.gd" id="3_jxark"]
+[ext_resource type="Script" uid="uid://3k8d4kg2e70d" path="res://selection_tool.gd" id="4_1g3f4"]
 [ext_resource type="Script" uid="uid://darvecvu3imyy" path="res://level_editor/pencil_tool.gd" id="4_2glrk"]
 [ext_resource type="Script" uid="uid://c84f3aw2psi6p" path="res://level_editor/line_tool.gd" id="5_2glrk"]
 [ext_resource type="Material" uid="uid://dnej2hh0h3fkd" path="res://level_editor/level_editor_grid.tres" id="6_2glrk"]
@@ -23,6 +24,11 @@
 [ext_resource type="Texture2D" uid="uid://c11f3ypgikerc" path="res://level_editor/icons/tile/sand_tile_icon.tres" id="12_t3fpq"]
 [ext_resource type="Texture2D" uid="uid://chqvhugvyaaxr" path="res://level_editor/icons/tile/template_tile_icon.atlastex" id="13_8bxfk"]
 [ext_resource type="Texture2D" uid="uid://b3vyf4414do54" path="res://level_editor/icons/tile/grass_tile_icon.tres" id="13_b1m5q"]
+[ext_resource type="ButtonGroup" uid="uid://tmo1yh125d4o" path="res://level_editor/tool_buttons_group.tres" id="14_iy3i5"]
+[ext_resource type="Texture2D" uid="uid://b8i6wjfmyg1w1" path="res://level_editor/selection_tool.svg" id="17_1g3f4"]
+[ext_resource type="Theme" uid="uid://cfkyvoqxvawux" path="res://levels/my_theme.tres" id="19_cig7r"]
+[ext_resource type="Script" uid="uid://dgooyjwd64l8b" path="res://grid_mesh.gd" id="24_dqkhq"]
+[ext_resource type="Material" uid="uid://dm1kyrlnn7764" path="res://level_editor/selection.material" id="26_v8u0m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u24qb"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -45,10 +51,38 @@ glow_enabled = true
 lightmap_size_hint = Vector2i(202, 202)
 size = Vector2(50, 50)
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_1g3f4"]
+_surfaces = [{
+"aabb": AABB(-24.5, 0, -24.5, 50, 1e-05, 50),
+"format": 34359738369,
+"primitive": 1,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 204,
+"vertex_data": PackedByteArray("AADEwQAAAAAAAMTBAADMQQAAAAAAAMTBAADEwQAAAAAAALzBAADMQQAAAAAAALzBAADEwQAAAAAAALTBAADMQQAAAAAAALTBAADEwQAAAAAAAKzBAADMQQAAAAAAAKzBAADEwQAAAAAAAKTBAADMQQAAAAAAAKTBAADEwQAAAAAAAJzBAADMQQAAAAAAAJzBAADEwQAAAAAAAJTBAADMQQAAAAAAAJTBAADEwQAAAAAAAIzBAADMQQAAAAAAAIzBAADEwQAAAAAAAITBAADMQQAAAAAAAITBAADEwQAAAAAAAHjBAADMQQAAAAAAAHjBAADEwQAAAAAAAGjBAADMQQAAAAAAAGjBAADEwQAAAAAAAFjBAADMQQAAAAAAAFjBAADEwQAAAAAAAEjBAADMQQAAAAAAAEjBAADEwQAAAAAAADjBAADMQQAAAAAAADjBAADEwQAAAAAAACjBAADMQQAAAAAAACjBAADEwQAAAAAAABjBAADMQQAAAAAAABjBAADEwQAAAAAAAAjBAADMQQAAAAAAAAjBAADEwQAAAAAAAPDAAADMQQAAAAAAAPDAAADEwQAAAAAAANDAAADMQQAAAAAAANDAAADEwQAAAAAAALDAAADMQQAAAAAAALDAAADEwQAAAAAAAJDAAADMQQAAAAAAAJDAAADEwQAAAAAAAGDAAADMQQAAAAAAAGDAAADEwQAAAAAAACDAAADMQQAAAAAAACDAAADEwQAAAAAAAMC/AADMQQAAAAAAAMC/AADEwQAAAAAAAAC/AADMQQAAAAAAAAC/AADEwQAAAAAAAAA/AADMQQAAAAAAAAA/AADEwQAAAAAAAMA/AADMQQAAAAAAAMA/AADEwQAAAAAAACBAAADMQQAAAAAAACBAAADEwQAAAAAAAGBAAADMQQAAAAAAAGBAAADEwQAAAAAAAJBAAADMQQAAAAAAAJBAAADEwQAAAAAAALBAAADMQQAAAAAAALBAAADEwQAAAAAAANBAAADMQQAAAAAAANBAAADEwQAAAAAAAPBAAADMQQAAAAAAAPBAAADEwQAAAAAAAAhBAADMQQAAAAAAAAhBAADEwQAAAAAAABhBAADMQQAAAAAAABhBAADEwQAAAAAAAChBAADMQQAAAAAAAChBAADEwQAAAAAAADhBAADMQQAAAAAAADhBAADEwQAAAAAAAEhBAADMQQAAAAAAAEhBAADEwQAAAAAAAFhBAADMQQAAAAAAAFhBAADEwQAAAAAAAGhBAADMQQAAAAAAAGhBAADEwQAAAAAAAHhBAADMQQAAAAAAAHhBAADEwQAAAAAAAIRBAADMQQAAAAAAAIRBAADEwQAAAAAAAIxBAADMQQAAAAAAAIxBAADEwQAAAAAAAJRBAADMQQAAAAAAAJRBAADEwQAAAAAAAJxBAADMQQAAAAAAAJxBAADEwQAAAAAAAKRBAADMQQAAAAAAAKRBAADEwQAAAAAAAKxBAADMQQAAAAAAAKxBAADEwQAAAAAAALRBAADMQQAAAAAAALRBAADEwQAAAAAAALxBAADMQQAAAAAAALxBAADEwQAAAAAAAMRBAADMQQAAAAAAAMRBAADEwQAAAAAAAMxBAADMQQAAAAAAAMxBAADEwQAAAAAAAMTBAADEwQAAAAAAAMxBAAC8wQAAAAAAAMTBAAC8wQAAAAAAAMxBAAC0wQAAAAAAAMTBAAC0wQAAAAAAAMxBAACswQAAAAAAAMTBAACswQAAAAAAAMxBAACkwQAAAAAAAMTBAACkwQAAAAAAAMxBAACcwQAAAAAAAMTBAACcwQAAAAAAAMxBAACUwQAAAAAAAMTBAACUwQAAAAAAAMxBAACMwQAAAAAAAMTBAACMwQAAAAAAAMxBAACEwQAAAAAAAMTBAACEwQAAAAAAAMxBAAB4wQAAAAAAAMTBAAB4wQAAAAAAAMxBAABowQAAAAAAAMTBAABowQAAAAAAAMxBAABYwQAAAAAAAMTBAABYwQAAAAAAAMxBAABIwQAAAAAAAMTBAABIwQAAAAAAAMxBAAA4wQAAAAAAAMTBAAA4wQAAAAAAAMxBAAAowQAAAAAAAMTBAAAowQAAAAAAAMxBAAAYwQAAAAAAAMTBAAAYwQAAAAAAAMxBAAAIwQAAAAAAAMTBAAAIwQAAAAAAAMxBAADwwAAAAAAAAMTBAADwwAAAAAAAAMxBAADQwAAAAAAAAMTBAADQwAAAAAAAAMxBAACwwAAAAAAAAMTBAACwwAAAAAAAAMxBAACQwAAAAAAAAMTBAACQwAAAAAAAAMxBAABgwAAAAAAAAMTBAABgwAAAAAAAAMxBAAAgwAAAAAAAAMTBAAAgwAAAAAAAAMxBAADAvwAAAAAAAMTBAADAvwAAAAAAAMxBAAAAvwAAAAAAAMTBAAAAvwAAAAAAAMxBAAAAPwAAAAAAAMTBAAAAPwAAAAAAAMxBAADAPwAAAAAAAMTBAADAPwAAAAAAAMxBAAAgQAAAAAAAAMTBAAAgQAAAAAAAAMxBAABgQAAAAAAAAMTBAABgQAAAAAAAAMxBAACQQAAAAAAAAMTBAACQQAAAAAAAAMxBAACwQAAAAAAAAMTBAACwQAAAAAAAAMxBAADQQAAAAAAAAMTBAADQQAAAAAAAAMxBAADwQAAAAAAAAMTBAADwQAAAAAAAAMxBAAAIQQAAAAAAAMTBAAAIQQAAAAAAAMxBAAAYQQAAAAAAAMTBAAAYQQAAAAAAAMxBAAAoQQAAAAAAAMTBAAAoQQAAAAAAAMxBAAA4QQAAAAAAAMTBAAA4QQAAAAAAAMxBAABIQQAAAAAAAMTBAABIQQAAAAAAAMxBAABYQQAAAAAAAMTBAABYQQAAAAAAAMxBAABoQQAAAAAAAMTBAABoQQAAAAAAAMxBAAB4QQAAAAAAAMTBAAB4QQAAAAAAAMxBAACEQQAAAAAAAMTBAACEQQAAAAAAAMxBAACMQQAAAAAAAMTBAACMQQAAAAAAAMxBAACUQQAAAAAAAMTBAACUQQAAAAAAAMxBAACcQQAAAAAAAMTBAACcQQAAAAAAAMxBAACkQQAAAAAAAMTBAACkQQAAAAAAAMxBAACsQQAAAAAAAMTBAACsQQAAAAAAAMxBAAC0QQAAAAAAAMTBAAC0QQAAAAAAAMxBAAC8QQAAAAAAAMTBAAC8QQAAAAAAAMxBAADEQQAAAAAAAMTBAADEQQAAAAAAAMxBAADMQQAAAAAAAMTBAADMQQAAAAAAAMxB")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkhq"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.23031491, 0.23031494, 0.23031494, 0.49803922)
+disable_receive_shadows = true
+proximity_fade_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_v8u0m"]
+lightmap_size_hint = Vector2i(254, 266)
+size = Vector3(50, 1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1g3f4"]
+size = Vector3(0.1, 1, 50)
+
 [node name="LevelEditor3D" type="Node3D"]
 script = ExtResource("1_goklc")
 entities = ExtResource("2_qkarf")
 tiles = ExtResource("3_dqkhq")
+
+[node name="SelectionTool" type="Node" parent="."]
+script = ExtResource("4_1g3f4")
+metadata/_custom_type_script = "uid://3k8d4kg2e70d"
 
 [node name="BoxTool" type="Node" parent="."]
 script = ExtResource("2_j0u0h")
@@ -69,16 +103,19 @@ environment = SubResource("Environment_jxark")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="TopDownCamera" type="Camera3D" parent="."]
+[node name="FreeCameraPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="FreeCamera" type="Camera3D" parent="FreeCameraPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.8580739, 0.5135263, 0, -0.5135263, 0.8580739, -0.01583159, 5.3610153, 9.09913)
+fov = 90.0
+
+[node name="TopDownCamera" type="Camera3D" parent="FreeCameraPivot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -0.041335106, 0.9991454, 0, -0.9991454, -0.041335106, 0, 12.860617, -0.12807083)
 projection = 1
 size = 25.0
-
-[node name="FreeCamera" type="Camera3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.8580739, 0.5135263, 0, -0.5135263, 0.8580739, -0.01583159, 5.3610153, 9.09913)
-fov = 90.0
 
 [node name="Ui" type="CanvasLayer" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -87,22 +124,17 @@ transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 [node name="VBoxContainer" type="VBoxContainer" parent="Ui"]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 318.0
-offset_bottom = 480.0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 304.0
+offset_bottom = 466.0
 grow_vertical = 2
 size_flags_horizontal = 0
-
-[node name="CurrentToolLabel" type="Label" parent="Ui/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-text = "Current Tool"
-horizontal_alignment = 1
 
 [node name="ThemeOptionButton" type="OptionButton" parent="Ui/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("19_cig7r")
 selected = 0
 item_count = 6
 popup/item_0/text = "Tropical"
@@ -133,8 +165,12 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+focus_mode = 3
+theme = ExtResource("19_cig7r")
 theme_type_variation = &"FlatButton"
 theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("14_iy3i5")
 
 [node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/PencilToolButton"]
 texture_filter = 1
@@ -146,12 +182,42 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_n0ovj")
 
+[node name="SelectionToolButton" type="Button" parent="Ui/VBoxContainer/ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_mode = 3
+theme = ExtResource("19_cig7r")
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("14_iy3i5")
+
+[node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/SelectionToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_1g3f4")
+expand_mode = 1
+
 [node name="LineToolButton" type="Button" parent="Ui/VBoxContainer/ToolsBar"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+focus_mode = 3
+theme = ExtResource("19_cig7r")
 theme_type_variation = &"FlatButton"
 theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("14_iy3i5")
 
 [node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/LineToolButton"]
 texture_filter = 1
@@ -167,8 +233,12 @@ texture = ExtResource("7_h5ftm")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+focus_mode = 3
+theme = ExtResource("19_cig7r")
 theme_type_variation = &"FlatButton"
 theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("14_iy3i5")
 
 [node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/BucketToolButton"]
 texture_filter = 1
@@ -184,8 +254,12 @@ texture = ExtResource("7_gq0eg")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+focus_mode = 3
+theme = ExtResource("19_cig7r")
 theme_type_variation = &"FlatButton"
 theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("14_iy3i5")
 
 [node name="Icon" type="TextureRect" parent="Ui/VBoxContainer/ToolsBar/BoxToolButton"]
 texture_filter = 1
@@ -216,9 +290,6 @@ value = 1.0
 rounded = true
 alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="Ui/VBoxContainer"]
-layout_mode = 2
-
 [node name="UndoRedo" type="HBoxContainer" parent="Ui/VBoxContainer"]
 layout_mode = 2
 
@@ -226,6 +297,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("19_cig7r")
 disabled = true
 text = " Undo"
 icon = ExtResource("10_m6tcl")
@@ -235,26 +307,44 @@ expand_icon = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("19_cig7r")
 disabled = true
 text = "Redo"
 icon = ExtResource("11_t3fpq")
 icon_alignment = 2
 expand_icon = true
 
-[node name="HSeparator" type="HSeparator" parent="Ui/VBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TextEdit" type="TextEdit" parent="Ui/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-placeholder_text = "Current Level Name"
-
 [node name="ClearButton" type="Button" parent="Ui/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("19_cig7r")
 text = "Clear"
+
+[node name="ToggleGridButton" type="Button" parent="Ui/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("19_cig7r")
+toggle_mode = true
+text = "Toggle Grid Visible"
+
+[node name="MirrorButtons" type="HBoxContainer" parent="Ui/VBoxContainer"]
+layout_mode = 2
+
+[node name="XMirrorButton" type="Button" parent="Ui/VBoxContainer/MirrorButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("19_cig7r")
+toggle_mode = true
+text = "X Mirror"
+
+[node name="YMirrorButton" type="Button" parent="Ui/VBoxContainer/MirrorButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("19_cig7r")
+toggle_mode = true
+text = "Y Mirror"
 
 [node name="SaveLoad" type="HBoxContainer" parent="Ui/VBoxContainer"]
 layout_mode = 2
@@ -263,17 +353,21 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("19_cig7r")
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="Ui/VBoxContainer/SaveLoad"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("19_cig7r")
 text = "Load"
 
 [node name="SelectedTileLabel" type="Label" parent="Ui/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("19_cig7r")
 text = "Selected Tile"
 
 [node name="TileOptions" type="GridContainer" parent="Ui/VBoxContainer"]
@@ -328,22 +422,27 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 3
 mouse_force_pass_scroll_events = false
-max_columns = 3
+theme = ExtResource("19_cig7r")
+max_columns = 2
 same_column_width = true
 icon_mode = 0
-icon_scale = 1.945
+fixed_icon_size = Vector2i(32, 32)
 
 [node name="EntityList" type="ItemList" parent="Ui/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 3
 mouse_force_pass_scroll_events = false
+theme = ExtResource("19_cig7r")
 max_columns = 3
 same_column_width = true
 icon_mode = 0
 icon_scale = 1.945
+fixed_icon_size = Vector2i(16, 16)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 collision_layer = 8
@@ -360,3 +459,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 material_override = ExtResource("6_2glrk")
 mesh = SubResource("PlaneMesh_4bx4p")
 surface_material_override/0 = ExtResource("6_2glrk")
+
+[node name="GridMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_1g3f4")
+surface_material_override/0 = SubResource("StandardMaterial3D_dqkhq")
+script = ExtResource("24_dqkhq")
+material = SubResource("StandardMaterial3D_dqkhq")
+grid_size = Vector2i(50, 50)
+metadata/_custom_type_script = "uid://dgooyjwd64l8b"
+
+[node name="XMirrorLine" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_v8u0m")
+surface_material_override/0 = ExtResource("26_v8u0m")
+
+[node name="YMirrorLine" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_1g3f4")
+surface_material_override/0 = ExtResource("26_v8u0m")

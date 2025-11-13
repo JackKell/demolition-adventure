@@ -2,23 +2,18 @@ extends Node3D
 
 @export var entities: LevelEditorObjects
 @export var tiles: LevelEditorObjects
+@export var size: Vector2i = Vector2i(50, 50)
 
-var ENTITY_ID_TO_ENTITY_DATA: Dictionary[int, LevelEditorObjectData] = {}
-var ENTITY_NAME_TO_ENTITY_DATA: Dictionary[String, LevelEditorObjectData] = {}
-var ENTITY_SCENE_PATH_TO_ENTITY_ID: Dictionary[String, int] = {}
-
-var TILE_ID_TO_TILE_DATA: Dictionary[int, LevelEditorObjectData] = {}
-var TILE_NAME_TO_TILE_DATA: Dictionary[String, LevelEditorObjectData] = {}
-var TILE_SCENE_PATH_TO_TILE_ID: Dictionary[String, int] = {}
-
-@onready var current_tool_label: Label = %CurrentToolLabel
 @onready var top_down_camera: Camera3D = %TopDownCamera
 @onready var free_camera: Camera3D = %FreeCamera
+@onready var free_camera_pivot: Node3D = %FreeCameraPivot
 @onready var box_tool: BoxTool = $BoxTool
 @onready var fill_tool: FillTool = $FillTool
 @onready var pencil_tool: PencilTool = $PencilTool
 @onready var line_tool: LineTool = $LineTool
+@onready var selection_tool: SelectionTool = $SelectionTool
 
+@onready var selection_tool_button: Button = %SelectionToolButton
 @onready var pencil_tool_button: Button = %PencilToolButton
 @onready var line_tool_button: Button = %LineToolButton
 @onready var bucket_tool_button: Button = %BucketToolButton
@@ -32,17 +27,25 @@ var TILE_SCENE_PATH_TO_TILE_ID: Dictionary[String, int] = {}
 @onready var save_button: Button = %SaveButton
 @onready var load_button: Button = %LoadButton
 @onready var clear_button: Button = %ClearButton
+@onready var toggle_grid_button: Button = %ToggleGridButton
+@onready var grid_mesh: GridMesh = $GridMesh
+@onready var x_mirror_button: Button = %XMirrorButton
+@onready var z_mirror_button: Button = %YMirrorButton
+@onready var x_mirror_line: MeshInstance3D = %XMirrorLine
+@onready var y_mirror_line: MeshInstance3D = %YMirrorLine
 
 
-@export var size: Vector2i = Vector2i(50, 50)
+var ENTITY_ID_TO_ENTITY_DATA: Dictionary[int, LevelEditorObjectData] = {}
+var ENTITY_NAME_TO_ENTITY_DATA: Dictionary[String, LevelEditorObjectData] = {}
+var ENTITY_SCENE_PATH_TO_ENTITY_ID: Dictionary[String, int] = {}
+var TILE_ID_TO_TILE_DATA: Dictionary[int, LevelEditorObjectData] = {}
+var TILE_NAME_TO_TILE_DATA: Dictionary[String, LevelEditorObjectData] = {}
+var TILE_SCENE_PATH_TO_TILE_ID: Dictionary[String, int] = {}
+
 var tile_mapping: Dictionary[Vector2i, CellData] = {}
 var entity_mapping: Dictionary[Vector2i, CellData] = {}
 var current_cell: Vector2i = Vector2i.ZERO
-var current_tool: LevelEditorTool:
-	set(value):
-		current_tool = value
-		if value:
-			current_tool_label.text = current_tool.name
+var current_tool: LevelEditorTool
 var camera_size: float = 0
 var tools: Array[LevelEditorTool]
 var undo_redo: UndoRedo = UndoRedo.new()
@@ -53,9 +56,17 @@ var world_theme: LevelEditorObjectData.WorldTheme = LevelEditorObjectData.WorldT
 
 const LEVEL_SAVE_PATH: String = "res://level_editor/temp_level_data.tres"
 var current_level_save: LevelData
+var camera_speed: float = 0
+var camera_acceleration: float = 100
+const MAX_CAMERA_SPEED: float = 20
+var selection_grid: SelectionGrid
 
 
 func _ready() -> void:
+	selection_grid = SelectionGrid.new()
+	add_child(selection_grid)
+	selection_tool.selection_grid = selection_grid
+	selection_grid.global_position.y = 0.1
 	for entity: LevelEditorObjectData in entities.objects:
 		ENTITY_ID_TO_ENTITY_DATA.set(entity.id, entity)
 		ENTITY_NAME_TO_ENTITY_DATA.set(entity.name, entity)
@@ -80,6 +91,7 @@ func _ready() -> void:
 		tool.tile_mapping = tile_mapping
 		tool.current_cell = current_cell
 		tool.deactivate()
+	selection_tool_button.pressed.connect(switch_tool.bind(selection_tool))
 	box_tool_button.pressed.connect(switch_tool.bind(box_tool))
 	bucket_tool_button.pressed.connect(switch_tool.bind(fill_tool))
 	pencil_tool_button.pressed.connect(switch_tool.bind(pencil_tool))
@@ -93,17 +105,34 @@ func _ready() -> void:
 	clear_button.pressed.connect(clear)
 	tile_list.item_selected.connect(_on_tile_selected)
 	entity_list.item_selected.connect(_on_entity_selected)
+	toggle_grid_button.pressed.connect(_on_toggle_grid_visible_pressed)
+	x_mirror_button.pressed.connect(_on_x_mirror_button_pressed)
+	z_mirror_button.pressed.connect(_on_z_mirror_button_pressed)
 	
 	update_entity_items()
 	update_tile_items()
 	
-	current_tool = pencil_tool
+	switch_tool(pencil_tool)
+	pencil_tool_button.button_pressed = true
 	camera_size = top_down_camera.size
 	
 	const DEFAULT_TILE_ID: int = 2
 	tile_list.select(DEFAULT_TILE_ID)
 	tile_list.emit_signal("item_selected", DEFAULT_TILE_ID)
 	load_level()
+	if top_down_mode:
+		top_down_camera.make_current()
+	else:
+		free_camera.make_current()
+
+func _on_x_mirror_button_pressed():
+	x_mirror_line.visible = !x_mirror_line.visible 
+
+func _on_z_mirror_button_pressed():
+	y_mirror_line.visible = !y_mirror_line.visible 
+
+func _on_toggle_grid_visible_pressed() -> void:
+	grid_mesh.visible = !grid_mesh.visible
 	
 
 func clear():
@@ -216,7 +245,6 @@ func set_mapping_layer(mapping: Dictionary[Vector2i, CellData]):
 
 func set_draw_tile(tile: PackedScene) -> void:
 	selected_tile = tile
-	selected_tile_label.text = tile.resource_path.get_file().get_basename()
 	for tool in tools:
 		tool.draw_tile = selected_tile
 
@@ -226,7 +254,9 @@ func _on_entity_selected(id: int) -> void:
 		return
 	var data: LevelEditorObjectData = ENTITY_NAME_TO_ENTITY_DATA.get(entity_name)
 	set_draw_tile(data.scene)
+	selected_tile_label.text = data.name
 	set_mapping_layer(entity_mapping)
+	tile_list.deselect_all()
 
 
 func _on_tile_selected(id: int) -> void:
@@ -234,8 +264,10 @@ func _on_tile_selected(id: int) -> void:
 	if !TILE_NAME_TO_TILE_DATA.has(tile_name):
 		return
 	var data: LevelEditorObjectData = TILE_NAME_TO_TILE_DATA.get(tile_name)
+	selected_tile_label.text = data.name
 	set_draw_tile(data.scene)
 	set_mapping_layer(tile_mapping)
+	entity_list.deselect_all()
 
 func _on_version_changed() -> void:
 	undo_button.disabled = !undo_redo.has_undo()
@@ -267,11 +299,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			elif [KEY_4, KEY_B].has(event.keycode):
 				switch_tool(box_tool)
 			elif event.keycode == KEY_X:
-				top_down_mode = !top_down_mode
+				camera_speed = 0
 				if top_down_mode:
-					top_down_camera.make_current()
-				else:
 					free_camera.make_current()
+					top_down_mode = false
+				else:
+					top_down_camera.make_current()
+					top_down_mode = true
 	
 	if event is InputEventMouseMotion:
 		var space_state = get_world_3d().direct_space_state
@@ -311,11 +345,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 func _process(delta: float) -> void:
 	var move_input: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var move_delta: Vector2 = move_input * delta * 50
 	
-	top_down_camera.global_position += Vector3(move_delta.x, 0, move_delta.y)
-	top_down_camera.global_position.x = clampf(top_down_camera.global_position.x, -24, 25)
-	top_down_camera.global_position.z = clampf(top_down_camera.global_position.z, -24, 25)
+	if move_input:
+		camera_speed = move_toward(camera_speed, MAX_CAMERA_SPEED, delta * camera_acceleration)
+	else:
+		camera_speed = move_toward(camera_speed, 0, delta * camera_acceleration)
+	
+	var move_delta: Vector2 = move_input * delta * camera_speed
+	var desired_position = free_camera_pivot.global_position + VectorUtils.vector3_xz(move_delta)
+	desired_position.x = clampf(desired_position.x, -24, 25)
+	desired_position.z = clampf(desired_position.z, -24, 25)
+	free_camera_pivot.global_position = desired_position
 	
 	if !is_equal_approx(top_down_camera.global_position.y, camera_size):
 		top_down_camera.size = move_toward(
