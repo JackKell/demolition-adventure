@@ -41,3 +41,4 @@ unique_name_in_owner = true
 visible = false
 entities = ExtResource("8_efxa6")
 tiles = ExtResource("9_dg77c")
+size = Vector2i(50, 50)

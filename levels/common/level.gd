@@ -74,6 +74,12 @@ func get_entity(coords: Vector2i) -> Entity:
 			return entity
 	return null
 
+func get_ignitor_bomb(coords: Vector2i) -> StartBomb:
+	var entity: Entity = get_entity(coords)
+	if entity is StartBomb:
+		return entity
+	return null
+
 func has_entity(coords: Vector2i) -> bool:
 	return get_entity(coords) != null
 

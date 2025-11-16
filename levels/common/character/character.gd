@@ -16,18 +16,18 @@ var _target_camera_rotation: float = 0
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
 
-
-enum State {
-	WALkING,
-	SLIDING,
-	IDLING,
-	ANIMATING,
-	LOCKED,
-}
-
-var state: State = State.IDLING
-
 var is_panicked: bool = false
+
+var state_machine: StateMachine = StateMachine.new()
+var walk_state: SMState = SMState.new()
+var sliding_state: SMState = SMState.new()
+var idle_state: SMState = SMState.new()
+var animating_state: SMState = SMState.new()
+var locked_state: SMState = SMState.new()
+
+func _init() -> void:
+	idle_state.process = idle_process
+	state_machine.transition(idle_state)
 
 func _ready() -> void:
 	stopped.connect(_on_stopped)
@@ -35,37 +35,6 @@ func _ready() -> void:
 	var input_controller: PlayerInputController = PlayerInputController.new()
 	input_controller.character = self
 	add_child(input_controller)
-	
-	
-
-func _enter_state(new_state: State) -> void:
-	match new_state:
-		State.WALkING:
-			return
-		State.SLIDING:
-			return
-		State.ANIMATING:
-			return
-		State.LOCKED:
-			return
-	
-func _exit_state(old_state: State) -> void:
-	match old_state:
-		State.WALkING:
-			return
-		State.SLIDING:
-			return
-		State.ANIMATING:
-			return
-		State.LOCKED:
-			return
-	
-func _transition_state(new_state: State) -> void:
-	if state:
-		_exit_state(state)
-	state = new_state
-	_enter_state(state)
-
 
 func _on_stopped() -> void:
 	audio_stream_player_3d.stop()
@@ -99,11 +68,24 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		# TODO: find away to reset level state instead of reloading the scene
 		get_tree().reload_current_scene()
 
+const DIRECTIONS: Array[Vector2i] = [
+	Vector2i.UP,
+	Vector2i.RIGHT,
+	Vector2i.DOWN,
+	Vector2i.LEFT,
+]
+
 func try_ignite() -> void:
-	var target_coords: Vector2i = coords + face_direction
-	var entity: Entity = level.get_entity(target_coords)
-	if entity is StartBomb:
-		entity.ignite()
+	for direction: Vector2i in DIRECTIONS:
+		var check_coords: Vector2i = coords + direction
+		var start_bomb: StartBomb = level.get_ignitor_bomb(check_coords)
+		if start_bomb:
+			start_bomb.ignite()
+			face_direction = direction
+			_update_body_facing_direction(direction)
+
+func _update_body_facing_direction(direction: Vector2i) -> void:
+	body.rotation.y = Vector2(direction * Vector2i(1, -1)).angle() + QUARTER_TURN
 
 func _input(event: InputEvent) -> void:
 	if is_animating:
@@ -114,7 +96,7 @@ func _input(event: InputEvent) -> void:
 	
 	_handle_camera_rotation(event)
 
-func process_idle(_delta: float) -> void:
+func idle_process(_delta: float) -> void:
 	var current_direction = Vector2i(input_direction)
 	if camera.current:
 		current_direction = Vector2i(Vector2(current_direction).rotated(-_target_camera_rotation))
@@ -146,7 +128,7 @@ func process_idle(_delta: float) -> void:
 			if move_happened:
 				level.add_action(CharacterMoveAction.new(self, level.map_to_world(target_coords)))
 		face_direction = current_direction
-		body.rotation.y = Vector2(current_direction * Vector2i(1, -1)).angle() + QUARTER_TURN
+		_update_body_facing_direction(face_direction)
 
 func _handle_camera_rotation(event: InputEvent) -> void:
 	if !camera.current:
@@ -171,35 +153,27 @@ func _process(delta: float) -> void:
 			delta * 3 * PI
 		)
 	
-	match state:
-		State.LOCKED:
-			return
-		State.ANIMATING:
-			return
-		State.IDLING:
-			process_idle(delta)
-		State.WALkING:
-			return
+	state_machine.process(delta)
 
 func struggle():
-	if state == State.ANIMATING:
+	if state_machine.current_state == animating_state:
 		return
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_callback(_transition_state.bind(State.ANIMATING))
+	tween.tween_callback(state_machine.transition.bind(animating_state))
 	tween.tween_property(body, "rotation:x", PI / 4, .2).as_relative()
 	tween.tween_property(body, "rotation:x", -PI / 4, .2).as_relative()
 	tween.tween_property(self, "is_animating", false, 0)
-	tween.tween_callback(_transition_state.bind(State.IDLING))
+	tween.tween_callback(state_machine.transition.bind(idle_state))
 	return tween
 
 func squish():
-	if state == State.ANIMATING:
+	if state_machine.current_state == animating_state:
 		return
-	_transition_state(State.ANIMATING)
+	state_machine.transition(animating_state)
 	animation_player.play("flatten")
 	await animation_player.animation_finished
 	await get_tree().create_timer(1).timeout
-	_transition_state(State.IDLING)
+	state_machine.transition(idle_state)
 
 func bounce(direction: Vector2i):
 	if is_animating:
