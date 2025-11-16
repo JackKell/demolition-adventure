@@ -2,6 +2,8 @@ class_name Character
 extends Entity
 
 const QUARTER_TURN: float = TAU / 4
+const CAMERA_ROTATION_PER_SECOND: float = TAU * 1.5
+const SQUISH_DURATION: float = 0.05
 
 var face_direction: Vector2i = Vector2i.DOWN
 var target_position: Vector3 =  Vector3.ZERO
@@ -57,6 +59,8 @@ func _on_stopped() -> void:
 		if can_move_to(input_direction):
 			animation_player.play("sliding")
 			move(input_direction)
+	elif tile.type == Tile.TileType.OIL:
+		struggle()
 
 func _on_moved() -> void:
 	audio_stream_player_3d.play()
@@ -145,15 +149,18 @@ func _process(delta: float) -> void:
 	if not level:
 		return
 	
+	_update_camera_rotation(delta)
+	
+	state_machine.process(delta)
+
+func _update_camera_rotation(delta: float):
 	var camera_y_rotation: float = camera_pivot.rotation.y
 	if !is_equal_approx(camera_y_rotation, _target_camera_rotation):
 		camera_pivot.rotation.y = rotate_toward(
 			camera_y_rotation, 
 			_target_camera_rotation, 
-			delta * 3 * PI
+			delta * CAMERA_ROTATION_PER_SECOND
 		)
-	
-	state_machine.process(delta)
 
 func struggle():
 	if state_machine.current_state == animating_state:
@@ -172,7 +179,7 @@ func squish():
 	state_machine.transition(animating_state)
 	animation_player.play("flatten")
 	await animation_player.animation_finished
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(SQUISH_DURATION).timeout
 	state_machine.transition(idle_state)
 
 func bounce(direction: Vector2i):
