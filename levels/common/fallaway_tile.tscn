@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://ydtwsej63low" path="res://levels/common/fallaway_tile.gd" id="1_835s5"]
 [ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="2_3hofr"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_14hpr"]
-lightmap_size_hint = Vector2i(14, 16)
-size = Vector3(1, 0.25, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_futxs"]
+size = Vector3(1, 0.66, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_835s5"]
 albedo_color = Color(0.308, 0.329, 0.35, 1)
@@ -15,10 +14,10 @@ script = ExtResource("1_835s5")
 mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
-mesh = SubResource("BoxMesh_14hpr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 0)
+mesh = SubResource("BoxMesh_futxs")
 surface_material_override/0 = SubResource("StandardMaterial3D_835s5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 0)
 shape = ExtResource("2_3hofr")
