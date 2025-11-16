@@ -27,13 +27,18 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 [node name="character" parent="." instance=ExtResource("4_wfnr8")]
 
 [node name="Skeleton3D" parent="character/Armature" index="0"]
-bones/2/rotation = Quaternion(-3.3522415e-08, -2.2097949e-07, 0.9558177, -0.29396012)
-bones/3/rotation = Quaternion(3.5506297e-08, -7.601726e-08, -0.044212632, 0.99902225)
-bones/6/rotation = Quaternion(0.007828416, -5.389524e-08, -0.06339243, 0.997958)
-bones/9/rotation = Quaternion(0.007828416, 5.389524e-08, 0.06339243, 0.997958)
-bones/10/rotation = Quaternion(0.7071069, 2.5842034e-08, 3.010318e-07, 0.70710665)
-bones/11/rotation = Quaternion(3.3522415e-08, -2.2097949e-07, 0.9558177, 0.29396012)
-bones/12/rotation = Quaternion(3.5506297e-08, 7.601726e-08, 0.044212632, 0.99902225)
+bones/0/rotation = Quaternion(0.063659936, -0.0034393063, -0.020894537, 0.997747)
+bones/0/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/1/rotation = Quaternion(-0.11607465, -0.0015182522, -6.2667896e-06, 0.99323934)
+bones/2/rotation = Quaternion(0.011552512, -0.026401129, 0.53444934, -0.84470916)
+bones/3/rotation = Quaternion(-0.03980862, -0.04087483, 0.19336763, 0.97946596)
+bones/5/rotation = Quaternion(0.040664613, 0.7044638, 0.7072894, -0.042649057)
+bones/6/rotation = Quaternion(-0.2418873, 0.013619977, -0.058990493, 0.96841383)
+bones/8/rotation = Quaternion(-0.066348135, 0.15736224, 0.98513454, 0.018572865)
+bones/9/rotation = Quaternion(-0.19788879, -0.0016369417, 0.03718285, 0.9795177)
+bones/10/rotation = Quaternion(0.7071069, 2.97483e-08, 3.000581e-07, 0.70710665)
+bones/11/rotation = Quaternion(-0.012416754, -0.03069967, 0.5530264, 0.83250546)
+bones/12/rotation = Quaternion(0.008952591, -0.030068269, -0.12777068, 0.9913075)
 
 [node name="Cone" parent="character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_wfnr8")

@@ -28,6 +28,7 @@ var animating_state: SMState = SMState.new()
 var locked_state: SMState = SMState.new()
 
 func _ready() -> void:
+	sliding_state.enter = sliding_enter
 	idle_state.enter = idle_enter
 	idle_state.process = idle_process
 	state_machine.transition(idle_state)
@@ -39,8 +40,10 @@ func _ready() -> void:
 
 func _on_stopped() -> void:
 	audio_stream_player_3d.stop()
-	if animation_player.current_animation == "walk":
-		animation_player.play("idle")
+	
+	if state_machine.current_state == animating_state:
+		return
+	
 	var tile = level.get_tile(coords)
 	
 	var has_other_entity: bool = false
@@ -55,15 +58,20 @@ func _on_stopped() -> void:
 	elif tile.type == Tile.TileType.SPIKES or has_other_entity:
 		bounce(face_direction)
 	elif tile.type == Tile.TileType.ICY:
-		if can_move_to(input_direction):
-			animation_player.play("sliding")
-			move(input_direction)
+		if can_move_to(last_move_direction):
+			if state_machine.current_state != sliding_state:
+				state_machine.transition(sliding_state)
+			move(last_move_direction)
+		else:
+			state_machine.transition(idle_state)
 	elif tile.type == Tile.TileType.OIL:
 		struggle()
+	elif tile.type == Tile.TileType.NORMAL:
+		state_machine.transition(idle_state)
 
 func _on_moved() -> void:
-	audio_stream_player_3d.play()
-	if animation_player:
+	if state_machine.current_state == idle_state:
+		audio_stream_player_3d.play()
 		animation_player.play("walk")
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -98,6 +106,9 @@ func _input(event: InputEvent) -> void:
 		try_ignite()
 	
 	_handle_camera_rotation(event)
+
+func sliding_enter() -> void:
+	animation_player.play("sliding")
 
 func idle_enter() -> void:
 	animation_player.play("idle")
