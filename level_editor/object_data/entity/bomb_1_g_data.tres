@@ -11,7 +11,7 @@ region = Rect2(32, 16, 16, 16)
 [resource]
 script = ExtResource("3_tipg2")
 id = 28
-name = "bomb 1 g"
+name = "bomb 1g"
 icon = SubResource("AtlasTexture_y0e5q")
 scene = ExtResource("2_y0e5q")
 metadata/_custom_type_script = "uid://vv4klj232v1h"

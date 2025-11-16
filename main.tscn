@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cycsjfieh6k2k"]
+[gd_scene load_steps=11 format=3 uid="uid://cycsjfieh6k2k"]
 
 [ext_resource type="Script" uid="uid://kv2sy8s5q4a6" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Resource" uid="uid://1ohqoraweu5i" path="res://levels/level_data/levels.tres" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://btg851p6uf58n" path="res://menu_screen_set.tscn" id="3_5vw27"]
+[ext_resource type="Script" uid="uid://b5bmbom5qadl0" path="res://menu_screen_set.gd" id="4_kek77"]
+[ext_resource type="PackedScene" uid="uid://bc6i4cfw7kyab" path="res://level_editor/level_editor_3d.tscn" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://ccxero8357kwc" path="res://main_screen.tscn" id="5_lquwl"]
+[ext_resource type="Resource" uid="uid://dt8wbvyhdijew" path="res://level_editor/object_data/all_entities.tres" id="8_efxa6"]
+[ext_resource type="Resource" uid="uid://xbpyp3rkqm6a" path="res://level_editor/object_data/all_tiles.tres" id="9_dg77c"]
 [ext_resource type="PackedScene" uid="uid://bydj2us25qme5" path="res://levels/play_ui.tscn" id="19_cegan"]
 [ext_resource type="PackedScene" uid="uid://cy80ieemiif8g" path="res://levels/level_select.tscn" id="20_82xsv"]
 
@@ -12,10 +18,26 @@ levels = ExtResource("2_1bvp3")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayUi" parent="CanvasLayer" instance=ExtResource("19_cegan")]
+unique_name_in_owner = true
 visible = false
 
 [node name="LevelSelect" parent="CanvasLayer" instance=ExtResource("20_82xsv")]
-offset_top = 71.0
-offset_bottom = -71.0
+unique_name_in_owner = true
+visible = false
+
+[node name="MainScreen" parent="CanvasLayer" instance=ExtResource("5_lquwl")]
+unique_name_in_owner = true
+visible = false
 
 [node name="Ticker" type="Timer" parent="."]
+
+[node name="MenuScreenSet" parent="." instance=ExtResource("3_5vw27")]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("4_kek77")
+
+[node name="LevelEditor3D" parent="." instance=ExtResource("5_7mycd")]
+unique_name_in_owner = true
+visible = false
+entities = ExtResource("8_efxa6")
+tiles = ExtResource("9_dg77c")

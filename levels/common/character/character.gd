@@ -77,6 +77,9 @@ func _input(event: InputEvent) -> void:
 				_target_camera_rotation = fposmod(_target_camera_rotation - (PI / 2), TAU)
 
 func _process(delta: float) -> void:
+	if not level:
+		return
+	
 	var camera_y_rotation: float = camera_pivot.rotation.y
 	if !is_equal_approx(camera_y_rotation, _target_camera_rotation):
 		camera_pivot.rotation.y = rotate_toward(

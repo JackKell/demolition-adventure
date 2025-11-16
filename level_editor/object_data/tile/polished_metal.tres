@@ -11,7 +11,7 @@ region = Rect2(0, 0, 32, 32)
 [resource]
 script = ExtResource("1_1o32e")
 id = 12
-name = "polished_metal"
+name = "metal"
 icon = SubResource("AtlasTexture_ioj07")
 scene = ExtResource("2_ioj07")
 world_theme = 3

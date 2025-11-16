@@ -11,7 +11,7 @@ region = Rect2(0, 0, 32, 32)
 [resource]
 script = ExtResource("1_1yqls")
 id = 15
-name = "castle_rug"
+name = "rug"
 icon = SubResource("AtlasTexture_vx8bo")
 scene = ExtResource("2_ana2h")
 world_theme = 4

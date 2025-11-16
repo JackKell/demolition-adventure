@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dabv6qjmgd6qm"]
+
+[ext_resource type="PackedScene" uid="uid://b3lbtngrs5hvd" path="res://levels/common/character/character.glb" id="1_tx0xn"]
+[ext_resource type="Material" uid="uid://bypvn1fd4cnxj" path="res://levels/common/character/character.material" id="2_hnoi7"]
+
+[node name="DummyCharacter" type="Node3D"]
+
+[node name="character" parent="." instance=ExtResource("1_tx0xn")]
+
+[node name="Skeleton3D" parent="character/Armature" index="0"]
+bones/2/rotation = Quaternion(-3.3522415e-08, -2.2097949e-07, 0.9558177, -0.29396012)
+bones/11/rotation = Quaternion(3.3522415e-08, -2.2097949e-07, 0.9558177, 0.29396012)
+
+[node name="Cone" parent="character/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_hnoi7")
+
+[editable path="character"]

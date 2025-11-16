@@ -26,10 +26,6 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="character" parent="." instance=ExtResource("4_wfnr8")]
 
-[node name="Skeleton3D" parent="character/Armature" index="0"]
-bones/2/rotation = Quaternion(-3.3522415e-08, -2.2097949e-07, 0.9558177, -0.29396012)
-bones/11/rotation = Quaternion(3.3522415e-08, -2.2097949e-07, 0.9558177, 0.29396012)
-
 [node name="Cone" parent="character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_wfnr8")
 

@@ -6,6 +6,7 @@ const LEVEL_OPTION: PackedScene = preload("uid://bum7dca86w1j4")
 
 @export var levels_data: Levels
 
+@onready var back_button: Button = %BackButton
 @onready var level_options: GridContainer = %LevelOptions
 @onready var world_tabs: TabBar = %WorldTabs
 

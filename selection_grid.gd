@@ -86,7 +86,8 @@ func update_mesh() -> void:
 			has_left
 		)
 	self.mesh = st.commit()
-	set_surface_override_material(0, SELECTION_GRID)
+	# TODO: Fix this
+	#self.mesh.surface_set_material(0, SELECTION_GRID)
 
 func _draw_tile(
 	st: SurfaceTool, 

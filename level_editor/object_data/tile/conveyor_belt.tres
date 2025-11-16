@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_60udd")
 id = 21
-name = "converyor belt"
+name = "belt"
 icon = ExtResource("1_u1j7u")
 scene = ExtResource("2_y4w4q")
 metadata/_custom_type_script = "uid://vv4klj232v1h"

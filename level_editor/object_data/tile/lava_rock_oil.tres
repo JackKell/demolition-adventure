@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_7nhho")
 id = 13
-name = "lava_rock_oil"
+name = "lava rock oil"
 icon = ExtResource("1_1hjrf")
 scene = ExtResource("2_fxd8p")
 world_theme = 3

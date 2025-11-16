@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=78 format=3]
+[gd_resource type="Resource" script_class="LevelData" load_steps=78 format=3 uid="uid://b3qryiyob15fu"]
 
-[ext_resource type="Script" path="res://levels/common/base_config.gd" id="1_5yks7"]
-[ext_resource type="Script" path="res://levels/level_data/level_data.gd" id="2_3yc7t"]
+[ext_resource type="Script" uid="uid://b3cc2d36t7wn5" path="res://levels/common/base_config.gd" id="1_5yks7"]
+[ext_resource type="Script" uid="uid://cgbxclgrk3852" path="res://levels/level_data/level_data.gd" id="2_3yc7t"]
 
 [sub_resource type="Resource" id="Resource_5yks7"]
 script = ExtResource("1_5yks7")
@@ -184,6 +184,10 @@ id = 3
 script = ExtResource("1_5yks7")
 id = 3
 
+[sub_resource type="Resource" id="Resource_euwcp"]
+script = ExtResource("1_5yks7")
+id = 3
+
 [sub_resource type="Resource" id="Resource_28vnv"]
 script = ExtResource("1_5yks7")
 id = 4
@@ -213,6 +217,14 @@ script = ExtResource("1_5yks7")
 id = 3
 
 [sub_resource type="Resource" id="Resource_jrtva"]
+script = ExtResource("1_5yks7")
+id = 3
+
+[sub_resource type="Resource" id="Resource_rr65t"]
+script = ExtResource("1_5yks7")
+id = 3
+
+[sub_resource type="Resource" id="Resource_73s8b"]
 script = ExtResource("1_5yks7")
 id = 3
 
@@ -248,6 +260,14 @@ id = 3
 script = ExtResource("1_5yks7")
 id = 3
 
+[sub_resource type="Resource" id="Resource_d8co3"]
+script = ExtResource("1_5yks7")
+id = 3
+
+[sub_resource type="Resource" id="Resource_641yy"]
+script = ExtResource("1_5yks7")
+id = 3
+
 [sub_resource type="Resource" id="Resource_44i0j"]
 script = ExtResource("1_5yks7")
 id = 4
@@ -277,26 +297,6 @@ script = ExtResource("1_5yks7")
 id = 3
 
 [sub_resource type="Resource" id="Resource_rgnil"]
-script = ExtResource("1_5yks7")
-id = 3
-
-[sub_resource type="Resource" id="Resource_euwcp"]
-script = ExtResource("1_5yks7")
-id = 3
-
-[sub_resource type="Resource" id="Resource_73s8b"]
-script = ExtResource("1_5yks7")
-id = 3
-
-[sub_resource type="Resource" id="Resource_641yy"]
-script = ExtResource("1_5yks7")
-id = 3
-
-[sub_resource type="Resource" id="Resource_rr65t"]
-script = ExtResource("1_5yks7")
-id = 3
-
-[sub_resource type="Resource" id="Resource_d8co3"]
 script = ExtResource("1_5yks7")
 id = 3
 

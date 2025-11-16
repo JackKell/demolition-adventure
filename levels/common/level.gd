@@ -156,13 +156,22 @@ func _add_top_down_camera() -> void:
 	
 func _init_tiles() -> void:
 	for tile in get_tree().get_nodes_in_group(Tile.GROUP):
-		if tile is Tile:
+		if tile is Tile and is_decedent_of(self, tile):
 			tile.initalize(self)
 			_coords_to_tile.set(tile.coords, tile)
+			
+static func is_decedent_of(parent_node: Node, child_node: Node) -> bool:
+	var current_parent = child_node.get_parent()
+	while current_parent != null:
+		if current_parent == parent_node:
+			return true
+		else:
+			current_parent = current_parent.get_parent()
+	return false
 
 func _init_entities():
 	for entity in get_tree().get_nodes_in_group(Entity.ENTITY_GROUP):
-		if entity is Entity:
+		if entity is Entity and is_decedent_of(self, entity):
 			entity.initalize(self)
 			entity.coords_changed.connect(_handle_coords_changed.bind(entity))
 			_entities.append(entity)

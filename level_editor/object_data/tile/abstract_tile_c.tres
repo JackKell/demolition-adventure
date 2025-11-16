@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_gh652")
 id = 18
-name = "abstract_tile_c"
+name = "abstract c"
 icon = ExtResource("1_3jd7b")
 scene = ExtResource("2_sov2p")
 world_theme = 5

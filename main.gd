@@ -1,6 +1,5 @@
 extends Node3D
 
-
 var current_level: Level
 var spawning: bool = false
 var _remaining_time: int = 0
@@ -9,29 +8,87 @@ var _steps: int = 0
 @export var levels: Levels
 @export var level_index: int = 0
 
-@onready var play_ui: PlayUi = $CanvasLayer/PlayUi
+@onready var menu_screen_set: MainMenuSet = %MenuScreenSet
 @onready var ticker: Timer = $Ticker
-@onready var level_select: LevelSelect = $CanvasLayer/LevelSelect
+@onready var play_ui: PlayUi = %PlayUi
+@onready var level_select: LevelSelect = %LevelSelect
+@onready var main_screen: MainGameScreen = %MainScreen
+@onready var level_editor: LevelEditor = %LevelEditor3D
+
+enum State {
+	PLAY,
+	EDITOR,
+	LEVEL_SELECT,
+	MENU,
+}
+
+var current_state: State
 
 func _ready() -> void:
 	ticker.timeout.connect(_on_tick)
 	level_select.level_selected.connect(_on_level_selected)
+	level_editor.ui.back_button.pressed.connect(_transition_state.bind(State.MENU))
+	level_select.back_button.pressed.connect(_transition_state.bind(State.MENU))
+	main_screen.play_button.pressed.connect(_transition_state.bind(State.LEVEL_SELECT))
+	main_screen.level_editor_button.pressed.connect(_transition_state.bind(State.EDITOR))
+	_transition_state(State.MENU)
 
 func _on_level_selected(level_data: LevelData) -> void:
 	level_index = levels.levels.find(level_data)
-	play_ui.visible = true
+	_transition_state(State.PLAY)
 	spawn_level(level_data)
 	
+func _transition_state(state: State) -> void:
+	if current_state:
+		_exit_state(current_state)
+	current_state = state
+	_enter_state(current_state)
+
+func _enter_state(state: State) -> void:
+	match state:
+		State.MENU:
+			main_screen.visible = true
+			menu_screen_set.visible = true
+			menu_screen_set.camera.make_current()
+			clear_current_level()
+		State.PLAY:
+			play_ui.visible = true
+		State.EDITOR:
+			level_editor.visible = true
+			level_editor.ui.visible = true
+			level_editor.make_current()
+		State.LEVEL_SELECT:
+			level_select.visible = true
+
+func _exit_state(state: State) -> void:
+	match state:
+		State.MENU:
+			main_screen.visible = false
+			menu_screen_set.visible = false
+		State.PLAY:
+			play_ui.visible = false
+		State.EDITOR:
+			level_editor.visible = false
+			level_editor.ui.visible = false
+		State.LEVEL_SELECT:
+			level_select.visible = false 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_ESCAPE and event.is_released():
-			level_select.visible = !level_select.visible
-			play_ui.visible = !play_ui.visible
-		if event.keycode == KEY_R and event.is_released():
-			get_viewport().set_input_as_handled()
-			reload_current_level()
-			
+	match current_state:
+		State.PLAY:
+			if event is InputEventKey:
+				if event.keycode == KEY_ESCAPE and event.is_pressed():
+					_transition_state(State.LEVEL_SELECT)
+				if event.keycode == KEY_R and event.is_released():
+					get_viewport().set_input_as_handled()
+					reload_current_level()
+		State.LEVEL_SELECT:
+			if event is InputEventKey:
+				if event.keycode == KEY_ESCAPE and event.is_pressed():
+					_transition_state(State.PLAY)
+		State.EDITOR:
+			level_editor.update_input(event)
+
 func reload_current_level() -> void:
 	spawn_level(levels.levels.get(level_index))
 	
@@ -57,6 +114,10 @@ func spawn_level(level_data: LevelData) -> void:
 
 func connect_character():
 	current_level._character.coords_changed.connect(_on_character_moved)
+	
+func clear_current_level():
+	if current_level:
+		current_level.queue_free()
 
 func _on_character_moved():
 	_steps += 1

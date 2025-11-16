@@ -1,0 +1,408 @@
+[gd_scene load_steps=19 format=3 uid="uid://te55godg1quy"]
+
+[ext_resource type="Script" uid="uid://cmhnts8bshbbr" path="res://level_editor/editor_ui.gd" id="1_5k5ml"]
+[ext_resource type="Theme" uid="uid://cfkyvoqxvawux" path="res://levels/my_theme.tres" id="1_sfll8"]
+[ext_resource type="Texture2D" uid="uid://dd8ogoal8nxx" path="res://levels/common/world_icons/world_1_icon.tres" id="2_5k5ml"]
+[ext_resource type="Texture2D" uid="uid://brx7prig8i3hc" path="res://levels/common/world_icons/world_2_icon.tres" id="3_bs0cs"]
+[ext_resource type="Texture2D" uid="uid://cn4rqk32r0rhy" path="res://levels/common/world_icons/world_3_icon.tres" id="4_356j3"]
+[ext_resource type="Texture2D" uid="uid://d3wqhsyg66ba5" path="res://levels/common/world_icons/world_4_icon.tres" id="5_2qck4"]
+[ext_resource type="Texture2D" uid="uid://catn5pupjogxy" path="res://levels/common/world_icons/world_5_icon.tres" id="6_l551c"]
+[ext_resource type="Texture2D" uid="uid://jtfxckleugpf" path="res://levels/common/world_icons/world_6_icon.tres" id="7_74mvd"]
+[ext_resource type="ButtonGroup" uid="uid://tmo1yh125d4o" path="res://level_editor/tool_buttons_group.tres" id="8_oy1f5"]
+[ext_resource type="Texture2D" uid="uid://b0xisx3afjpce" path="res://level_editor/pencil_tool_icon.svg" id="9_u2ib6"]
+[ext_resource type="Texture2D" uid="uid://b8i6wjfmyg1w1" path="res://level_editor/selection_tool.svg" id="10_etdp2"]
+[ext_resource type="Texture2D" uid="uid://c7u3dh1sdjsmm" path="res://level_editor/line_tool_icon.svg" id="11_vjj2c"]
+[ext_resource type="Texture2D" uid="uid://cywhsb0f1s6su" path="res://level_editor/flood_fill_icon.svg" id="12_klax7"]
+[ext_resource type="Texture2D" uid="uid://d26jn0xq3oyv3" path="res://level_editor/box_tool_icon.svg" id="13_cr5gn"]
+[ext_resource type="Texture2D" uid="uid://c11f3ypgikerc" path="res://level_editor/icons/tile/sand_tile_icon.tres" id="16_r1fa2"]
+[ext_resource type="Texture2D" uid="uid://b3vyf4414do54" path="res://level_editor/icons/tile/grass_tile_icon.tres" id="17_sik37"]
+[ext_resource type="Texture2D" uid="uid://chqvhugvyaaxr" path="res://level_editor/icons/tile/template_tile_icon.atlastex" id="18_8xaxy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gq0eg"]
+
+[node name="EditorUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_5k5ml")
+
+[node name="ToolsBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 11.0
+offset_right = 75.0
+offset_bottom = 41.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="PencilToolButton" type="Button" parent="ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+focus_mode = 3
+theme = ExtResource("1_sfll8")
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("8_oy1f5")
+
+[node name="Icon" type="TextureRect" parent="ToolsBar/PencilToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_u2ib6")
+
+[node name="SelectionToolButton" type="Button" parent="ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+focus_mode = 3
+theme = ExtResource("1_sfll8")
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("8_oy1f5")
+
+[node name="Icon" type="TextureRect" parent="ToolsBar/SelectionToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_etdp2")
+expand_mode = 1
+
+[node name="LineToolButton" type="Button" parent="ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+focus_mode = 3
+theme = ExtResource("1_sfll8")
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("8_oy1f5")
+
+[node name="Icon" type="TextureRect" parent="ToolsBar/LineToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_vjj2c")
+
+[node name="BucketToolButton" type="Button" parent="ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+focus_mode = 3
+theme = ExtResource("1_sfll8")
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("8_oy1f5")
+
+[node name="Icon" type="TextureRect" parent="ToolsBar/BucketToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_klax7")
+
+[node name="BoxToolButton" type="Button" parent="ToolsBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+focus_mode = 3
+theme = ExtResource("1_sfll8")
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_gq0eg")
+toggle_mode = true
+button_group = ExtResource("8_oy1f5")
+
+[node name="Icon" type="TextureRect" parent="ToolsBar/BoxToolButton"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_cr5gn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 245.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SideBar" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ThemeOptionButton" type="OptionButton" parent="MarginContainer/SideBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_sfll8")
+selected = 0
+item_count = 6
+popup/item_0/text = "Tropical"
+popup/item_0/icon = ExtResource("2_5k5ml")
+popup/item_0/id = 0
+popup/item_1/text = "Desert"
+popup/item_1/icon = ExtResource("3_bs0cs")
+popup/item_1/id = 1
+popup/item_2/text = "Ice"
+popup/item_2/icon = ExtResource("4_356j3")
+popup/item_2/id = 2
+popup/item_3/text = "Lava"
+popup/item_3/icon = ExtResource("5_2qck4")
+popup/item_3/id = 3
+popup/item_4/text = "Castle"
+popup/item_4/icon = ExtResource("6_l551c")
+popup/item_4/id = 4
+popup/item_5/text = "Abstract"
+popup/item_5/icon = ExtResource("7_74mvd")
+popup/item_5/id = 5
+
+[node name="SizeOption" type="HBoxContainer" parent="MarginContainer/SideBar"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/SideBar/SizeOption"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "Size"
+
+[node name="SizeOptionSpinBox" type="SpinBox" parent="MarginContainer/SideBar/SizeOption"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+rounded = true
+alignment = 1
+
+[node name="UndoRedo" type="HBoxContainer" parent="MarginContainer/SideBar"]
+layout_mode = 2
+
+[node name="UndoButton" type="Button" parent="MarginContainer/SideBar/UndoRedo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_sfll8")
+disabled = true
+text = " Undo"
+expand_icon = true
+
+[node name="RedoButton" type="Button" parent="MarginContainer/SideBar/UndoRedo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_sfll8")
+disabled = true
+text = "Redo"
+icon_alignment = 2
+expand_icon = true
+
+[node name="ToggleGridButton" type="Button" parent="MarginContainer/SideBar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_sfll8")
+toggle_mode = true
+text = "Grid"
+
+[node name="MirrorButtons" type="VBoxContainer" parent="MarginContainer/SideBar"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/SideBar/MirrorButtons"]
+layout_mode = 2
+
+[node name="XMirrorButton" type="Button" parent="MarginContainer/SideBar/MirrorButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_sfll8")
+toggle_mode = true
+button_pressed = true
+text = "X Mirror"
+
+[node name="XMirrorOffsetSpinBox" type="SpinBox" parent="MarginContainer/SideBar/MirrorButtons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/SideBar/MirrorButtons"]
+layout_mode = 2
+
+[node name="YMirrorButton" type="Button" parent="MarginContainer/SideBar/MirrorButtons/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_sfll8")
+toggle_mode = true
+button_pressed = true
+text = "Y Mirror"
+
+[node name="YMirrorOffsetSpinBox" type="SpinBox" parent="MarginContainer/SideBar/MirrorButtons/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SaveLoad" type="HBoxContainer" parent="MarginContainer/SideBar"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="MarginContainer/SideBar/SaveLoad"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_sfll8")
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="MarginContainer/SideBar/SaveLoad"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_sfll8")
+text = "Load"
+
+[node name="ClearButton" type="Button" parent="MarginContainer/SideBar/SaveLoad"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_sfll8")
+text = "Clear"
+
+[node name="TileOptions" type="GridContainer" parent="MarginContainer/SideBar"]
+visible = false
+layout_mode = 2
+columns = 5
+
+[node name="SandTileOption" type="Button" parent="MarginContainer/SideBar/TileOptions"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="MarginContainer/SideBar/TileOptions/SandTileOption"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_r1fa2")
+expand_mode = 2
+
+[node name="GrassTileOption" type="Button" parent="MarginContainer/SideBar/TileOptions"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="MarginContainer/SideBar/TileOptions/GrassTileOption"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_sik37")
+expand_mode = 2
+
+[node name="TemplateTileOption" type="Button" parent="MarginContainer/SideBar/TileOptions"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="MarginContainer/SideBar/TileOptions/TemplateTileOption"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_8xaxy")
+expand_mode = 2
+
+[node name="SelectedTileLabel" type="Label" parent="MarginContainer/SideBar"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_sfll8")
+text = "Selected Tile"
+
+[node name="Objects" type="TabContainer" parent="MarginContainer/SideBar"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="TileList" type="ItemList" parent="MarginContainer/SideBar/Objects"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 3
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_sfll8")
+theme_override_constants/h_separation = 20
+theme_override_constants/icon_margin = 0
+max_text_lines = 4
+max_columns = 2
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2i(32, 32)
+metadata/_tab_index = 0
+
+[node name="EntityList" type="ItemList" parent="MarginContainer/SideBar/Objects"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 3
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_sfll8")
+theme_override_constants/h_separation = 20
+max_text_lines = 2
+max_columns = 2
+same_column_width = true
+fixed_column_width = 64
+icon_mode = 0
+fixed_icon_size = Vector2i(32, 32)
+metadata/_tab_index = 1
+
+[node name="BackButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 585.0
+offset_top = 10.0
+offset_right = 630.0
+offset_bottom = 41.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Back"

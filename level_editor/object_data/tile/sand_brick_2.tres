@@ -11,7 +11,7 @@ region = Rect2(0, 0, 32, 32)
 [resource]
 script = ExtResource("3_u62l2")
 id = 6
-name = "sand brick 2"
+name = "brick 2"
 icon = SubResource("AtlasTexture_if8q1")
 scene = ExtResource("2_if8q1")
 world_theme = 1

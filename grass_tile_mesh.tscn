@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=4 uid="uid://483252cqv8pc"]
+
+[ext_resource type="Material" uid="uid://dk8q5ad4go8e7" path="res://levels/world_1/grass_tile/grass_tile.material" id="1_exunc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14wnu"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1deop"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.66, -0.5, 1, 0.66, 1),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAAAEAAEAAwAFAAIABQAAAAIABgAEAAAABQAGAAAABwABAAQABwADAAEABgAHAAQABQADAAcABQAHAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//8AAP//AAAAAAAAAAAAAAAAAAD//wAAAAD//wAAAAD//wAAAAAAAAAA/////wAA////////AAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cbq6t"]
+resource_name = "tile_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.5, -0.66, -0.5, 1, 0.66, 1),
+"attribute_data": PackedByteArray("/38BgAHA8v//f/L/AcABgADA/J////H/AMDx/////J8AwPyf///x/wDA8f////yfAMD8n///8f8AwPH////8nwDA/J////H/AMDx/////J8MgP//9L/0f/S//v8MgPR/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_14wnu"),
+"primitive": 3,
+"uv_scale": Vector4(2.0000324, 2.000775, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("//8AAP//VNUAAAAAAABU1QAAAAD//1TV//8AAAAAVNX/////////v///AAAAAP+///8AAP///7//////AAD/vwAA//8AAP+/AAAAAP///78AAAAAAAD/vwAA//////+/AAD/////AID//wAA//8AgAAAAAD//wCA////////AID/////AAD//wAAAAAAAP////8AAAAA//8AAP//AAD//wAA//////+//////wAA/7//////////vwAA//8AAP+/VFVUVVRVVFVUVVRVVFVUVf9/AAD/fwAA/38AAP9/AAD/f////3////9/////f////3////9/////f////3////9/////f////3////9///////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_1deop")
+
+[node name="Tile" type="MeshInstance3D"]
+mesh = SubResource("ArrayMesh_cbq6t")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_exunc")

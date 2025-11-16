@@ -11,7 +11,7 @@ region = Rect2(0, 0, 32, 32)
 [resource]
 script = ExtResource("1_f8scf")
 id = 11
-name = "compacted ice"
+name = "n ice"
 icon = SubResource("AtlasTexture_v5psj")
 scene = ExtResource("2_v5psj")
 world_theme = 2

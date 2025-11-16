@@ -1,9 +1,11 @@
+class_name LevelEditor
 extends Node3D
 
-@export var entities: LevelEditorObjects
-@export var tiles: LevelEditorObjects
+@export var entities: LevelEditorObjects = LevelEditorObjects.new()
+@export var tiles: LevelEditorObjects = LevelEditorObjects.new()
 @export var size: Vector2i = Vector2i(50, 50)
 
+@onready var ui: LevelEditorUi = %EditorUi
 @onready var top_down_camera: Camera3D = %TopDownCamera
 @onready var free_camera: Camera3D = %FreeCamera
 @onready var free_camera_pivot: Node3D = %FreeCameraPivot
@@ -13,24 +15,7 @@ extends Node3D
 @onready var line_tool: LineTool = $LineTool
 @onready var selection_tool: SelectionTool = $SelectionTool
 
-@onready var selection_tool_button: Button = %SelectionToolButton
-@onready var pencil_tool_button: Button = %PencilToolButton
-@onready var line_tool_button: Button = %LineToolButton
-@onready var bucket_tool_button: Button = %BucketToolButton
-@onready var box_tool_button: Button = %BoxToolButton
-@onready var undo_button: Button = %UndoButton
-@onready var redo_button: Button = %RedoButton
-@onready var selected_tile_label: Label = %SelectedTileLabel
-@onready var tile_list: ItemList = %TileList
-@onready var entity_list: ItemList = %EntityList
-@onready var theme_option_button: OptionButton = %ThemeOptionButton
-@onready var save_button: Button = %SaveButton
-@onready var load_button: Button = %LoadButton
-@onready var clear_button: Button = %ClearButton
-@onready var toggle_grid_button: Button = %ToggleGridButton
 @onready var grid_mesh: GridMesh = $GridMesh
-@onready var x_mirror_button: Button = %XMirrorButton
-@onready var z_mirror_button: Button = %YMirrorButton
 @onready var x_mirror_line: MeshInstance3D = %XMirrorLine
 @onready var y_mirror_line: MeshInstance3D = %YMirrorLine
 
@@ -54,13 +39,13 @@ var selected_tile: PackedScene
 var top_down_mode: bool = true
 var world_theme: LevelEditorObjectData.WorldTheme = LevelEditorObjectData.WorldTheme.TROPICAL
 
+const DEFAULT_TILE_ID: int = 2
 const LEVEL_SAVE_PATH: String = "res://level_editor/temp_level_data.tres"
 var current_level_save: LevelData
 var camera_speed: float = 0
 var camera_acceleration: float = 100
 const MAX_CAMERA_SPEED: float = 20
 var selection_grid: SelectionGrid
-
 
 func _ready() -> void:
 	selection_grid = SelectionGrid.new()
@@ -78,48 +63,53 @@ func _ready() -> void:
 		TILE_SCENE_PATH_TO_TILE_ID.set(tile.scene.resource_path, tile.id)
 	
 	preview_tiles = PreviewTilePool.new()
+	
 	add_child(preview_tiles)
+	
 	tools = [
 		box_tool,
 		fill_tool,
 		pencil_tool,
 		line_tool,
 	]
+	
 	for tool: LevelEditorTool in tools:
 		tool.undo_redo = undo_redo
 		tool.preview_tiles = preview_tiles
 		tool.tile_mapping = tile_mapping
 		tool.current_cell = current_cell
 		tool.deactivate()
-	selection_tool_button.pressed.connect(switch_tool.bind(selection_tool))
-	box_tool_button.pressed.connect(switch_tool.bind(box_tool))
-	bucket_tool_button.pressed.connect(switch_tool.bind(fill_tool))
-	pencil_tool_button.pressed.connect(switch_tool.bind(pencil_tool))
-	line_tool_button.pressed.connect(switch_tool.bind(line_tool))
-	undo_button.pressed.connect(undo_redo.undo)
-	redo_button.pressed.connect(undo_redo.redo)
+		
 	undo_redo.version_changed.connect(_on_version_changed)
-	theme_option_button.item_selected.connect(_on_theme_selected)
-	save_button.pressed.connect(save)
-	load_button.pressed.connect(load_level)
-	clear_button.pressed.connect(clear)
-	tile_list.item_selected.connect(_on_tile_selected)
-	entity_list.item_selected.connect(_on_entity_selected)
-	toggle_grid_button.pressed.connect(_on_toggle_grid_visible_pressed)
-	x_mirror_button.pressed.connect(_on_x_mirror_button_pressed)
-	z_mirror_button.pressed.connect(_on_z_mirror_button_pressed)
+	
+	ui.selection_tool_button.pressed.connect(switch_tool.bind(selection_tool))
+	ui.box_tool_button.pressed.connect(switch_tool.bind(box_tool))
+	ui.bucket_tool_button.pressed.connect(switch_tool.bind(fill_tool))
+	ui.pencil_tool_button.pressed.connect(switch_tool.bind(pencil_tool))
+	ui.line_tool_button.pressed.connect(switch_tool.bind(line_tool))
+	ui.undo_button.pressed.connect(undo_redo.undo)
+	ui.redo_button.pressed.connect(undo_redo.redo)
+	ui.theme_option_button.item_selected.connect(_on_theme_selected)
+	ui.save_button.pressed.connect(save)
+	ui.load_button.pressed.connect(load_level)
+	ui.clear_button.pressed.connect(clear)
+	ui.tile_list.item_selected.connect(_on_tile_selected)
+	ui.entity_list.item_selected.connect(_on_entity_selected)
+	ui.toggle_grid_button.pressed.connect(_on_toggle_grid_visible_pressed)
+	ui.x_mirror_button.pressed.connect(_on_x_mirror_button_pressed)
+	ui.y_mirror_button.pressed.connect(_on_z_mirror_button_pressed)
 	
 	update_entity_items()
 	update_tile_items()
 	
 	switch_tool(pencil_tool)
-	pencil_tool_button.button_pressed = true
+	ui.pencil_tool_button.button_pressed = true
 	camera_size = top_down_camera.size
 	
-	const DEFAULT_TILE_ID: int = 2
-	tile_list.select(DEFAULT_TILE_ID)
-	tile_list.emit_signal("item_selected", DEFAULT_TILE_ID)
+	ui.tile_list.select(DEFAULT_TILE_ID)
+	ui.tile_list.emit_signal("item_selected", DEFAULT_TILE_ID)
 	load_level()
+	
 	if top_down_mode:
 		top_down_camera.make_current()
 	else:
@@ -133,7 +123,6 @@ func _on_z_mirror_button_pressed():
 
 func _on_toggle_grid_visible_pressed() -> void:
 	grid_mesh.visible = !grid_mesh.visible
-	
 
 func clear():
 	for coords in tile_mapping.keys():
@@ -145,7 +134,12 @@ func clear():
 		var entity_data: CellData = entity_mapping.get(coords)
 		entity_data.node.queue_free()
 	entity_mapping.clear()
-	
+
+func make_current() -> void:
+	if top_down_mode:
+		top_down_camera.make_current()
+	else:
+		free_camera.make_current()
 
 func save():
 	# save tiles
@@ -183,8 +177,8 @@ func load_level():
 			continue
 		var tile: Node3D = tile_data.scene.instantiate()
 		add_child(tile)
-		tile.global_position.x = coords.x
-		tile.global_position.z = coords.y
+		tile.position.x = coords.x
+		tile.position.z = coords.y
 		tile_mapping.set(coords, CellData.new(tile_data.scene, tile))
 		# TODO: set rotation based on config direction
 
@@ -197,8 +191,8 @@ func load_level():
 			continue
 		var entity: Node3D = entity_data.scene.instantiate()
 		add_child(entity)
-		entity.global_position.x = coords.x
-		entity.global_position.z = coords.y
+		entity.position.x = coords.x
+		entity.position.z = coords.y
 		entity_mapping.set(coords, CellData.new(entity_data.scene, entity))
 		# TODO: set rotation based on config direction
 
@@ -215,13 +209,13 @@ static func filter_item_list_to_world_theme(
 	
 
 func update_entity_items():
-	filter_item_list_to_world_theme(entity_list, ENTITY_NAME_TO_ENTITY_DATA, world_theme)
+	filter_item_list_to_world_theme(ui.entity_list, ENTITY_NAME_TO_ENTITY_DATA, world_theme)
 
 func update_tile_items():
-	filter_item_list_to_world_theme(tile_list, TILE_NAME_TO_TILE_DATA, world_theme)
+	filter_item_list_to_world_theme(ui.tile_list, TILE_NAME_TO_TILE_DATA, world_theme)
 
 func _on_theme_selected(id: int):
-	var theme_name: String = theme_option_button.get_item_text(id).to_lower()
+	var theme_name: String = ui.theme_option_button.get_item_text(id).to_lower()
 	match theme_name:
 		"tropical":
 			world_theme = LevelEditorObjectData.WorldTheme.TROPICAL
@@ -237,7 +231,7 @@ func _on_theme_selected(id: int):
 			world_theme = LevelEditorObjectData.WorldTheme.ABSTRACT
 	update_entity_items()
 	update_tile_items()
-	tile_list.emit_signal("item_selected", 0)
+	ui.tile_list.emit_signal("item_selected", 0)
 
 func set_mapping_layer(mapping: Dictionary[Vector2i, CellData]):
 	for tool in tools:
@@ -249,29 +243,29 @@ func set_draw_tile(tile: PackedScene) -> void:
 		tool.draw_tile = selected_tile
 
 func _on_entity_selected(id: int) -> void:
-	var entity_name = entity_list.get_item_text(id).to_lower()
+	var entity_name = ui.entity_list.get_item_text(id).to_lower()
 	if !ENTITY_NAME_TO_ENTITY_DATA.has(entity_name):
 		return
 	var data: LevelEditorObjectData = ENTITY_NAME_TO_ENTITY_DATA.get(entity_name)
 	set_draw_tile(data.scene)
-	selected_tile_label.text = data.name
+	ui.selected_tile_label.text = data.name
 	set_mapping_layer(entity_mapping)
-	tile_list.deselect_all()
+	ui.tile_list.deselect_all()
 
 
 func _on_tile_selected(id: int) -> void:
-	var tile_name = tile_list.get_item_text(id).to_lower()
+	var tile_name = ui.tile_list.get_item_text(id).to_lower()
 	if !TILE_NAME_TO_TILE_DATA.has(tile_name):
 		return
 	var data: LevelEditorObjectData = TILE_NAME_TO_TILE_DATA.get(tile_name)
-	selected_tile_label.text = data.name
+	ui.selected_tile_label.text = data.name
 	set_draw_tile(data.scene)
 	set_mapping_layer(tile_mapping)
-	entity_list.deselect_all()
+	ui.entity_list.deselect_all()
 
 func _on_version_changed() -> void:
-	undo_button.disabled = !undo_redo.has_undo()
-	redo_button.disabled = !undo_redo.has_redo()
+	ui.undo_button.disabled = !undo_redo.has_undo()
+	ui.redo_button.disabled = !undo_redo.has_redo()
 
 func _on_undo_button_pressed() -> void:
 	if undo_redo.has_undo():
@@ -287,7 +281,7 @@ func switch_tool(tool: LevelEditorTool) -> void:
 	current_tool = tool
 	current_tool.activate()
 
-func _unhandled_input(event: InputEvent) -> void:
+func update_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_pressed():
 			if [KEY_1, KEY_P].has(event.keycode):
@@ -319,19 +313,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			world_position.x = clampf(world_position.x, -24, 25)
 			world_position.z = clampf(world_position.z, -24, 25)
 			world_position = world_position.snappedf(1)
-			current_tool.mouse_moved(
-				Vector2i(int(world_position.x), int(world_position.z))
-			)
+			move_mouse(Vector2i(int(world_position.x), int(world_position.z)))
 	
 	if event.is_action_pressed("level_editor_left_click"):
-		current_tool.left_click = true
+		left_click(true)
 	elif event.is_action_released("level_editor_left_click"):
-		current_tool.left_click = false
+		left_click(false)
 		
 	if event.is_action_pressed("level_editor_right_click"):
-		current_tool.right_click = true
+		right_click(true)
 	elif event.is_action_released("level_editor_right_click"):
-		current_tool.right_click = false
+		right_click(false)
 	
 	if event.is_action_pressed("ui_redo", true):
 		undo_redo.redo()
@@ -342,6 +334,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_size = clampf(camera_size - 1, 5, 50)
 	elif event.is_action_pressed("zoom_out"):
 		camera_size = clampf(camera_size + 1, 5, 50)
+
+func left_click(is_pressed: bool) -> void: 
+	if current_tool:
+		current_tool.left_click = is_pressed
+
+func right_click(is_pressed: bool) -> void: 
+	if current_tool:
+		current_tool.right_click = is_pressed
+
+func move_mouse(global_point: Vector2i) -> void:
+	if current_tool:
+		current_tool.mouse_moved(global_point)
 	
 func _process(delta: float) -> void:
 	var move_input: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
