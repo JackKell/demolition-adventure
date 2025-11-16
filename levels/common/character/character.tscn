@@ -28,7 +28,12 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="Skeleton3D" parent="character/Armature" index="0"]
 bones/2/rotation = Quaternion(-3.3522415e-08, -2.2097949e-07, 0.9558177, -0.29396012)
+bones/3/rotation = Quaternion(3.5506297e-08, -7.601726e-08, -0.044212632, 0.99902225)
+bones/6/rotation = Quaternion(0.007828416, -5.389524e-08, -0.06339243, 0.997958)
+bones/9/rotation = Quaternion(0.007828416, 5.389524e-08, 0.06339243, 0.997958)
+bones/10/rotation = Quaternion(0.7071069, 2.5842034e-08, 3.010318e-07, 0.70710665)
 bones/11/rotation = Quaternion(3.3522415e-08, -2.2097949e-07, 0.9558177, 0.29396012)
+bones/12/rotation = Quaternion(3.5506297e-08, 7.601726e-08, 0.044212632, 0.99902225)
 
 [node name="Cone" parent="character/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_wfnr8")

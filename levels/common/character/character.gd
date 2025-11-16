@@ -27,11 +27,10 @@ var idle_state: SMState = SMState.new()
 var animating_state: SMState = SMState.new()
 var locked_state: SMState = SMState.new()
 
-func _init() -> void:
+func _ready() -> void:
+	idle_state.enter = idle_enter
 	idle_state.process = idle_process
 	state_machine.transition(idle_state)
-
-func _ready() -> void:
 	stopped.connect(_on_stopped)
 	moved.connect(_on_moved)
 	var input_controller: PlayerInputController = PlayerInputController.new()
@@ -100,6 +99,9 @@ func _input(event: InputEvent) -> void:
 	
 	_handle_camera_rotation(event)
 
+func idle_enter() -> void:
+	animation_player.play("idle")
+
 func idle_process(_delta: float) -> void:
 	var current_direction = Vector2i(input_direction)
 	if camera.current:
@@ -165,13 +167,10 @@ func _update_camera_rotation(delta: float):
 func struggle():
 	if state_machine.current_state == animating_state:
 		return
-	var tween: Tween = get_tree().create_tween()
-	tween.tween_callback(state_machine.transition.bind(animating_state))
-	tween.tween_property(body, "rotation:x", PI / 4, .2).as_relative()
-	tween.tween_property(body, "rotation:x", -PI / 4, .2).as_relative()
-	tween.tween_property(self, "is_animating", false, 0)
-	tween.tween_callback(state_machine.transition.bind(idle_state))
-	return tween
+	state_machine.transition(animating_state)
+	animation_player.play("fall")
+	await animation_player.animation_finished
+	state_machine.transition(idle_state)
 
 func squish():
 	if state_machine.current_state == animating_state:
