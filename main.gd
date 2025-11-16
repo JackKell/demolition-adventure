@@ -76,16 +76,14 @@ func _exit_state(state: State) -> void:
 func _input(event: InputEvent) -> void:
 	match current_state:
 		State.PLAY:
-			if event is InputEventKey:
-				if event.keycode == KEY_ESCAPE and event.is_pressed():
-					_transition_state(State.LEVEL_SELECT)
-				if event.keycode == KEY_R and event.is_released():
-					get_viewport().set_input_as_handled()
-					reload_current_level()
+			if event.is_action_pressed("restart"):
+				get_viewport().set_input_as_handled()
+				reload_current_level()
+			elif event.is_action_pressed("escape"):
+				_transition_state(State.LEVEL_SELECT)
 		State.LEVEL_SELECT:
-			if event is InputEventKey:
-				if event.keycode == KEY_ESCAPE and event.is_pressed():
-					_transition_state(State.PLAY)
+			if event.is_action_pressed("escape"):
+				_transition_state(State.PLAY)
 		State.EDITOR:
 			level_editor.update_input(event)
 

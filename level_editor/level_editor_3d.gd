@@ -282,25 +282,25 @@ func switch_tool(tool: LevelEditorTool) -> void:
 	current_tool.activate()
 
 func update_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.is_pressed():
-			if [KEY_1, KEY_P].has(event.keycode):
-				switch_tool(pencil_tool)
-			elif [KEY_2, KEY_L].has(event.keycode):
-				switch_tool(line_tool)
-			elif [KEY_3, KEY_G].has(event.keycode):
-				switch_tool(fill_tool)
-			elif [KEY_4, KEY_B].has(event.keycode):
-				switch_tool(box_tool)
-			elif event.keycode == KEY_X:
-				camera_speed = 0
-				if top_down_mode:
-					free_camera.make_current()
-					top_down_mode = false
-				else:
-					top_down_camera.make_current()
-					top_down_mode = true
+	if event.is_action_pressed("box_tool"):
+		switch_tool(box_tool)
+	elif event.is_action_pressed("pencil_tool"):
+		switch_tool(pencil_tool)
+	elif event.is_action_pressed("fill_tool"):
+		switch_tool(fill_tool)
+	elif event.is_action_pressed("selection_tool"):
+		switch_tool(selection_tool)
+	elif event.is_action_pressed("line_tool"):
+		switch_tool(line_tool)
 	
+	if event.is_action_pressed("switch_camera"):
+		camera_speed = 0
+		if top_down_mode:
+			free_camera.make_current()
+			top_down_mode = false
+		else:
+			top_down_camera.make_current()
+			top_down_mode = true
 	if event is InputEventMouseMotion:
 		var space_state = get_world_3d().direct_space_state
 		var current_camera = get_viewport().get_camera_3d()

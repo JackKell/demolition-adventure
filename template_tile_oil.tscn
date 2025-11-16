@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://iwijwhdh1uwg"]
+
+[ext_resource type="PackedScene" uid="uid://dw66rkoj5nu66" path="res://levels/common/template_tile.tscn" id="1_v0s2a"]
+[ext_resource type="PackedScene" uid="uid://bgp2iclph4bk5" path="res://levels/common/oil_splat.tscn" id="2_k7l78"]
+
+[node name="TemplateTile" instance=ExtResource("1_v0s2a")]
+type = 3
+
+[node name="OilSplat" parent="." index="2" instance=ExtResource("2_k7l78")]

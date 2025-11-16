@@ -1,10 +1,11 @@
 class_name Character
 extends Entity
 
-var locked: bool = false
+const QUARTER_TURN: float = TAU / 4
+
 var face_direction: Vector2i = Vector2i.DOWN
 var target_position: Vector3 =  Vector3.ZERO
-
+var is_animating: bool = false
 var _target_camera_rotation: float = 0
 
 @export var body: Node3D
@@ -15,7 +16,18 @@ var _target_camera_rotation: float = 0
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
 
-var is_animating: bool = false
+
+enum State {
+	WALkING,
+	SLIDING,
+	IDLING,
+	ANIMATING,
+	LOCKED,
+}
+
+var state: State = State.IDLING
+
+var is_panicked: bool = false
 
 func _ready() -> void:
 	stopped.connect(_on_stopped)
@@ -24,6 +36,37 @@ func _ready() -> void:
 	input_controller.character = self
 	add_child(input_controller)
 	
+	
+
+func _enter_state(new_state: State) -> void:
+	match new_state:
+		State.WALkING:
+			return
+		State.SLIDING:
+			return
+		State.ANIMATING:
+			return
+		State.LOCKED:
+			return
+	
+func _exit_state(old_state: State) -> void:
+	match old_state:
+		State.WALkING:
+			return
+		State.SLIDING:
+			return
+		State.ANIMATING:
+			return
+		State.LOCKED:
+			return
+	
+func _transition_state(new_state: State) -> void:
+	if state:
+		_exit_state(state)
+	state = new_state
+	_enter_state(state)
+
+
 func _on_stopped() -> void:
 	audio_stream_player_3d.stop()
 	if animation_player.current_animation == "walk":
@@ -52,9 +95,9 @@ func _on_moved() -> void:
 		animation_player.play("walk")
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_R and event.is_released():
-			get_tree().reload_current_scene()
+	if event.is_action_pressed("restart"):
+		# TODO: find away to reset level state instead of reloading the scene
+		get_tree().reload_current_scene()
 
 func try_ignite() -> void:
 	var target_coords: Vector2i = coords + face_direction
@@ -69,12 +112,52 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ignite"):
 		try_ignite()
 	
+	_handle_camera_rotation(event)
+
+func process_idle(_delta: float) -> void:
+	var current_direction = Vector2i(input_direction)
 	if camera.current:
-		if event is InputEventKey and event.is_pressed():
-			if event.keycode == KEY_E:
-				_target_camera_rotation = fposmod(_target_camera_rotation + (PI / 2), TAU)
-			elif event.keycode == KEY_Q:
-				_target_camera_rotation = fposmod(_target_camera_rotation - (PI / 2), TAU)
+		current_direction = Vector2i(Vector2(current_direction).rotated(-_target_camera_rotation))
+	if !is_moving and current_direction.length() >  0:
+		var target_coords: Vector2i = coords + current_direction
+		var entity: Entity = level.get_entity(target_coords)
+		if entity: 
+			if entity is Bomb and entity.pushable:
+				var push_action: PushAction = PushAction.new(self, entity)
+				var tile: Tile = level.get_tile(coords)
+				if tile.type == Tile.TileType.OIL:
+					struggle()
+				else:
+					var push_entity: Entity = level.get_entity(coords + current_direction * 2)
+					if push_entity:
+						if push_entity is Bouncer:
+							entity.move(-current_direction)
+							move(current_direction)
+							squish()
+							push_entity.bounce(-current_direction)
+							level.add_action(push_action)
+					else:
+						var can_push: bool = entity.try_move(current_direction)
+						if can_push:
+							level.add_action(push_action)
+							move(current_direction)
+		else:
+			var move_happened: bool = try_move(current_direction)
+			if move_happened:
+				level.add_action(CharacterMoveAction.new(self, level.map_to_world(target_coords)))
+		face_direction = current_direction
+		body.rotation.y = Vector2(current_direction * Vector2i(1, -1)).angle() + QUARTER_TURN
+
+func _handle_camera_rotation(event: InputEvent) -> void:
+	if !camera.current:
+		return
+	if event.is_action_pressed("rotate_camera_right"):
+		_rotate_camera(QUARTER_TURN)
+	elif event.is_action_pressed("rotate_camera_left"):
+		_rotate_camera(-QUARTER_TURN)
+
+func _rotate_camera(delta: float) -> void:
+	_target_camera_rotation = fposmod(_target_camera_rotation + delta, TAU)
 
 func _process(delta: float) -> void:
 	if not level:
@@ -87,62 +170,36 @@ func _process(delta: float) -> void:
 			_target_camera_rotation, 
 			delta * 3 * PI
 		)
-
-	if locked:
-		return
 	
-	if is_animating:
-		return
-	
-	if !is_moving and input_direction.length() >  0:
-		if camera.current:
-			var rotated_input_direction: Vector2i = Vector2i(Vector2(input_direction).rotated(-_target_camera_rotation))
-			input_direction = rotated_input_direction 
-		var target_coords: Vector2i = coords + input_direction
-		var entity: Entity = level.get_entity(target_coords)
-		if entity: 
-			if entity is Bomb and entity.pushable:
-				var push_action: PushAction = PushAction.new(self, entity)
-				var tile: Tile = level.get_tile(coords)
-				if tile.type == Tile.TileType.OIL:
-					await play_struggle().finished
-				else:
-					var push_entity: Entity = level.get_entity(coords + input_direction + input_direction)
-					if push_entity:
-						if push_entity is Bouncer:
-							entity.move(-input_direction)
-							move(input_direction)
-							play_squished()
-							push_entity.bounce(-input_direction)
-							level.add_action(push_action)
-					else:
-						var can_push: bool = entity.try_move(input_direction)
-						if can_push:
-							level.add_action(push_action)
-							move(input_direction)
-		else:
-			var move_happened: bool = try_move(input_direction)
-			if move_happened:
-				level.add_action(CharacterMoveAction.new(self, level.map_to_world(target_coords)))
-		face_direction = input_direction
-		body.rotation.y = Vector2(input_direction * Vector2i(1, -1)).angle() + PI / 2
+	match state:
+		State.LOCKED:
+			return
+		State.ANIMATING:
+			return
+		State.IDLING:
+			process_idle(delta)
+		State.WALkING:
+			return
 
-func play_struggle():
-	if is_animating:
+func struggle():
+	if state == State.ANIMATING:
 		return
-	is_animating = true
 	var tween: Tween = get_tree().create_tween()
+	tween.tween_callback(_transition_state.bind(State.ANIMATING))
 	tween.tween_property(body, "rotation:x", PI / 4, .2).as_relative()
 	tween.tween_property(body, "rotation:x", -PI / 4, .2).as_relative()
 	tween.tween_property(self, "is_animating", false, 0)
+	tween.tween_callback(_transition_state.bind(State.IDLING))
 	return tween
 
-func play_squished():
-	if is_animating:
+func squish():
+	if state == State.ANIMATING:
 		return
-	is_animating = true
+	_transition_state(State.ANIMATING)
 	animation_player.play("flatten")
-	is_animating = false
+	await animation_player.animation_finished
+	await get_tree().create_timer(1).timeout
+	_transition_state(State.IDLING)
 
 func bounce(direction: Vector2i):
 	if is_animating:

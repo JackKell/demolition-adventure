@@ -41,13 +41,12 @@ func _ready() -> void:
 	all_bombs_detonated.connect(_on_level_completed)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_TAB:
-			_toggle_camera()
-		elif event.keycode == KEY_X:
-			undo_action()
-		elif event.keycode == KEY_C:
-			redo_action()
+	if event.is_action_pressed("switch_camera"):
+		_toggle_camera()
+	if event.is_action_pressed("undo"):
+		undo_action()
+	elif  event.is_action_pressed("redo"):
+		redo_action()
 
 func add_action(action: Action) -> void:
 	_history.add(action)
@@ -134,15 +133,13 @@ func _add_animation_camera() -> void:
 	_animation_camera.make_current()
 
 	var t = create_tween()
-	t.tween_property(_character, "locked", true, 0).set_delay(START_CAMERA_DELAY)
 	t.tween_property(
 		_animation_camera, 
 		"global_transform", 
 		_character.camera.global_transform, 
 		START_CAMERA_DURATION
-	)
+	).set_delay(START_CAMERA_DELAY)
 	t.tween_callback(_character.camera.make_current)
-	t.tween_property(_character, "locked", false, 0)
 
 func _add_top_down_camera() -> void:
 	var positions: Array[Vector3] = []
@@ -208,7 +205,6 @@ func _handle_coords_changed(entity: Entity):
 		entering_tile.handle_entity_enter(entity)
 
 func _on_bomb_detonated() -> void:
-	_character.locked = true
 	_detonation_count += 1
 	if _detonation_count == _bomb_count:
 		all_bombs_detonated.emit()
