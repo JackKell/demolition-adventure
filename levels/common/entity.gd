@@ -21,6 +21,11 @@ var is_moving: bool:
 
 var _centering_tween: Tween
 
+var _has_detonated: bool = false
+var has_detonated: bool:
+	get:
+		return _has_detonated
+
 signal moved
 signal stopped
 signal coords_changed
@@ -91,6 +96,8 @@ func update_coords() -> void:
 	coords = level.world_to_map(global_position)
 
 func detonate() -> void:
+	if has_detonated:
+		return
 	var rb = RigidBody3D.new()
 	get_parent().add_child(rb)
 	rb.global_position = global_position

@@ -99,19 +99,20 @@ func spawn_level(level_data: LevelData) -> void:
 		current_level.queue_free()
 		await current_level.tree_exited
 	current_level = level_data.level_scene.instantiate()
-	current_level.all_bombs_detonated.connect(_on_level_completed, CONNECT_ONE_SHOT)
-	connect_character.call_deferred()
+	current_level.won.connect(_on_level_won, CONNECT_ONE_SHOT)
 	ticker.start()
 	_steps = 0
 	_remaining_time = 999
 	play_ui.set_time_remaining(_remaining_time)
 	play_ui.set_level_name("Stage " + str(level_data.stage))
 	play_ui.set_steps(_steps)
+	connect_character.call_deferred()
 	add_child(current_level)
 	spawning = false
 
 func connect_character():
 	current_level._character.coords_changed.connect(_on_character_moved)
+	current_level._character.died.connect(_on_level_lost)
 	
 func clear_current_level():
 	if current_level:
@@ -128,8 +129,15 @@ func _on_tick() -> void:
 		ticker.stop()
 		print("ran out of time")
 
-func _on_level_completed():
+func _on_level_lost():
+	pass
+
+func _on_level_won():
+	print("won!")
+	await get_tree().create_timer(0.1).timeout
+	if !current_level._character.is_alive:
+		return
 	ticker.stop()
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(3).timeout
 	level_index = (level_index + 1) % levels.levels.size()
 	spawn_level(levels.levels.get(level_index))

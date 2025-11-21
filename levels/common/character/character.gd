@@ -21,7 +21,7 @@ var _target_camera_rotation: float = 0
 @onready var camera: Camera3D = $CameraPivot/Camera3D
 
 var is_panicked: bool = false
-var is_alive: bool = false
+var is_alive: bool = true
 
 var state_machine: StateMachine = StateMachine.new()
 var walk_state: SMState = SMState.new()
@@ -47,15 +47,12 @@ func _ready() -> void:
 	idle_state.enter = idle_enter
 	idle_state.process = idle_process
 	state_machine.transition(idle_state)
-	state_machine.state_changed.connect(_on_state_change)
 	stopped.connect(_on_stopped)
 	moved.connect(_on_moved)
 	var input_controller: PlayerInputController = PlayerInputController.new()
 	input_controller.character = self
 	add_child(input_controller)
 
-func _on_state_change(old_state: SMState, new_state: SMState) -> void:
-	prints(old_state.name, " -> ", new_state.name)
 
 func _on_stopped() -> void:
 	audio_stream_player_3d.stop()
@@ -140,12 +137,13 @@ func _input(event: InputEvent) -> void:
 
 func death_enter() -> void:
 	is_alive = false
-	animation_player.play("death")
+	hide()
 	died.emit()
 	await animation_player.animation_finished
 	visible = false
 	
 func death_exit() -> void:
+	show()
 	is_alive = true
 	visible = true
 
@@ -261,5 +259,9 @@ func bounce(direction: Vector2i):
 	tween.tween_callback(stopped.emit)
 	return tween
 
+func lock() -> void:
+	state_machine.transition(locked_state)
+
 func detonate() -> void:
+	prints(name, "detonated")
 	state_machine.transition(death_state)

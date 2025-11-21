@@ -8,15 +8,13 @@ const EXPLOSION_TUT = preload("uid://d3c87ditddej4")
 
 @onready var explosion: AudioStreamPlayer = $Explosion
 
-var exploded: bool = false
-
 signal detonated()
 
 func detonate():
-	if exploded:
+	if has_detonated:
 		return
-	exploded = true
-	detonated.emit()
+	prints(name, "detonated")
+	_has_detonated = true
 	if explosion:
 		explosion.play()
 	hide()
@@ -29,13 +27,11 @@ func detonate():
 				level._coords_to_tile.erase(target)
 				tile.detonate()
 				var entity = level.get_entity(target)
-				if entity and entity != self:
-					if entity is Bomb and !entity.exploded:
-						entity.detonate()
-					else:
-						entity.hide()
-		await get_tree().create_timer(.3).timeout
-		
+				if entity and entity != self and !entity.has_detonated:
+					entity.detonate()
+		await get_tree().create_timer(0.3).timeout
+	detonated.emit()
+
 func _spawn_explosion(point: Vector3):
 	var explision: Node3D = EXPLOSION_TUT.instantiate()
 	get_parent().add_child(explision)

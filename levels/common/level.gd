@@ -218,19 +218,29 @@ func _on_bomb_detonated() -> void:
 		all_bombs_detonated.emit()
 
 func _on_character_died() -> void:
+	_on_lost()
+	
+func _on_lost():
 	lost.emit()
 
-func _on_level_completed() -> void:
-	await get_tree().create_timer(0.3).timeout
-	if !_character.is_alive:
-		lost.emit()
-		return
+func _on_win():
 	won.emit()
+	_character.lock()
 	_stream_player.play()
 	for tile: Tile in _coords_to_tile.values():
 		if !tile.has_detonated and tile.coords != _character.coords:
 			tile.detonate()
+	print("=======================")
 	for entity in _entities:
 		if entity == _character:
 			continue
-		entity.detonate()
+		if !entity.has_detonated:
+			entity.detonate()
+
+func _on_level_completed() -> void:
+	await get_tree().create_timer(0.3).timeout
+	if !_character.is_alive:
+		_on_lost()
+		return
+	_on_win()
+	
