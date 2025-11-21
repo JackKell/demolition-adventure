@@ -7,7 +7,6 @@ var entity_reached_center: bool = false
 var entity: Entity = null
 var target_coords: Vector2i
 var target_position: Vector3
-@onready var belt_material: StandardMaterial3D = $ConveyorBelt/ConveyorBelt.get_active_material(0)
 
 func initalize(parent_level: Level):
 	super.initalize(parent_level)
@@ -16,9 +15,6 @@ func initalize(parent_level: Level):
 	target_position = level.map_to_world(target_coords)
 
 func _physics_process(delta: float) -> void:
-	var total_seconds = Time.get_ticks_msec() / 1000.0
-	var x = fmod(total_seconds * 0.5, 1)
-	belt_material.uv1_offset.y = x
 	if not entity:
 		return
 	if entity.is_moving:

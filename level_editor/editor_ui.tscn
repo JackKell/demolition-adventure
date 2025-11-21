@@ -357,6 +357,7 @@ text = "Selected Tile"
 [node name="Objects" type="TabContainer" parent="MarginContainer/SideBar"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 0
 current_tab = 0
 
 [node name="TileList" type="ItemList" parent="MarginContainer/SideBar/Objects"]

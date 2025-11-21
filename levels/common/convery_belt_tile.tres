@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://diwns2eqs1ukc"]
+
+[ext_resource type="Shader" uid="uid://cbrh3efw14cde" path="res://levels/common/convery_belt_tile.gdshader" id="1_clftv"]
+[ext_resource type="Texture2D" uid="uid://bxdgwdajuds3w" path="res://levels/common/conveyor_belt/conveyor_belt.png" id="2_rru4q"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_clftv")
+shader_parameter/albedo = Color(1.347661e-06, 0.9130049, 0.2922299, 1)
+shader_parameter/texture_albedo = ExtResource("2_rru4q")

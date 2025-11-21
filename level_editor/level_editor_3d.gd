@@ -48,6 +48,7 @@ const MAX_CAMERA_SPEED: float = 20
 var selection_grid: SelectionGrid
 
 func _ready() -> void:
+	visibility_changed.connect(_on_visible_changed)
 	selection_grid = SelectionGrid.new()
 	add_child(selection_grid)
 	selection_tool.selection_grid = selection_grid
@@ -114,6 +115,9 @@ func _ready() -> void:
 		top_down_camera.make_current()
 	else:
 		free_camera.make_current()
+
+func _on_visible_changed():
+	ui.visible = visible
 
 func _on_x_mirror_button_pressed():
 	x_mirror_line.visible = !x_mirror_line.visible 

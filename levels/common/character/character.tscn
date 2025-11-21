@@ -26,21 +26,22 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="character" parent="." instance=ExtResource("4_wfnr8")]
 
-[node name="Skeleton3D" parent="character/Armature" index="0"]
-bones/0/rotation = Quaternion(0.063659936, -0.0034393063, -0.020894537, 0.997747)
-bones/0/scale = Vector3(0.99999994, 0.99999994, 1)
-bones/1/rotation = Quaternion(-0.11607465, -0.0015182522, -6.2667896e-06, 0.99323934)
-bones/2/rotation = Quaternion(0.011552512, -0.026401129, 0.53444934, -0.84470916)
-bones/3/rotation = Quaternion(-0.03980862, -0.04087483, 0.19336763, 0.97946596)
-bones/5/rotation = Quaternion(0.040664613, 0.7044638, 0.7072894, -0.042649057)
-bones/6/rotation = Quaternion(-0.2418873, 0.013619977, -0.058990493, 0.96841383)
-bones/8/rotation = Quaternion(-0.066348135, 0.15736224, 0.98513454, 0.018572865)
-bones/9/rotation = Quaternion(-0.19788879, -0.0016369417, 0.03718285, 0.9795177)
-bones/10/rotation = Quaternion(0.7071069, 2.97483e-08, 3.000581e-07, 0.70710665)
-bones/11/rotation = Quaternion(-0.012416754, -0.03069967, 0.5530264, 0.83250546)
-bones/12/rotation = Quaternion(0.008952591, -0.030068269, -0.12777068, 0.9913075)
+[node name="Skeleton3D" parent="character/Skeleton" index="0"]
+bones/1/rotation = Quaternion(-0.6673183, -0.004343817, -0.004888287, 0.744744)
+bones/2/rotation = Quaternion(0.0049871556, -6.1510085e-12, -2.2558823e-10, 0.99998766)
+bones/7/rotation = Quaternion(1.4985723e-07, -1.6401766e-07, 0.38914227, -0.9211777)
+bones/8/rotation = Quaternion(3.1183507e-08, -8.112527e-08, -0.044212617, 0.99902225)
+bones/10/rotation = Quaternion(0.025464285, 0.39370048, 0.9170504, -0.058053106)
+bones/11/rotation = Quaternion(0.007828429, -5.2275155e-08, -0.06339243, 0.997958)
+bones/12/rotation = Quaternion(0.7071069, -2.5471618e-08, -3.013199e-07, 0.70710665)
+bones/13/rotation = Quaternion(-0.031441696, -0.50176877, 0.86267585, 0.055045642)
+bones/14/rotation = Quaternion(0.007828428, 4.9999457e-08, 0.06339244, 0.997958)
+bones/15/rotation = Quaternion(0.7071069, 2.1232239e-08, 2.9905615e-07, 0.70710665)
+bones/16/rotation = Quaternion(-1.4474907e-07, -1.7259688e-07, 0.3867603, 0.92218035)
+bones/17/rotation = Quaternion(3.432413e-08, 7.8496704e-08, 0.04421258, 0.99902225)
+bones/18/rotation = Quaternion(1.1040178e-07, 4.694454e-08, -0.032230653, 0.9994805)
 
-[node name="Cone" parent="character/Armature/Skeleton3D" index="0"]
+[node name="Cone" parent="character/Skeleton/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_wfnr8")
 
 [editable path="character"]

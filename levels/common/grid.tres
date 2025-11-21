@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c8gn143nuayov"]
+
+[ext_resource type="Texture2D" uid="uid://48dai7qm4h4v" path="res://levels/common/prototype_grid.png" id="1_mcfpi"]
+
+[resource]
+resource_local_to_scene = true
+albedo_color = Color(0.66016775, 0.641282, 0.7953404, 1)
+albedo_texture = ExtResource("1_mcfpi")
+uv1_scale = Vector3(50, 50, 50)

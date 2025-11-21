@@ -171,5 +171,9 @@ escape={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 shading/overrides/force_vertex_shading=true
 shading/overrides/force_lambert_over_burley=true
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/decals/filter=0
+textures/light_projectors/filter=0

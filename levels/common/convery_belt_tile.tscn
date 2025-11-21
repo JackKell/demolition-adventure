@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ohdr4i34xhtn" path="res://levels/common/conveyor_belt/convery_belt_tile.gd" id="1_0m6io"]
 [ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="2_2uuy4"]
 [ext_resource type="PackedScene" uid="uid://dl65vl8va74p5" path="res://levels/common/conveyor_belt/conveyor_belt.glb" id="3_vyb5a"]
-[ext_resource type="Material" uid="uid://dcctfqbqtqbv2" path="res://levels/common/conveyor_belt/conveyor_belt.material" id="4_t0b6e"]
-[ext_resource type="Material" uid="uid://os77m4kvj2bt" path="res://levels/common/conveyor_belt/conveyor_belt_gears.material" id="5_t0b6e"]
+[ext_resource type="Material" uid="uid://diwns2eqs1ukc" path="res://levels/common/convery_belt_tile.tres" id="4_jwm3h"]
+[ext_resource type="Material" uid="uid://bk7u4c25bgp7j" path="res://levels/common/conveyor_belt/gears.material" id="5_jwm3h"]
 
 [node name="ConveryBeltTile" type="RigidBody3D" groups=["tile"]]
 script = ExtResource("1_0m6io")
@@ -17,7 +17,8 @@ shape = ExtResource("2_2uuy4")
 [node name="ConveyorBelt" parent="." instance=ExtResource("3_vyb5a")]
 
 [node name="ConveyorBelt" parent="ConveyorBelt" index="0"]
-surface_material_override/0 = ExtResource("4_t0b6e")
-surface_material_override/1 = ExtResource("5_t0b6e")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004797697, -3.7521124e-05, 0.0041856766)
+surface_material_override/0 = ExtResource("4_jwm3h")
+surface_material_override/1 = ExtResource("5_jwm3h")
 
 [editable path="ConveyorBelt"]

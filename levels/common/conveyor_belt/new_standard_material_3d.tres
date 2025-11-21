@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://blchlhmxyvhhk"]
+
+[ext_resource type="Texture2D" uid="uid://loi7w5r8htvr" path="res://levels/common/conveyor_belt/new_animated_texture.tres" id="1_dmxm5"]
+
+[resource]
+albedo_texture = ExtResource("1_dmxm5")

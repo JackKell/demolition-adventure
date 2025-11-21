@@ -1,7 +1,8 @@
 class_name Level
 extends Node3D
 
-
+signal lost
+signal won
 signal all_bombs_detonated
 
 const CHARACTER_GROUP = "character"
@@ -34,6 +35,7 @@ func _ready() -> void:
 	_init_entities()
 	
 	_character = get_tree().get_first_node_in_group(CHARACTER_GROUP)
+	_character.died.connect(_on_character_died)
 	
 	_add_top_down_camera()
 	_add_animation_camera()
@@ -215,8 +217,15 @@ func _on_bomb_detonated() -> void:
 	if _detonation_count == _bomb_count:
 		all_bombs_detonated.emit()
 
+func _on_character_died() -> void:
+	lost.emit()
+
 func _on_level_completed() -> void:
 	await get_tree().create_timer(0.3).timeout
+	if !_character.is_alive:
+		lost.emit()
+		return
+	won.emit()
 	_stream_player.play()
 	for tile: Tile in _coords_to_tile.values():
 		if !tile.has_detonated and tile.coords != _character.coords:

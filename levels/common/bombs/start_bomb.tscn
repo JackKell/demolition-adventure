@@ -1,15 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5jonhaqlcu2j"]
+[gd_scene load_steps=15 format=3 uid="uid://c5jonhaqlcu2j"]
 
 [ext_resource type="PackedScene" uid="uid://bajmuvwvhoqen" path="res://levels/common/bombs/start_bomb.glb" id="1_we2si"]
 [ext_resource type="Script" uid="uid://bv83kipaws5mj" path="res://levels/common/bombs/start_bomb.gd" id="2_rvwi2"]
 [ext_resource type="Material" uid="uid://dpbdc6i42vyv1" path="res://levels/common/bombs/start_bomb.material" id="3_rvwi2"]
-[ext_resource type="Texture2D" uid="uid://cfx51f6x7gmcv" path="res://levels/common/bombs/rope.png" id="4_q43nb"]
+[ext_resource type="Material" uid="uid://cjn3bhcjqijw4" path="res://levels/common/bombs/fuse.material" id="4_rr8jb"]
 [ext_resource type="AudioStream" uid="uid://cwarsce112f3e" path="res://levels/common/bombs/bomb.ogg" id="5_q43nb"]
 [ext_resource type="AudioStream" uid="uid://blijux151vopl" path="res://levels/common/bombs/fuse-lit.wav" id="6_rvwi2"]
 [ext_resource type="PackedScene" uid="uid://c5m0b72dpg5v1" path="res://levels/common/bombs/blob_shadow.tscn" id="7_q43nb"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhvto"]
-albedo_texture = ExtResource("4_q43nb")
 
 [sub_resource type="Curve" id="Curve_we2si"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
@@ -60,7 +57,7 @@ size = 2
 [node name="start_bomb" parent="." index="0"]
 cast_shadow = 0
 surface_material_override/0 = ExtResource("3_rvwi2")
-surface_material_override/1 = SubResource("StandardMaterial3D_dhvto")
+surface_material_override/1 = ExtResource("4_rr8jb")
 
 [node name="Fuse" type="Marker3D" parent="start_bomb" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39052677, 0)

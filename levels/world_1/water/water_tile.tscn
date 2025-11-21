@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://b75iatd4jjxms"]
+
+[ext_resource type="Script" uid="uid://hi7k2q0j18nh" path="res://levels/common/tile.gd" id="1_gtrch"]
+[ext_resource type="PackedScene" uid="uid://b57eh6nbujtyh" path="res://levels/world_1/water/water.glb" id="1_rxf63"]
+[ext_resource type="Material" uid="uid://co08hoj4x6wnl" path="res://levels/world_1/water/water.material" id="3_w6cyx"]
+[ext_resource type="Material" uid="uid://ljikv040afek" path="res://levels/world_1/water/water_bed.material" id="4_c0eby"]
+[ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="4_yl0uh"]
+
+[node name="WaterTile" type="RigidBody3D" groups=["tile"]]
+script = ExtResource("1_gtrch")
+type = 1
+
+[node name="water2" parent="." instance=ExtResource("1_rxf63")]
+
+[node name="water" parent="water2" index="0"]
+surface_material_override/0 = ExtResource("3_w6cyx")
+surface_material_override/1 = ExtResource("4_c0eby")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, 0)
+shape = ExtResource("4_yl0uh")
+
+[editable path="water2"]

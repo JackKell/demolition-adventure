@@ -37,6 +37,30 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Belt": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://levels/common/conveyor_belt/conveyor_belt_gears.material",
+"use_external/path": "uid://os77m4kvj2bt"
+},
+"Gears": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://levels/common/conveyor_belt/gears.material",
+"use_external/path": "uid://bk7u4c25bgp7j"
+}
+},
+"meshes": {
+"conveyor_belt_Cube_001": {
+"generate/lightmap_uv": 2,
+"generate/lods": 2,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

@@ -1,6 +1,8 @@
 class_name Character
 extends Entity
 
+signal died
+
 const QUARTER_TURN: float = TAU / 4
 const CAMERA_ROTATION_PER_SECOND: float = TAU * 1.5
 const SQUISH_DURATION: float = 0.05
@@ -19,6 +21,7 @@ var _target_camera_rotation: float = 0
 @onready var camera: Camera3D = $CameraPivot/Camera3D
 
 var is_panicked: bool = false
+var is_alive: bool = false
 
 var state_machine: StateMachine = StateMachine.new()
 var walk_state: SMState = SMState.new()
@@ -26,17 +29,33 @@ var sliding_state: SMState = SMState.new()
 var idle_state: SMState = SMState.new()
 var animating_state: SMState = SMState.new()
 var locked_state: SMState = SMState.new()
+var death_state: SMState = SMState.new()
+var bounce_state: SMState = SMState.new()
 
 func _ready() -> void:
+	walk_state.name = "WALK"
+	sliding_state.name = "SLIDING"
+	idle_state.name = "IDLE"
+	animating_state.name = "ANIMATING"
+	locked_state.name = "LOCKED"
+	death_state.name = "DEATH"
+	bounce_state.name = "BOUCE"
+	bounce_state.enter = bounce_enter
+	death_state.enter = death_enter
+	death_state.exit = death_exit
 	sliding_state.enter = sliding_enter
 	idle_state.enter = idle_enter
 	idle_state.process = idle_process
 	state_machine.transition(idle_state)
+	state_machine.state_changed.connect(_on_state_change)
 	stopped.connect(_on_stopped)
 	moved.connect(_on_moved)
 	var input_controller: PlayerInputController = PlayerInputController.new()
 	input_controller.character = self
 	add_child(input_controller)
+
+func _on_state_change(old_state: SMState, new_state: SMState) -> void:
+	prints(old_state.name, " -> ", new_state.name)
 
 func _on_stopped() -> void:
 	audio_stream_player_3d.stop()
@@ -87,13 +106,25 @@ const DIRECTIONS: Array[Vector2i] = [
 ]
 
 func try_ignite() -> void:
+	if state_machine.current_state != idle_state:
+		return
 	for direction: Vector2i in DIRECTIONS:
 		var check_coords: Vector2i = coords + direction
 		var start_bomb: StartBomb = level.get_ignitor_bomb(check_coords)
-		if start_bomb:
-			start_bomb.ignite()
-			face_direction = direction
+		if start_bomb and !start_bomb.is_ignited:
+			# TODO: MAke ignite animation 
 			_update_body_facing_direction(direction)
+			await _play_animation("ignite")
+			start_bomb.ignite()
+			is_panicked = true
+			face_direction = direction
+
+func _play_animation(animation_name: String) -> bool:
+	state_machine.transition(animating_state)
+	animation_player.play(animation_name)
+	await animation_player.animation_finished
+	state_machine.transition(idle_state)
+	return true
 
 func _update_body_facing_direction(direction: Vector2i) -> void:
 	body.rotation.y = Vector2(direction * Vector2i(1, -1)).angle() + QUARTER_TURN
@@ -107,45 +138,64 @@ func _input(event: InputEvent) -> void:
 	
 	_handle_camera_rotation(event)
 
+func death_enter() -> void:
+	is_alive = false
+	animation_player.play("death")
+	died.emit()
+	await animation_player.animation_finished
+	visible = false
+	
+func death_exit() -> void:
+	is_alive = true
+	visible = true
+
 func sliding_enter() -> void:
 	animation_player.play("sliding")
 
 func idle_enter() -> void:
 	animation_player.play("idle")
+	
+func bounce_enter() -> void:
+	pass
 
 func idle_process(_delta: float) -> void:
 	var current_direction = Vector2i(input_direction)
 	if camera.current:
 		current_direction = Vector2i(Vector2(current_direction).rotated(-_target_camera_rotation))
-	if !is_moving and current_direction.length() >  0:
-		var target_coords: Vector2i = coords + current_direction
-		var entity: Entity = level.get_entity(target_coords)
-		if entity: 
-			if entity is Bomb and entity.pushable:
-				var push_action: PushAction = PushAction.new(self, entity)
-				var tile: Tile = level.get_tile(coords)
-				if tile.type == Tile.TileType.OIL:
-					struggle()
+		
+	if is_moving or is_zero_approx(current_direction.length_squared()):
+		return
+	
+	var target_coords: Vector2i = coords + current_direction
+	var entity: Entity = level.get_entity(target_coords)
+	if entity: 
+		if entity is Bomb and entity.pushable:
+			var push_action: PushAction = PushAction.new(self, entity)
+			var tile: Tile = level.get_tile(coords)
+			if tile.type == Tile.TileType.OIL:
+				struggle()
+			else:
+				var push_entity: Entity = level.get_entity(coords + current_direction * 2)
+				if push_entity:
+					if push_entity is Bouncer:
+						entity.move(-current_direction)
+						move(current_direction)
+						squish()
+						push_entity.bounce(-current_direction)
+						level.add_action(push_action)
 				else:
-					var push_entity: Entity = level.get_entity(coords + current_direction * 2)
-					if push_entity:
-						if push_entity is Bouncer:
-							entity.move(-current_direction)
-							move(current_direction)
-							squish()
-							push_entity.bounce(-current_direction)
-							level.add_action(push_action)
-					else:
-						var can_push: bool = entity.try_move(current_direction)
-						if can_push:
-							level.add_action(push_action)
-							move(current_direction)
-		else:
-			var move_happened: bool = try_move(current_direction)
-			if move_happened:
-				level.add_action(CharacterMoveAction.new(self, level.map_to_world(target_coords)))
-		face_direction = current_direction
-		_update_body_facing_direction(face_direction)
+					# TODO: Enter pushing state
+					var can_push: bool = entity.try_move(current_direction)
+					if can_push:
+						level.add_action(push_action)
+						move(current_direction)
+	else:
+		var move_happened: bool = try_move(current_direction)
+		if move_happened:
+			state_machine.transition(walk_state)
+			level.add_action(CharacterMoveAction.new(self, level.map_to_world(target_coords)))
+	face_direction = current_direction
+	_update_body_facing_direction(face_direction)
 
 func _handle_camera_rotation(event: InputEvent) -> void:
 	if !camera.current:
@@ -210,3 +260,6 @@ func bounce(direction: Vector2i):
 	tween.tween_property(self, "is_animating", false, 0)
 	tween.tween_callback(stopped.emit)
 	return tween
+
+func detonate() -> void:
+	state_machine.transition(death_state)
