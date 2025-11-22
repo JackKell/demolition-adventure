@@ -13,7 +13,6 @@ signal detonated()
 func detonate():
 	if has_detonated:
 		return
-	prints(name, "detonated")
 	_has_detonated = true
 	if explosion:
 		explosion.play()

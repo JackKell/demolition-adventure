@@ -282,5 +282,4 @@ func lock() -> void:
 	state_machine.transition(locked_state)
 
 func detonate() -> void:
-	prints(name, "detonated")
 	state_machine.transition(death_state)
