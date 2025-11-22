@@ -2,14 +2,28 @@ class_name Character
 extends Entity
 
 signal died
+signal input_direction_changed
 
+const DIRECTIONS: Array[Vector2i] = [
+	Vector2i.UP,
+	Vector2i.RIGHT,
+	Vector2i.DOWN,
+	Vector2i.LEFT,
+]
 const QUARTER_TURN: float = TAU / 4
 const CAMERA_ROTATION_PER_SECOND: float = TAU * 1.5
 const SQUISH_DURATION: float = 0.05
 
 @export var body: Node3D
 @export var animation_player: AnimationPlayer
-@export var input_direction: Vector2i = Vector2i.ZERO
+@export var input_direction: Vector2i = Vector2i.ZERO:
+	set(value):
+		var new_direction = value
+		if camera.current:
+			new_direction = Vector2i(Vector2(value).rotated(-_target_camera_rotation))
+		if new_direction != input_direction:
+			input_direction = new_direction
+			input_direction_changed.emit()
 
 @onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var camera_pivot: Node3D = $CameraPivot
@@ -18,11 +32,12 @@ const SQUISH_DURATION: float = 0.05
 
 var is_panicked: bool = false
 var is_alive: bool = true
-
 var face_direction: Vector2i = Vector2i.DOWN
 var target_position: Vector3 =  Vector3.ZERO
 var is_animating: bool = false
-
+var has_input_direction: bool:
+	get:
+		return !is_zero_approx(input_direction.length_squared())
 var state_machine: StateMachine = StateMachine.new()
 var walk_state: SMState = SMState.new()
 var sliding_state: SMState = SMState.new()
@@ -32,6 +47,13 @@ var locked_state: SMState = SMState.new()
 var death_state: SMState = SMState.new()
 var bounce_state: SMState = SMState.new()
 var pushing_state: SMState = SMState.new()
+var flatten_state: SMState = SMState.new()
+
+var moving_states: Array[SMState] = [
+	walk_state,
+	pushing_state,
+	bounce_state,
+]
 
 var _target_camera_rotation: float = 0
 
@@ -44,34 +66,46 @@ func _ready() -> void:
 	death_state.name = "DEATH"
 	bounce_state.name = "BOUCE"
 	pushing_state.name = "PUSHING"
+	flatten_state.name = "FLATTEN"
+	flatten_state.enter = flatten_enter
 	walk_state.enter = walk_enter
 	pushing_state.enter = pushing_enter
-	bounce_state.enter = bounce_enter
 	death_state.enter = death_enter
 	death_state.exit = death_exit
 	sliding_state.enter = sliding_enter
 	idle_state.enter = idle_enter
-	idle_state.process = idle_process
+	idle_state.handle_input = idle_input
 	state_machine.state_changed.connect(_on_state_changed)
 	state_machine.transition(idle_state)
+	input_direction_changed.connect(_on_input_direction_changed)
 	stopped.connect(_on_stopped)
-	#moved.connect(_on_moved)
+	moved.connect(_on_moved)
 	var input_controller: PlayerInputController = PlayerInputController.new()
 	input_controller.character = self
 	add_child(input_controller)
 
+func _on_input_direction_changed():
+	var state_input_handler: Callable = state_machine.current_state.handle_input
+	if state_input_handler:
+		state_input_handler.call()
+
+func _on_moved():
+	if state_machine.current_state == walk_state or state_machine.current_state == pushing_state:
+		audio_stream_player_3d.play()
+
 func _on_state_changed(_old_state: SMState, new_state: SMState):
 	current_state_label.text = new_state.name
 
-
 func _on_stopped() -> void:
-	audio_stream_player_3d.stop()
-	
-	if state_machine.current_state == animating_state:
+	var tile: Tile = level.get_tile(coords)
+	if tile.type == Tile.TileType.OIL:
+		struggle()
 		return
 	
-	var tile = level.get_tile(coords)
+	if !moving_states.has(state_machine.current_state):
+		return
 	
+	# Bouncing State Stuff
 	var has_other_entity: bool = false
 	for e in level._entities:
 		if e != self and e.coords == coords:
@@ -81,36 +115,76 @@ func _on_stopped() -> void:
 		body.rotate_y(PI)
 		face_direction = Vector2i(Vector2(face_direction).rotated(PI))
 		bounce(face_direction)
+		return
 	elif tile.type == Tile.TileType.SPIKES or has_other_entity:
 		bounce(face_direction)
-	elif tile.type == Tile.TileType.ICY:
-		if can_move_to(last_move_direction):
-			if state_machine.current_state != sliding_state:
+		return
+
+		
+	if !has_input_direction:
+		if tile.type == Tile.TileType.ICY:
+			if can_move_to(last_move_direction):
 				state_machine.transition(sliding_state)
-			move(last_move_direction)
+				move(last_move_direction)
+			else:
+				state_machine.transition(idle_state)
 		else:
 			state_machine.transition(idle_state)
-	elif tile.type == Tile.TileType.OIL:
-		struggle()
-	elif tile.type == Tile.TileType.NORMAL:
-		state_machine.transition(idle_state)
+		return
+	_handle_move(input_direction)
 
-#func _on_moved() -> void:
-	#if state_machine.current_state == idle_state:
-		#audio_stream_player_3d.play()
-		#animation_player.play("walk")
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		# TODO: find away to reset level state instead of reloading the scene
 		get_tree().reload_current_scene()
+		
+func _handle_move(direction: Vector2i) -> void:
+	# TODO: Refactor this to be more simple
+	var target_coords: Vector2i = coords + direction
+	var entity: Entity = level.get_entity(target_coords)
+	if entity:
+		if entity is Bomb and entity.pushable:
+			var push_action: PushAction = PushAction.new(self, entity)
+			var tile: Tile = level.get_tile(coords)
+			if tile.type == Tile.TileType.OIL:
+				struggle()
+			else:
+				var blocking_entity: Entity = level.get_entity(coords + direction * 2)
+				if blocking_entity:
+					if blocking_entity is Bouncer:
+						entity.move(-direction)
+						move(direction)
+						squish()
+						blocking_entity.bounce(-direction)
+						level.add_action(push_action)
+					else:
+						state_machine.transition(idle_state)
+				else:
+					var can_push: bool = entity.try_move(direction)
+					if can_push:
+						state_machine.transition(pushing_state)
+						level.add_action(push_action)
+						move(direction)
+					else:
+						state_machine.transition(idle_state)
+		else:
+			state_machine.transition(idle_state)
+			
+	else:
+		var move_happened: bool = try_move(direction)
+		if move_happened:
+			state_machine.transition(walk_state)
+			level.add_action(CharacterMoveAction.new(self, level.map_to_world(target_coords)))
+		else:
+			state_machine.transition(idle_state)
+	face_direction = direction
+	_update_body_facing_direction(direction)
 
-const DIRECTIONS: Array[Vector2i] = [
-	Vector2i.UP,
-	Vector2i.RIGHT,
-	Vector2i.DOWN,
-	Vector2i.LEFT,
-]
+func idle_input() -> void:
+	if is_moving or !has_input_direction:
+		return
+	_handle_move(input_direction)
 
 func try_ignite() -> void:
 	if state_machine.current_state != idle_state:
@@ -119,7 +193,6 @@ func try_ignite() -> void:
 		var check_coords: Vector2i = coords + direction
 		var start_bomb: StartBomb = level.get_ignitor_bomb(check_coords)
 		if start_bomb and !start_bomb.is_ignited:
-			# TODO: MAke ignite animation 
 			_update_body_facing_direction(direction)
 			await _play_animation("ignite")
 			start_bomb.ignite()
@@ -149,7 +222,6 @@ func death_enter() -> void:
 	is_alive = false
 	hide()
 	died.emit()
-	await animation_player.animation_finished
 	visible = false
 	
 func death_exit() -> void:
@@ -162,6 +234,8 @@ func sliding_enter() -> void:
 
 func idle_enter() -> void:
 	animation_player.play("idle")
+	if has_input_direction:
+		_handle_move(input_direction)
 
 func walk_enter() -> void:
 	audio_stream_player_3d.play()
@@ -169,51 +243,14 @@ func walk_enter() -> void:
 
 func pushing_enter() -> void:
 	audio_stream_player_3d.play()
-	animation_player.play("walk")
-	
-func bounce_enter() -> void:
-	pass
+	animation_player.play("push")
 
-func idle_process(_delta: float) -> void:
-	var current_direction = Vector2i(input_direction)
-	if camera.current:
-		current_direction = Vector2i(Vector2(current_direction).rotated(-_target_camera_rotation))
-		
-	if is_moving or is_zero_approx(current_direction.length_squared()):
-		return
+func flatten_enter() -> void:
+	animation_player.play("flatten")
+	await animation_player.animation_finished
+	await get_tree().create_timer(SQUISH_DURATION).timeout
+	state_machine.transition(idle_state)
 	
-	var target_coords: Vector2i = coords + current_direction
-	var entity: Entity = level.get_entity(target_coords)
-	if entity: 
-		if entity is Bomb and entity.pushable:
-			var push_action: PushAction = PushAction.new(self, entity)
-			var tile: Tile = level.get_tile(coords)
-			if tile.type == Tile.TileType.OIL:
-				struggle()
-			else:
-				var push_entity: Entity = level.get_entity(coords + current_direction * 2)
-				if push_entity:
-					if push_entity is Bouncer:
-						entity.move(-current_direction)
-						move(current_direction)
-						squish()
-						push_entity.bounce(-current_direction)
-						level.add_action(push_action)
-				else:
-					# TODO: Enter pushing state
-					var can_push: bool = entity.try_move(current_direction)
-					if can_push:
-						state_machine.transition(pushing_state)
-						level.add_action(push_action)
-						move(current_direction)
-	else:
-		var move_happened: bool = try_move(current_direction)
-		if move_happened:
-			state_machine.transition(walk_state)
-			level.add_action(CharacterMoveAction.new(self, level.map_to_world(target_coords)))
-	face_direction = current_direction
-	_update_body_facing_direction(face_direction)
-
 func _handle_camera_rotation(event: InputEvent) -> void:
 	if !camera.current:
 		return
@@ -251,17 +288,10 @@ func struggle():
 	state_machine.transition(idle_state)
 
 func squish():
-	if state_machine.current_state == animating_state:
-		return
-	state_machine.transition(animating_state)
-	animation_player.play("flatten")
-	await animation_player.animation_finished
-	await get_tree().create_timer(SQUISH_DURATION).timeout
-	state_machine.transition(idle_state)
+	state_machine.transition(flatten_state)
 
 func bounce(direction: Vector2i):
-	if is_animating:
-		return
+	state_machine.transition(bounce_state)
 	const t: float = 0.45
 	const height: float = 1.25
 	is_animating = true

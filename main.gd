@@ -127,13 +127,11 @@ func _on_tick() -> void:
 	play_ui.set_time_remaining(_remaining_time)
 	if _remaining_time == 0:
 		ticker.stop()
-		print("ran out of time")
 
 func _on_level_lost():
 	pass
 
 func _on_level_won():
-	print("won!")
 	await get_tree().create_timer(0.1).timeout
 	if !current_level._character.is_alive:
 		return

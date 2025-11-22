@@ -55,8 +55,6 @@ func can_move_to(direction: Vector2i) -> bool:
 	return false
 
 func try_move(direction: Vector2i) -> bool:
-	if is_moving:
-		return false
 	if !can_move_to(direction):
 		return false
 	move(direction)

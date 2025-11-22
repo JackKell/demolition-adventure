@@ -230,7 +230,6 @@ func _on_win():
 	for tile: Tile in _coords_to_tile.values():
 		if !tile.has_detonated and tile.coords != _character.coords:
 			tile.detonate()
-	print("=======================")
 	for entity in _entities:
 		if entity == _character:
 			continue

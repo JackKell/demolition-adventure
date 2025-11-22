@@ -5,3 +5,4 @@ var name: String
 var enter: Callable
 var exit: Callable
 var process: Callable
+var handle_input: Callable
