@@ -13,9 +13,9 @@ dest_files=["res://.godot/imported/fallaway_tile.glb-38b5c0fb3019e957cbd3a868c4c
 
 [params]
 
-nodes/root_type="RigidBody3D"
+nodes/root_type="Node3D"
 nodes/root_name=""
-nodes/root_script=Resource("uid://ydtwsej63low", "res://levels/common/fallaway_tile.gd")
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -37,12 +37,6 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"nodes": {
-"PATH:FallawayTileMesh": {
-"node/script": null
-}
-}
-}
+_subresources={}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

@@ -1,7 +1,7 @@
 class_name FallawayTile
 extends Tile
 
-@export var mesh: MeshInstance3D
+@export var mesh: Node3D
 
 const FALL_ANIMATION_DURATION: float = 0.6
 

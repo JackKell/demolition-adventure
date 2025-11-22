@@ -2,22 +2,22 @@
 
 [ext_resource type="Script" uid="uid://ydtwsej63low" path="res://levels/common/fallaway_tile.gd" id="1_835s5"]
 [ext_resource type="Shape3D" uid="uid://btboj2y5n66av" path="res://levels/world_1/tile_box.shape" id="2_3hofr"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_futxs"]
-size = Vector3(1, 0.66, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_835s5"]
-albedo_color = Color(0.308, 0.329, 0.35, 1)
+[ext_resource type="Material" uid="uid://1cx12te6n260" path="res://levels/common/fallaway_tile.mat.tres" id="2_06hgu"]
+[ext_resource type="PackedScene" uid="uid://c1iiegc7g8kng" path="res://levels/common/fallaway_tile.glb" id="3_kvcnf"]
 
 [node name="FallawayTile" type="RigidBody3D" node_paths=PackedStringArray("mesh") groups=["tile"]]
 script = ExtResource("1_835s5")
-mesh = NodePath("MeshInstance3D")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 0)
-mesh = SubResource("BoxMesh_futxs")
-surface_material_override/0 = SubResource("StandardMaterial3D_835s5")
+mesh = NodePath("mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33, 0)
+visible = false
 shape = ExtResource("2_3hofr")
+
+[node name="mesh" parent="." instance=ExtResource("3_kvcnf")]
+unique_name_in_owner = true
+
+[node name="Cube" parent="mesh" index="0"]
+material_override = ExtResource("2_06hgu")
+
+[editable path="mesh"]
