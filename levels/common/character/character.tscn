@@ -44,4 +44,10 @@ bones/18/rotation = Quaternion(1.1040178e-07, 4.694454e-08, -0.032230653, 0.9994
 [node name="Cone" parent="character/Skeleton/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_wfnr8")
 
+[node name="CurrentStateLabel" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5224627, 0)
+billboard = 1
+text = "Current State"
+
 [editable path="character"]

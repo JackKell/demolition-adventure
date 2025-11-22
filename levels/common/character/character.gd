@@ -7,11 +7,6 @@ const QUARTER_TURN: float = TAU / 4
 const CAMERA_ROTATION_PER_SECOND: float = TAU * 1.5
 const SQUISH_DURATION: float = 0.05
 
-var face_direction: Vector2i = Vector2i.DOWN
-var target_position: Vector3 =  Vector3.ZERO
-var is_animating: bool = false
-var _target_camera_rotation: float = 0
-
 @export var body: Node3D
 @export var animation_player: AnimationPlayer
 @export var input_direction: Vector2i = Vector2i.ZERO
@@ -19,9 +14,14 @@ var _target_camera_rotation: float = 0
 @onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
+@onready var current_state_label: Label3D = %CurrentStateLabel
 
 var is_panicked: bool = false
 var is_alive: bool = true
+
+var face_direction: Vector2i = Vector2i.DOWN
+var target_position: Vector3 =  Vector3.ZERO
+var is_animating: bool = false
 
 var state_machine: StateMachine = StateMachine.new()
 var walk_state: SMState = SMState.new()
@@ -31,6 +31,9 @@ var animating_state: SMState = SMState.new()
 var locked_state: SMState = SMState.new()
 var death_state: SMState = SMState.new()
 var bounce_state: SMState = SMState.new()
+var pushing_state: SMState = SMState.new()
+
+var _target_camera_rotation: float = 0
 
 func _ready() -> void:
 	walk_state.name = "WALK"
@@ -40,18 +43,25 @@ func _ready() -> void:
 	locked_state.name = "LOCKED"
 	death_state.name = "DEATH"
 	bounce_state.name = "BOUCE"
+	pushing_state.name = "PUSHING"
+	walk_state.enter = walk_enter
+	pushing_state.enter = pushing_enter
 	bounce_state.enter = bounce_enter
 	death_state.enter = death_enter
 	death_state.exit = death_exit
 	sliding_state.enter = sliding_enter
 	idle_state.enter = idle_enter
 	idle_state.process = idle_process
+	state_machine.state_changed.connect(_on_state_changed)
 	state_machine.transition(idle_state)
 	stopped.connect(_on_stopped)
-	moved.connect(_on_moved)
+	#moved.connect(_on_moved)
 	var input_controller: PlayerInputController = PlayerInputController.new()
 	input_controller.character = self
 	add_child(input_controller)
+
+func _on_state_changed(_old_state: SMState, new_state: SMState):
+	current_state_label.text = new_state.name
 
 
 func _on_stopped() -> void:
@@ -85,10 +95,10 @@ func _on_stopped() -> void:
 	elif tile.type == Tile.TileType.NORMAL:
 		state_machine.transition(idle_state)
 
-func _on_moved() -> void:
-	if state_machine.current_state == idle_state:
-		audio_stream_player_3d.play()
-		animation_player.play("walk")
+#func _on_moved() -> void:
+	#if state_machine.current_state == idle_state:
+		#audio_stream_player_3d.play()
+		#animation_player.play("walk")
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
@@ -152,6 +162,14 @@ func sliding_enter() -> void:
 
 func idle_enter() -> void:
 	animation_player.play("idle")
+
+func walk_enter() -> void:
+	audio_stream_player_3d.play()
+	animation_player.play("walk")
+
+func pushing_enter() -> void:
+	audio_stream_player_3d.play()
+	animation_player.play("walk")
 	
 func bounce_enter() -> void:
 	pass
@@ -185,6 +203,7 @@ func idle_process(_delta: float) -> void:
 					# TODO: Enter pushing state
 					var can_push: bool = entity.try_move(current_direction)
 					if can_push:
+						state_machine.transition(pushing_state)
 						level.add_action(push_action)
 						move(current_direction)
 	else:
