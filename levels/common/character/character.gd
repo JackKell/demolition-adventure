@@ -14,6 +14,7 @@ const QUARTER_TURN: float = TAU / 4
 const CAMERA_ROTATION_PER_SECOND: float = TAU * 1.5
 const SQUISH_DURATION: float = 0.05
 
+@export var debug: bool = false
 @export var body: Node3D
 @export var animation_player: AnimationPlayer
 @export var input_direction: Vector2i = Vector2i.ZERO:
@@ -53,11 +54,13 @@ var moving_states: Array[SMState] = [
 	walk_state,
 	pushing_state,
 	bounce_state,
+	sliding_state,
 ]
 
 var _target_camera_rotation: float = 0
 
 func _ready() -> void:
+	current_state_label.visible = debug
 	walk_state.name = "WALK"
 	sliding_state.name = "SLIDING"
 	idle_state.name = "IDLE"
@@ -93,43 +96,42 @@ func _on_moved():
 	if state_machine.current_state == walk_state or state_machine.current_state == pushing_state:
 		audio_stream_player_3d.play()
 
-func _on_state_changed(_old_state: SMState, new_state: SMState):
+func _on_state_changed(old_state: SMState, new_state: SMState):
 	current_state_label.text = new_state.name
+	if debug:
+		print_debug(old_state.name, "->", new_state.name)
 
 func _on_stopped() -> void:
 	var tile: Tile = level.get_tile(coords)
-	if tile.type == Tile.TileType.OIL:
-		struggle()
-		return
 	
-	if !moving_states.has(state_machine.current_state):
-		return
-	
-	# Bouncing State Stuff
 	var has_other_entity: bool = false
 	for e in level._entities:
 		if e != self and e.coords == coords:
 			has_other_entity = true
 			break
 	if tile == null:
-		body.rotate_y(PI)
-		face_direction = Vector2i(Vector2(face_direction).rotated(PI))
+		_turn_around()
 		bounce(face_direction)
 		return
 	elif tile.type == Tile.TileType.SPIKES or has_other_entity:
 		bounce(face_direction)
 		return
+	
+	if tile.type == Tile.TileType.OIL:
+		struggle()
+		return
+	
+	if !moving_states.has(state_machine.current_state):
+		return
+		
+	if tile.type == Tile.TileType.ICY and can_move_to(last_move_direction):
+		state_machine.transition(sliding_state)
+		move(last_move_direction)
+		return
 
 		
 	if !has_input_direction:
-		if tile.type == Tile.TileType.ICY:
-			if can_move_to(last_move_direction):
-				state_machine.transition(sliding_state)
-				move(last_move_direction)
-			else:
-				state_machine.transition(idle_state)
-		else:
-			state_machine.transition(idle_state)
+		state_machine.transition(idle_state)
 		return
 	_handle_move(input_direction)
 
@@ -209,6 +211,10 @@ func _play_animation(animation_name: String) -> bool:
 func _update_body_facing_direction(direction: Vector2i) -> void:
 	body.rotation.y = Vector2(direction * Vector2i(1, -1)).angle() + QUARTER_TURN
 
+func _turn_around() -> void:
+	body.rotate_y(PI)
+	face_direction = Vector2i(Vector2(face_direction).rotated(PI))
+
 func _input(event: InputEvent) -> void:
 	if is_animating:
 		return
@@ -230,7 +236,8 @@ func death_exit() -> void:
 	visible = true
 
 func sliding_enter() -> void:
-	animation_player.play("sliding")
+	# TODO: Remake sliding animation
+	animation_player.play("walk")
 
 func idle_enter() -> void:
 	animation_player.play("idle")
