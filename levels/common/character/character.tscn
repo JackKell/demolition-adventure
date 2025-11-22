@@ -47,6 +47,7 @@ surface_material_override/0 = ExtResource("2_wfnr8")
 [node name="CurrentStateLabel" type="Label3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5224627, 0)
+visible = false
 billboard = 1
 text = "Current State"
 
