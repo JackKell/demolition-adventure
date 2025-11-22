@@ -39,7 +39,7 @@ func _on_level_selected(level_data: LevelData) -> void:
 	spawn_level(level_data)
 	
 func _transition_state(state: State) -> void:
-	if current_state:
+	if current_state != null:
 		_exit_state(current_state)
 	current_state = state
 	_enter_state(current_state)
