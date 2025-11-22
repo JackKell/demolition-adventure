@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs7wbylii37gd"]
+[gd_scene load_steps=12 format=3 uid="uid://bs7wbylii37gd"]
 
 [ext_resource type="Script" uid="uid://by06hqs7fmw4n" path="res://levels/common/level.gd" id="1_hokjj"]
 [ext_resource type="PackedScene" uid="uid://dc1w26fhhlpo1" path="res://levels/common/character/character.tscn" id="2_0fd8o"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://2unshcy6q1lk" path="res://levels/world_1/sand_tile/sand_tile.tscn" id="3_dmnu2"]
 [ext_resource type="PackedScene" uid="uid://c5jonhaqlcu2j" path="res://levels/common/bombs/start_bomb.tscn" id="5_ng40l"]
 [ext_resource type="PackedScene" uid="uid://bmfyb1am0tf3q" path="res://levels/world_1/bush/bush_tile.tscn" id="6_04hp8"]
+[ext_resource type="PackedScene" uid="uid://cpi21cves2wf4" path="res://levels/world_1/grass_tile/grass_tile.tscn" id="6_eeg3x"]
 [ext_resource type="PackedScene" uid="uid://dwc5ywcc4m8pb" path="res://levels/common/bombs/bomb_3.tscn" id="7_0fd8o"]
 [ext_resource type="PackedScene" uid="uid://df3sydjumabp2" path="res://levels/world_1/ocean.tscn" id="8_dmnu2"]
 [ext_resource type="PackedScene" uid="uid://lyx1loacnwvk" path="res://levels/common/bombs/bomb_2_stuck.tscn" id="8_sc6c1"]
+[ext_resource type="PackedScene" uid="uid://s22e2rw7yjm7" path="res://levels/world_1/palm_tree/palm_tree.tscn" id="11_ssi3y"]
 
 [node name="Level4" type="Node3D"]
 script = ExtResource("1_hokjj")
@@ -100,18 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
 [node name="SandTile39" parent="Tiles" instance=ExtResource("3_dmnu2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 
-[node name="BushTile" parent="Tiles" instance=ExtResource("6_04hp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
-
-[node name="BushTile4" parent="Tiles" instance=ExtResource("6_04hp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
-
-[node name="BushTile2" parent="Tiles" instance=ExtResource("6_04hp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
-
-[node name="BushTile6" parent="Tiles" instance=ExtResource("6_04hp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
-
 [node name="BushTile11" parent="Tiles" instance=ExtResource("6_04hp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -8)
 
@@ -127,9 +117,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -7)
 [node name="BushTile15" parent="Tiles" instance=ExtResource("6_04hp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -7)
 
-[node name="BushTile5" parent="Tiles" instance=ExtResource("6_04hp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
-
 [node name="BushTile8" parent="Tiles" instance=ExtResource("6_04hp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
 
@@ -138,9 +125,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 
 [node name="BushTile10" parent="Tiles" instance=ExtResource("6_04hp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
-
-[node name="BushTile7" parent="Tiles" instance=ExtResource("6_04hp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 
 [node name="SandTile21" parent="Tiles" instance=ExtResource("3_dmnu2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
@@ -217,6 +201,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 [node name="SandTile47" parent="Tiles" instance=ExtResource("3_dmnu2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 
+[node name="GrassTile" parent="Tiles" instance=ExtResource("6_eeg3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="GrassTile2" parent="Tiles" instance=ExtResource("6_eeg3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
+
+[node name="GrassTile3" parent="Tiles" instance=ExtResource("6_eeg3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+
+[node name="GrassTile4" parent="Tiles" instance=ExtResource("6_eeg3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="GrassTile5" parent="Tiles" instance=ExtResource("6_eeg3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+
+[node name="GrassTile6" parent="Tiles" instance=ExtResource("6_eeg3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Character" parent="Entities" instance=ExtResource("2_0fd8o")]
@@ -250,3 +252,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 
 [node name="Bomb2Stuck6" parent="Entities" instance=ExtResource("8_sc6c1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="PalmTree" parent="." instance=ExtResource("11_ssi3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+
+[node name="PalmTree2" parent="." instance=ExtResource("11_ssi3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="PalmTree3" parent="." instance=ExtResource("11_ssi3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
+
+[node name="PalmTree4" parent="." instance=ExtResource("11_ssi3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="PalmTree5" parent="." instance=ExtResource("11_ssi3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="PalmTree6" parent="." instance=ExtResource("11_ssi3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
