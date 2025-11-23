@@ -218,9 +218,11 @@ func _on_bomb_detonated() -> void:
 		all_bombs_detonated.emit()
 
 func _on_character_died() -> void:
+	print("character died")
 	_on_lost()
 	
 func _on_lost():
+	print("level lost")
 	lost.emit()
 
 func _on_win():
@@ -239,6 +241,7 @@ func _on_win():
 func _on_level_completed() -> void:
 	await get_tree().create_timer(0.3).timeout
 	if !_character.is_alive:
+		print("level finished but character not alive")
 		_on_lost()
 		return
 	_on_win()

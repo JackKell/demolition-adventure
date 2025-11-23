@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo8fweeftyono"]
+
+[ext_resource type="Script" uid="uid://bqdyd5ipj56l6" path="res://try_again_ui.gd" id="1_n1xux"]
+[ext_resource type="Theme" uid="uid://cfkyvoqxvawux" path="res://levels/my_theme.tres" id="2_kk4dy"]
+
+[node name="TryAgainLevelUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_n1xux")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme = ExtResource("2_kk4dy")
+theme_override_font_sizes/font_size = 64
+text = "Try Again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -170.0
+offset_right = 122.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_kk4dy")
+text = "Retry Level"
+
+[node name="LevelSelectButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_kk4dy")
+text = "Level Select"
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_kk4dy")
+text = "Main Menu"

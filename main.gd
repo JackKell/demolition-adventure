@@ -15,6 +15,7 @@ var _steps: int = 0
 @onready var main_screen: MainGameScreen = %MainScreen
 @onready var level_editor: LevelEditor = %LevelEditor3D
 @onready var completed_level_ui: CompletedLevelUi = %CompletedLevelUi
+@onready var try_again_level_ui: TryAgainLevelUi = %TryAgainLevelUi
 
 enum State {
 	PLAY,
@@ -22,6 +23,7 @@ enum State {
 	LEVEL_SELECT,
 	MENU,
 	LEVEL_WON,
+	LEVEL_LOST,
 }
 
 var current_state: State
@@ -36,7 +38,13 @@ func _ready() -> void:
 	completed_level_ui.next_level_button.pressed.connect(_on_pressed_next_level_button)
 	completed_level_ui.main_menu_button.pressed.connect(_on_pressed_main_menu_button)
 	completed_level_ui.level_select_button.pressed.connect(_on_pressed_level_select_button)
+	try_again_level_ui.retry_button.pressed.connect(_on_pressed_retry_button)
+	try_again_level_ui.main_menu_button.pressed.connect(_on_pressed_main_menu_button)
+	try_again_level_ui.level_select_button.pressed.connect(_on_pressed_level_select_button)
 	_transition_state(State.MENU)
+
+func _on_pressed_retry_button() -> void:
+	reload_current_level()
 
 func _on_level_selected(level_data: LevelData) -> void:
 	level_index = levels.levels.find(level_data)
@@ -44,6 +52,8 @@ func _on_level_selected(level_data: LevelData) -> void:
 	spawn_level(level_data)
 	
 func _transition_state(state: State) -> void:
+	if state == current_state:
+		return
 	if current_state != null:
 		_exit_state(current_state)
 	current_state = state
@@ -67,6 +77,8 @@ func _enter_state(state: State) -> void:
 			level_select.visible = true
 		State.LEVEL_WON:
 			completed_level_ui.visible = true
+		State.LEVEL_LOST:
+			try_again_level_ui.visible = true
 
 func _exit_state(state: State) -> void:
 	match state:
@@ -83,6 +95,8 @@ func _exit_state(state: State) -> void:
 			level_select.visible = false
 		State.LEVEL_WON:
 			completed_level_ui.visible = false
+		State.LEVEL_LOST:
+			try_again_level_ui.visible = false
 
 func _input(event: InputEvent) -> void:
 	match current_state:
@@ -100,6 +114,7 @@ func _input(event: InputEvent) -> void:
 
 func reload_current_level() -> void:
 	spawn_level(levels.levels.get(level_index))
+	_transition_state(State.PLAY)
 	
 func spawn_level(level_data: LevelData) -> void:
 	if spawning:
@@ -111,6 +126,7 @@ func spawn_level(level_data: LevelData) -> void:
 		await current_level.tree_exited
 	current_level = level_data.level_scene.instantiate()
 	current_level.won.connect(_on_level_won, CONNECT_ONE_SHOT)
+	current_level.lost.connect(_on_level_lost, CONNECT_ONE_SHOT)
 	ticker.start()
 	_steps = 0
 	_remaining_time = 999
@@ -154,7 +170,8 @@ func _on_tick() -> void:
 		ticker.stop()
 
 func _on_level_lost():
-	pass
+	print("saw level lost trigger")
+	_transition_state(State.LEVEL_LOST)
 
 func _on_level_won():
 	_transition_state(State.LEVEL_WON)
