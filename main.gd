@@ -14,12 +14,14 @@ var _steps: int = 0
 @onready var level_select: LevelSelect = %LevelSelect
 @onready var main_screen: MainGameScreen = %MainScreen
 @onready var level_editor: LevelEditor = %LevelEditor3D
+@onready var completed_level_ui: CompletedLevelUi = %CompletedLevelUi
 
 enum State {
 	PLAY,
 	EDITOR,
 	LEVEL_SELECT,
 	MENU,
+	LEVEL_WON,
 }
 
 var current_state: State
@@ -31,6 +33,9 @@ func _ready() -> void:
 	level_select.back_button.pressed.connect(_transition_state.bind(State.MENU))
 	main_screen.play_button.pressed.connect(_transition_state.bind(State.LEVEL_SELECT))
 	main_screen.level_editor_button.pressed.connect(_transition_state.bind(State.EDITOR))
+	completed_level_ui.next_level_button.pressed.connect(_on_pressed_next_level_button)
+	completed_level_ui.main_menu_button.pressed.connect(_on_pressed_main_menu_button)
+	completed_level_ui.level_select_button.pressed.connect(_on_pressed_level_select_button)
 	_transition_state(State.MENU)
 
 func _on_level_selected(level_data: LevelData) -> void:
@@ -53,12 +58,15 @@ func _enter_state(state: State) -> void:
 			clear_current_level()
 		State.PLAY:
 			play_ui.visible = true
+			ticker.start()
 		State.EDITOR:
 			level_editor.visible = true
 			level_editor.ui.visible = true
 			level_editor.make_current()
 		State.LEVEL_SELECT:
 			level_select.visible = true
+		State.LEVEL_WON:
+			completed_level_ui.visible = true
 
 func _exit_state(state: State) -> void:
 	match state:
@@ -67,11 +75,14 @@ func _exit_state(state: State) -> void:
 			menu_screen_set.visible = false
 		State.PLAY:
 			play_ui.visible = false
+			ticker.stop()
 		State.EDITOR:
 			level_editor.visible = false
 			level_editor.ui.visible = false
 		State.LEVEL_SELECT:
-			level_select.visible = false 
+			level_select.visible = false
+		State.LEVEL_WON:
+			completed_level_ui.visible = false
 
 func _input(event: InputEvent) -> void:
 	match current_state:
@@ -118,6 +129,20 @@ func clear_current_level():
 	if current_level:
 		current_level.queue_free()
 
+func load_next_level():
+	level_index = (level_index + 1) % levels.levels.size()
+	spawn_level(levels.levels.get(level_index))
+	_transition_state(State.PLAY)
+
+func _on_pressed_next_level_button():
+	load_next_level()
+
+func _on_pressed_level_select_button() -> void:
+	_transition_state(State.LEVEL_SELECT)
+	
+func _on_pressed_main_menu_button() -> void:
+	_transition_state(State.MENU)
+
 func _on_character_moved():
 	_steps += 1
 	play_ui.set_steps(_steps)
@@ -132,10 +157,5 @@ func _on_level_lost():
 	pass
 
 func _on_level_won():
-	await get_tree().create_timer(0.1).timeout
-	if !current_level._character.is_alive:
-		return
-	ticker.stop()
-	await get_tree().create_timer(3).timeout
-	level_index = (level_index + 1) % levels.levels.size()
-	spawn_level(levels.levels.get(level_index))
+	_transition_state(State.LEVEL_WON)
+	

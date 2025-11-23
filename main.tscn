@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cycsjfieh6k2k"]
+[gd_scene load_steps=12 format=3 uid="uid://cycsjfieh6k2k"]
 
 [ext_resource type="Script" uid="uid://kv2sy8s5q4a6" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Resource" uid="uid://1ohqoraweu5i" path="res://levels/level_data/levels.tres" id="2_1bvp3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b5bmbom5qadl0" path="res://menu_screen_set.gd" id="4_kek77"]
 [ext_resource type="PackedScene" uid="uid://bc6i4cfw7kyab" path="res://level_editor/level_editor_3d.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ccxero8357kwc" path="res://main_screen.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cdaxs14awu3ac" path="res://completed_level_ui.tscn" id="6_efxa6"]
 [ext_resource type="Resource" uid="uid://dt8wbvyhdijew" path="res://level_editor/object_data/all_entities.tres" id="8_efxa6"]
 [ext_resource type="Resource" uid="uid://xbpyp3rkqm6a" path="res://level_editor/object_data/all_tiles.tres" id="9_dg77c"]
 [ext_resource type="PackedScene" uid="uid://bydj2us25qme5" path="res://levels/play_ui.tscn" id="19_cegan"]
@@ -26,6 +27,10 @@ unique_name_in_owner = true
 visible = false
 
 [node name="MainScreen" parent="CanvasLayer" instance=ExtResource("5_lquwl")]
+unique_name_in_owner = true
+visible = false
+
+[node name="CompletedLevelUi" parent="CanvasLayer" instance=ExtResource("6_efxa6")]
 unique_name_in_owner = true
 visible = false
 
