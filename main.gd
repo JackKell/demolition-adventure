@@ -140,7 +140,6 @@ func spawn_level(level_data: LevelData) -> void:
 	spawning = false
 
 func _on_start_bomb_ignited() -> void:
-	print("start bomb ignited")
 	play_ui.count_down_number.visible = true
 	play_ui.count_down_number.text = "3"
 	await get_tree().create_timer(1).timeout
@@ -149,7 +148,6 @@ func _on_start_bomb_ignited() -> void:
 	play_ui.count_down_number.text = "1"
 	await get_tree().create_timer(1).timeout
 	play_ui.count_down_number.visible = false
-	
 
 func connect_character():
 	current_level._character.coords_changed.connect(_on_character_moved)
@@ -184,7 +182,6 @@ func _on_tick() -> void:
 		ticker.stop()
 
 func _on_level_lost():
-	print("saw level lost trigger")
 	_transition_state(State.LEVEL_LOST)
 
 func _on_level_won():
