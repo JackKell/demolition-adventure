@@ -99,7 +99,7 @@ func _exit_state(state: State) -> void:
 		State.LEVEL_LOST:
 			try_again_level_ui.visible = false
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	match current_state:
 		State.PLAY:
 			if event.is_action_pressed("restart"):

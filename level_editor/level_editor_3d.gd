@@ -1,9 +1,35 @@
 class_name LevelEditor
 extends Node3D
 
-@export var entities: LevelEditorObjects = LevelEditorObjects.new()
-@export var tiles: LevelEditorObjects = LevelEditorObjects.new()
+const DEFAULT_TILE_ID: int = 2
+const LEVEL_SAVE_PATH: String = "user://saved_level.tres"
+const MAX_CAMERA_SPEED: float = 20
+
+@export var entities: LevelEditorObjects
+@export var tiles: LevelEditorObjects
 @export var size: Vector2i = Vector2i(50, 50)
+
+var ENTITY_ID_TO_ENTITY_DATA: Dictionary[int, LevelEditorObjectData] = {}
+var ENTITY_NAME_TO_ENTITY_DATA: Dictionary[String, LevelEditorObjectData] = {}
+var ENTITY_SCENE_PATH_TO_ENTITY_ID: Dictionary[String, int] = {}
+var TILE_ID_TO_TILE_DATA: Dictionary[int, LevelEditorObjectData] = {}
+var TILE_NAME_TO_TILE_DATA: Dictionary[String, LevelEditorObjectData] = {}
+var TILE_SCENE_PATH_TO_TILE_ID: Dictionary[String, int] = {}
+var tile_mapping: Dictionary[Vector2i, CellData] = {}
+var entity_mapping: Dictionary[Vector2i, CellData] = {}
+var current_cell: Vector2i = Vector2i.ZERO
+var current_tool: LevelEditorTool
+var camera_size: float = 0
+var tools: Array[LevelEditorTool]
+var undo_redo: UndoRedo = UndoRedo.new()
+var preview_tiles: PreviewTilePool = PreviewTilePool.new()
+var selected_tile: PackedScene
+var top_down_mode: bool = true
+var world_theme: LevelEditorObjectData.WorldTheme = LevelEditorObjectData.WorldTheme.TROPICAL
+var current_level_save: LevelData
+var camera_speed: float = 0
+var camera_acceleration: float = 100
+var selection_grid: SelectionGrid = SelectionGrid.new()
 
 @onready var ui: LevelEditorUi = %EditorUi
 @onready var top_down_camera: Camera3D = %TopDownCamera
@@ -14,43 +40,27 @@ extends Node3D
 @onready var pencil_tool: PencilTool = $PencilTool
 @onready var line_tool: LineTool = $LineTool
 @onready var selection_tool: SelectionTool = $SelectionTool
-
 @onready var grid_mesh: GridMesh = $GridMesh
 @onready var x_mirror_line: MeshInstance3D = %XMirrorLine
 @onready var y_mirror_line: MeshInstance3D = %YMirrorLine
 
+static func _filter_item_list_to_world_theme(
+		list: ItemList, 
+		name_to_data: Dictionary[String, LevelEditorObjectData],  
+		filtered_world_theme: LevelEditorObjectData.WorldTheme
+	) -> void:
+	list.clear()
+	for option in name_to_data.keys():
+		var data: LevelEditorObjectData = name_to_data.get(option)
+		if data.world_theme == LevelEditorObjectData.WorldTheme.ANY or data.world_theme == filtered_world_theme:
+			list.add_item(option, data.icon)
 
-var ENTITY_ID_TO_ENTITY_DATA: Dictionary[int, LevelEditorObjectData] = {}
-var ENTITY_NAME_TO_ENTITY_DATA: Dictionary[String, LevelEditorObjectData] = {}
-var ENTITY_SCENE_PATH_TO_ENTITY_ID: Dictionary[String, int] = {}
-var TILE_ID_TO_TILE_DATA: Dictionary[int, LevelEditorObjectData] = {}
-var TILE_NAME_TO_TILE_DATA: Dictionary[String, LevelEditorObjectData] = {}
-var TILE_SCENE_PATH_TO_TILE_ID: Dictionary[String, int] = {}
-
-var tile_mapping: Dictionary[Vector2i, CellData] = {}
-var entity_mapping: Dictionary[Vector2i, CellData] = {}
-var current_cell: Vector2i = Vector2i.ZERO
-var current_tool: LevelEditorTool
-var camera_size: float = 0
-var tools: Array[LevelEditorTool]
-var undo_redo: UndoRedo = UndoRedo.new()
-var preview_tiles: PreviewTilePool
-var selected_tile: PackedScene
-var top_down_mode: bool = true
-var world_theme: LevelEditorObjectData.WorldTheme = LevelEditorObjectData.WorldTheme.TROPICAL
-
-const DEFAULT_TILE_ID: int = 2
-const LEVEL_SAVE_PATH: String = "res://level_editor/temp_level_data.tres"
-var current_level_save: LevelData
-var camera_speed: float = 0
-var camera_acceleration: float = 100
-const MAX_CAMERA_SPEED: float = 20
-var selection_grid: SelectionGrid
+func _init() -> void:
+	visibility_changed.connect(_on_visible_changed)
 
 func _ready() -> void:
-	visibility_changed.connect(_on_visible_changed)
-	selection_grid = SelectionGrid.new()
 	add_child(selection_grid)
+	add_child(preview_tiles)
 	selection_tool.selection_grid = selection_grid
 	selection_grid.global_position.y = 0.1
 	for entity: LevelEditorObjectData in entities.objects:
@@ -62,10 +72,7 @@ func _ready() -> void:
 		TILE_ID_TO_TILE_DATA.set(tile.id, tile)
 		TILE_NAME_TO_TILE_DATA.set(tile.name, tile)
 		TILE_SCENE_PATH_TO_TILE_ID.set(tile.scene.resource_path, tile.id)
-	
-	preview_tiles = PreviewTilePool.new()
-	
-	add_child(preview_tiles)
+		
 	
 	tools = [
 		box_tool,
@@ -82,7 +89,6 @@ func _ready() -> void:
 		tool.deactivate()
 		
 	undo_redo.version_changed.connect(_on_version_changed)
-	
 	ui.selection_tool_button.pressed.connect(switch_tool.bind(selection_tool))
 	ui.box_tool_button.pressed.connect(switch_tool.bind(box_tool))
 	ui.bucket_tool_button.pressed.connect(switch_tool.bind(fill_tool))
@@ -167,11 +173,14 @@ func save():
 		var entity_config: BaseConfig = BaseConfig.new()
 		entity_config.id = entity_id
 		current_level_save.entities.set(coord, entity_config)
-	ResourceSaver.save(current_level_save)
+	ResourceSaver.save(current_level_save, LEVEL_SAVE_PATH)
 	
 func load_level():
 	clear()
-	current_level_save = load(LEVEL_SAVE_PATH)
+	if ResourceLoader.exists(LEVEL_SAVE_PATH):
+		current_level_save = ResourceLoader.load(LEVEL_SAVE_PATH)
+	else:
+		current_level_save = LevelData.new() 
 	# Load Tiles
 	var saved_tiles := current_level_save.tiles
 	for coords: Vector2i in saved_tiles.keys():
@@ -200,23 +209,11 @@ func load_level():
 		entity_mapping.set(coords, CellData.new(entity_data.scene, entity))
 		# TODO: set rotation based on config direction
 
-static func filter_item_list_to_world_theme(
-		list: ItemList, 
-		name_to_data: Dictionary[String, LevelEditorObjectData],  
-		filtered_world_theme: LevelEditorObjectData.WorldTheme
-	) -> void:
-	list.clear()
-	for option in name_to_data.keys():
-		var data: LevelEditorObjectData = name_to_data.get(option)
-		if data.world_theme == LevelEditorObjectData.WorldTheme.ANY or data.world_theme == filtered_world_theme:
-			list.add_item(option, data.icon)
-	
-
 func update_entity_items():
-	filter_item_list_to_world_theme(ui.entity_list, ENTITY_NAME_TO_ENTITY_DATA, world_theme)
+	_filter_item_list_to_world_theme(ui.entity_list, ENTITY_NAME_TO_ENTITY_DATA, world_theme)
 
 func update_tile_items():
-	filter_item_list_to_world_theme(ui.tile_list, TILE_NAME_TO_TILE_DATA, world_theme)
+	_filter_item_list_to_world_theme(ui.tile_list, TILE_NAME_TO_TILE_DATA, world_theme)
 
 func _on_theme_selected(id: int):
 	var theme_name: String = ui.theme_option_button.get_item_text(id).to_lower()

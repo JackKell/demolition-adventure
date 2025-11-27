@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=4 uid="uid://bc6i4cfw7kyab"]
+[gd_scene load_steps=22 format=4 uid="uid://bc6i4cfw7kyab"]
 
 [ext_resource type="Script" uid="uid://b8bgimwx6cp2u" path="res://level_editor/level_editor_3d.gd" id="1_goklc"]
 [ext_resource type="Script" uid="uid://oqodjt6eesgk" path="res://level_editor/box_tool.gd" id="2_j0u0h"]
+[ext_resource type="Resource" uid="uid://dt8wbvyhdijew" path="res://level_editor/object_data/all_entities.tres" id="2_m6tcl"]
 [ext_resource type="Script" uid="uid://c22qgyyx62dq" path="res://level_editor/fill_tool.gd" id="3_jxark"]
+[ext_resource type="Resource" uid="uid://xbpyp3rkqm6a" path="res://level_editor/object_data/all_tiles.tres" id="3_t3fpq"]
 [ext_resource type="Script" uid="uid://3k8d4kg2e70d" path="res://selection_tool.gd" id="4_1g3f4"]
 [ext_resource type="Script" uid="uid://darvecvu3imyy" path="res://level_editor/pencil_tool.gd" id="4_2glrk"]
 [ext_resource type="Script" uid="uid://c84f3aw2psi6p" path="res://level_editor/line_tool.gd" id="5_2glrk"]
@@ -30,7 +32,7 @@ glow_enabled = true
 lightmap_size_hint = Vector2i(202, 202)
 size = Vector2(50, 50)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_snjyl"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_m6tcl"]
 _surfaces = [{
 "aabb": AABB(-24.5, 0, -24.5, 50, 1e-05, 50),
 "format": 34359738369,
@@ -56,7 +58,8 @@ size = Vector3(0.1, 1, 50)
 
 [node name="LevelEditor3D" type="Node3D"]
 script = ExtResource("1_goklc")
-size = null
+entities = ExtResource("2_m6tcl")
+tiles = ExtResource("3_t3fpq")
 
 [node name="SelectionTool" type="Node" parent="."]
 script = ExtResource("4_1g3f4")
@@ -114,7 +117,7 @@ surface_material_override/0 = ExtResource("6_2glrk")
 [node name="GridMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 cast_shadow = 0
-mesh = SubResource("ArrayMesh_snjyl")
+mesh = SubResource("ArrayMesh_m6tcl")
 surface_material_override/0 = SubResource("StandardMaterial3D_dqkhq")
 script = ExtResource("24_dqkhq")
 material = SubResource("StandardMaterial3D_dqkhq")
