@@ -1,13 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy80ieemiif8g"]
+[gd_scene load_steps=11 format=3 uid="uid://cy80ieemiif8g"]
 
 [ext_resource type="Script" uid="uid://dwy5h2si5f7rq" path="res://levels/level_select.gd" id="1_ygvyp"]
 [ext_resource type="Resource" uid="uid://1ohqoraweu5i" path="res://levels/level_data/levels.tres" id="2_ribxa"]
+[ext_resource type="Material" uid="uid://m6u76vivimmv" path="res://panel_material.tres" id="3_0mjce"]
 [ext_resource type="Texture2D" uid="uid://dd8ogoal8nxx" path="res://levels/common/world_icons/world_1_icon.tres" id="3_j1p3j"]
 [ext_resource type="Texture2D" uid="uid://brx7prig8i3hc" path="res://levels/common/world_icons/world_2_icon.tres" id="4_0mjce"]
 [ext_resource type="Texture2D" uid="uid://cn4rqk32r0rhy" path="res://levels/common/world_icons/world_3_icon.tres" id="5_iy8wl"]
 [ext_resource type="Texture2D" uid="uid://d3wqhsyg66ba5" path="res://levels/common/world_icons/world_4_icon.tres" id="6_abuhv"]
 [ext_resource type="Texture2D" uid="uid://catn5pupjogxy" path="res://levels/common/world_icons/world_5_icon.tres" id="7_fuqbe"]
 [ext_resource type="Texture2D" uid="uid://jtfxckleugpf" path="res://levels/common/world_icons/world_6_icon.tres" id="8_ribxa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1p3j"]
+bg_color = Color(0.17, 0.17, 0.17, 0.8666667)
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -19,17 +23,30 @@ grow_vertical = 2
 script = ExtResource("1_ygvyp")
 levels_data = ExtResource("2_ribxa")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+material = ExtResource("3_0mjce")
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 72.5
-offset_bottom = -72.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -185.0
+offset_right = -13.0
+offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j1p3j")
 
-[node name="WorldTabs" type="TabBar" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 14.0
+offset_bottom = 349.0
+grow_horizontal = 2
+
+[node name="WorldTabs" type="TabBar" parent="Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 current_tab = 0
@@ -48,7 +65,7 @@ tab_4/icon = ExtResource("7_fuqbe")
 tab_5/title = "World 6"
 tab_5/icon = ExtResource("8_ribxa")
 
-[node name="LevelOptions" type="GridContainer" parent="VBoxContainer"]
+[node name="LevelOptions" type="GridContainer" parent="Panel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2

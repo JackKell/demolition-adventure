@@ -21,7 +21,8 @@ levels = ExtResource("2_1bvp3")
 
 [node name="PlayUi" parent="CanvasLayer" instance=ExtResource("19_cegan")]
 unique_name_in_owner = true
-visible = false
+offset_left = 1.0
+offset_right = 1.0
 
 [node name="LevelSelect" parent="CanvasLayer" instance=ExtResource("20_82xsv")]
 unique_name_in_owner = true

@@ -5,6 +5,7 @@ var spawning: bool = false
 var _remaining_time: int = 0
 var _steps: int = 0
 
+@export var start_state: State = State.MENU
 @export var levels: Levels
 @export var level_index: int = 0
 
@@ -41,7 +42,7 @@ func _ready() -> void:
 	try_again_level_ui.retry_button.pressed.connect(_on_pressed_retry_button)
 	try_again_level_ui.main_menu_button.pressed.connect(_on_pressed_main_menu_button)
 	try_again_level_ui.level_select_button.pressed.connect(_on_pressed_level_select_button)
-	_transition_state(State.MENU)
+	_transition_state(start_state)
 
 func _on_pressed_retry_button() -> void:
 	reload_current_level()
