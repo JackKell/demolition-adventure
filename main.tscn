@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cycsjfieh6k2k"]
+[gd_scene load_steps=11 format=3 uid="uid://cycsjfieh6k2k"]
 
 [ext_resource type="Script" uid="uid://kv2sy8s5q4a6" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Resource" uid="uid://1ohqoraweu5i" path="res://levels/level_data/levels.tres" id="2_1bvp3"]
@@ -8,14 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://ccxero8357kwc" path="res://main_screen.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cdaxs14awu3ac" path="res://completed_level_ui.tscn" id="6_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bo8fweeftyono" path="res://try_again_ui.tscn" id="7_dg77c"]
-[ext_resource type="Resource" uid="uid://dt8wbvyhdijew" path="res://level_editor/object_data/all_entities.tres" id="8_efxa6"]
-[ext_resource type="Resource" uid="uid://xbpyp3rkqm6a" path="res://level_editor/object_data/all_tiles.tres" id="9_dg77c"]
 [ext_resource type="PackedScene" uid="uid://bydj2us25qme5" path="res://levels/play_ui.tscn" id="19_cegan"]
 [ext_resource type="PackedScene" uid="uid://cy80ieemiif8g" path="res://levels/level_select.tscn" id="20_82xsv"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ig7tw")
-start_state = 1
 levels = ExtResource("2_1bvp3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -51,5 +48,3 @@ script = ExtResource("4_kek77")
 [node name="LevelEditor3D" parent="." instance=ExtResource("5_7mycd")]
 unique_name_in_owner = true
 visible = false
-entities = ExtResource("8_efxa6")
-tiles = ExtResource("9_dg77c")
