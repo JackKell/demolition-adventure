@@ -4,6 +4,7 @@ extends Node
 
 static var EMPTY_CELL_DATA = CellData.new(null, null)
 var preview_tiles: PreviewTilePool
+var object_root: Node3D
 var tile_mapping: Dictionary[Vector2i, CellData] = {}
 var current_cell: Vector2i = Vector2i.ZERO
 var draw_tile: PackedScene
@@ -61,7 +62,7 @@ func undo_tiles(original_cell_types: Dictionary[Vector2i, PackedScene], coords_t
 	for coords in original_cell_types.keys():
 		var scene: PackedScene = original_cell_types.get(coords)
 		var tile: Node3D = scene.instantiate()
-		add_child(tile)
+		object_root.add_child(tile)
 		tile.global_position.x = coords.x
 		tile.global_position.z = coords.y
 		tile_mapping.set(coords, CellData.new(scene, tile))
@@ -88,7 +89,7 @@ func get_cell_types(coords_list: Array[Vector2i]) -> Dictionary[Vector2i, Packed
 func _draw_tile(coords: Vector2i, tile_scene: PackedScene):
 	_erase_tile(coords)
 	var tile: Node3D = tile_scene.instantiate()
-	add_child(tile)
+	object_root.add_child(tile)
 	tile.global_position.x = coords.x
 	tile.global_position.z = coords.y
 	tile_mapping.set(coords, CellData.new(tile_scene, tile))

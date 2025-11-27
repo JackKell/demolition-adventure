@@ -43,6 +43,8 @@ var selection_grid: SelectionGrid = SelectionGrid.new()
 @onready var grid_mesh: GridMesh = $GridMesh
 @onready var x_mirror_line: MeshInstance3D = %XMirrorLine
 @onready var y_mirror_line: MeshInstance3D = %YMirrorLine
+@onready var object_root: Node3D = %ObjectRoot
+
 
 static func _filter_item_list_to_world_theme(
 		list: ItemList, 
@@ -86,6 +88,7 @@ func _ready() -> void:
 		tool.preview_tiles = preview_tiles
 		tool.tile_mapping = tile_mapping
 		tool.current_cell = current_cell
+		tool.object_root = object_root
 		tool.deactivate()
 		
 	undo_redo.version_changed.connect(_on_version_changed)
@@ -252,7 +255,6 @@ func _on_entity_selected(id: int) -> void:
 	ui.selected_tile_label.text = data.name
 	set_mapping_layer(entity_mapping)
 	ui.tile_list.deselect_all()
-
 
 func _on_tile_selected(id: int) -> void:
 	var tile_name = ui.tile_list.get_item_text(id).to_lower()
