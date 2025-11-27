@@ -4,6 +4,7 @@ extends Node3D
 signal lost
 signal won
 signal all_bombs_detonated
+signal ignitor_bomb_ignited
 
 const CHARACTER_GROUP = "character"
 const ACHIEVED: AudioStream = preload("uid://cl1fiv31td17v")
@@ -11,6 +12,10 @@ const TOGGLE_CAMERA_DURATION: float = 0.3
 const START_CAMERA_DURATION: float = 1
 const START_CAMERA_DELAY: float = 0.4
 
+var ignitor_bomb: StartBomb:
+	get:
+		return _ignitor_bomb
+var _ignitor_bomb: StartBomb
 var _history: ActionHistory = ActionHistory.new()
 var _top_down_camera: Camera3D
 var _animation_camera: Camera3D
@@ -183,6 +188,9 @@ func _init_entities():
 			if entity is Bomb:
 				_bomb_count += 1
 				entity.detonated.connect(_on_bomb_detonated)
+			if entity is StartBomb:
+				_ignitor_bomb = entity
+				_ignitor_bomb.ignited.connect(ignitor_bomb_ignited.emit)
 
 func _toggle_camera() -> void:
 	if not _top_down_camera or not _character:

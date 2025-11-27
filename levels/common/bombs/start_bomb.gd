@@ -1,6 +1,8 @@
 class_name StartBomb
 extends Bomb
 
+signal ignited
+
 @onready var sparks_emitter: GPUParticles3D = %SparksEmitter
 @onready var fuse_lit: AudioStreamPlayer = $FuseLit
 
@@ -12,5 +14,6 @@ func ignite() -> void:
 	is_ignited = true
 	sparks_emitter.emitting = true
 	fuse_lit.play()
+	ignited.emit()
 	await get_tree().create_timer(3).timeout
 	detonate()

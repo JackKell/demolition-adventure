@@ -128,6 +128,7 @@ func spawn_level(level_data: LevelData) -> void:
 	current_level = level_data.level_scene.instantiate()
 	current_level.won.connect(_on_level_won, CONNECT_ONE_SHOT)
 	current_level.lost.connect(_on_level_lost, CONNECT_ONE_SHOT)
+	current_level.ignitor_bomb_ignited.connect(_on_start_bomb_ignited, CONNECT_ONE_SHOT)
 	ticker.start()
 	_steps = 0
 	_remaining_time = 999
@@ -137,6 +138,18 @@ func spawn_level(level_data: LevelData) -> void:
 	connect_character.call_deferred()
 	add_child(current_level)
 	spawning = false
+
+func _on_start_bomb_ignited() -> void:
+	print("start bomb ignited")
+	play_ui.count_down_number.visible = true
+	play_ui.count_down_number.text = "3"
+	await get_tree().create_timer(1).timeout
+	play_ui.count_down_number.text = "2"
+	await get_tree().create_timer(1).timeout
+	play_ui.count_down_number.text = "1"
+	await get_tree().create_timer(1).timeout
+	play_ui.count_down_number.visible = false
+	
 
 func connect_character():
 	current_level._character.coords_changed.connect(_on_character_moved)

@@ -4,6 +4,7 @@ extends Control
 @onready var level_name_label: Label = %LevelNameLabel
 @onready var steps_count_label: Label = %StepsCountLabel
 @onready var time_remaining_label: Label = %TimeRemainingLabel
+@onready var count_down_number: Label = %CountDownNumber
 
 const STEPS_FORMAT: String = "%04d"
 const TIME_FORMAT: String = "%03d"
