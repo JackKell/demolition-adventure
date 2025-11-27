@@ -27,14 +27,6 @@ var _character: Character
 var _stream_player: AudioStreamPlayer3D
 var _camera_toogle_tween: Tween
 
-enum State {
-	ANIMATION,
-	NORMAL,
-	PANICKED,
-}
-
-var state: State = State.NORMAL
-
 func _ready() -> void:
 	_init_tiles()
 	_init_entities()
@@ -65,18 +57,18 @@ func undo_action() -> void:
 	_history.undo()
 
 func world_to_map(global_point: Vector3) -> Vector2i:
-	var snapped_position: Vector3i = Vector3i(global_point.snapped(Vector3.ONE))
-	return Vector2i(snapped_position.x, snapped_position.z)
+	# NOTE: Assumes the cell size is 1 meter
+	return VectorUtils.vector2i_xz(global_point.snapped(Vector3.ONE))
 
 func map_to_world(coords: Vector2i) -> Vector3:
 	# NOTE: Assumes the cell size is 1 meter
-	return Vector3(coords.x, 0, coords.y)
+	return VectorUtils.vector3_xz(coords)
 
 func has_tile(coords: Vector2i) -> bool:
 	return _coords_to_tile.has(coords)
 
 func get_entity(coords: Vector2i) -> Entity:
-	for entity in _entities:
+	for entity: Entity in _entities:
 		if entity.coords == coords:
 			return entity
 	return null
@@ -111,28 +103,6 @@ func add_entity(entity: Entity, coords: Vector2i) -> void:
 		_bomb_count += 1
 		entity.detonated.connect(_on_bomb_detonated)
 
-func _calculate_center_point(points: Array[Vector3]) -> Vector3:
-	var top: float = points[0].z
-	var bottom: float = points[0].z
-	var right: float = points[0].x
-	var left: float = points[0].x
-	
-	for point: Vector3 in points:
-		if point.x < left:
-			left = point.x
-		elif point.x > right:
-			right = point.x
-			
-		if point.z > bottom:
-			bottom = point.z
-		elif point.z < top:
-			top = point.z
-	
-	var max_side_length: float = max(abs(top - bottom), abs(left - right))
-	var height: float = 0.6 * max_side_length + 3.5
-	
-	return Vector3((left + right) / 2, height, (top + bottom) / 2)
-
 func _add_audio_stream_player() -> void:
 	_stream_player = AudioStreamPlayer3D.new()
 	_stream_player.volume_db = -10
@@ -155,33 +125,27 @@ func _add_animation_camera() -> void:
 	t.tween_callback(_character.camera.make_current)
 
 func _add_top_down_camera() -> void:
-	var positions: Array[Vector3] = []
-	for tile: Tile in _coords_to_tile.values():
-		positions.append(Vector3(tile.global_position.x, 0, tile.global_position.z))
-	var center_point: Vector3 = _calculate_center_point(positions)
+	var points: Array[Vector3]
+	points.assign(_coords_to_tile.values().map(NodeUtils.get_global_position_3D))
+	var bounds: VectorUtils.Bounds3D = VectorUtils.bounds_xz(points)
+	# magic formula to determine camera height that fits level inside view nicely
+	var height: float = 0.6 * bounds.max_side_length + 3.5
+	var camera_position: Vector3 = bounds.center
+	camera_position.y = height
 	_top_down_camera = Camera3D.new()
 	add_child(_top_down_camera)
-	_top_down_camera.global_position = center_point
+	_top_down_camera.global_position = camera_position
 	_top_down_camera.rotation_degrees.x = -90
 	
 func _init_tiles() -> void:
 	for tile in get_tree().get_nodes_in_group(Tile.GROUP):
-		if tile is Tile and is_decedent_of(self, tile):
+		if tile is Tile and NodeUtils.is_decedent(self, tile):
 			tile.initalize(self)
 			_coords_to_tile.set(tile.coords, tile)
-			
-static func is_decedent_of(parent_node: Node, child_node: Node) -> bool:
-	var current_parent = child_node.get_parent()
-	while current_parent != null:
-		if current_parent == parent_node:
-			return true
-		else:
-			current_parent = current_parent.get_parent()
-	return false
 
 func _init_entities():
 	for entity in get_tree().get_nodes_in_group(Entity.ENTITY_GROUP):
-		if entity is Entity and is_decedent_of(self, entity):
+		if entity is Entity and NodeUtils.is_decedent(self, entity):
 			entity.initalize(self)
 			entity.coords_changed.connect(_handle_coords_changed.bind(entity))
 			_entities.append(entity)
