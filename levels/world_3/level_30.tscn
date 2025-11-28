@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dxcjhjnjlbjkt" path="res://levels/world_3/snow_rock.tscn" id="9_sdd38"]
 [ext_resource type="PackedScene" uid="uid://slxmkhtsbns" path="res://levels/world_3/snow_pile.tscn" id="11_sg0uh"]
 
-[node name="Level29" type="Node3D"]
+[node name="Level30" type="Node3D"]
 script = ExtResource("1_fjctt")
 metadata/_custom_type_script = "uid://by06hqs7fmw4n"
 
@@ -457,27 +457,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
 [node name="fallaway_tile10" parent="Tiles" instance=ExtResource("8_xoi7s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
 
-[node name="Character" parent="." instance=ExtResource("3_sdd38")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
-
-[node name="StartBomb" parent="." instance=ExtResource("4_620cb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
-
-[node name="BombSize2" parent="." instance=ExtResource("7_fjctt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-
-[node name="BombSize3" parent="." instance=ExtResource("7_fjctt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
-
-[node name="BombSize4" parent="." instance=ExtResource("7_fjctt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
-
-[node name="BombSize5" parent="." instance=ExtResource("7_fjctt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
-
-[node name="BombSize6" parent="." instance=ExtResource("7_fjctt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
-
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="rock" parent="Entities" instance=ExtResource("9_sdd38")]
@@ -533,3 +512,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 6)
 
 [node name="SnowPile6" parent="Entities" instance=ExtResource("11_sg0uh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6)
+
+[node name="Character" parent="Entities" instance=ExtResource("3_sdd38")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="StartBomb" parent="Entities" instance=ExtResource("4_620cb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="BombSize2" parent="Entities" instance=ExtResource("7_fjctt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="BombSize3" parent="Entities" instance=ExtResource("7_fjctt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="BombSize4" parent="Entities" instance=ExtResource("7_fjctt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="BombSize5" parent="Entities" instance=ExtResource("7_fjctt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+
+[node name="BombSize6" parent="Entities" instance=ExtResource("7_fjctt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
