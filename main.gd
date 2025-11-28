@@ -1,23 +1,5 @@
 extends Node3D
 
-var current_level: Level
-var spawning: bool = false
-var _remaining_time: int = 0
-var _steps: int = 0
-
-@export var start_state: State = State.MENU
-@export var levels: Levels
-@export var level_index: int = 0
-
-@onready var menu_screen_set: MainMenuSet = %MenuScreenSet
-@onready var ticker: Timer = $Ticker
-@onready var play_ui: PlayUi = %PlayUi
-@onready var level_select: LevelSelect = %LevelSelect
-@onready var main_screen: MainGameScreen = %MainScreen
-@onready var level_editor: LevelEditor = %LevelEditor3D
-@onready var completed_level_ui: CompletedLevelUi = %CompletedLevelUi
-@onready var try_again_level_ui: TryAgainLevelUi = %TryAgainLevelUi
-
 enum State {
 	PLAY,
 	EDITOR,
@@ -27,7 +9,23 @@ enum State {
 	LEVEL_LOST,
 }
 
+@export var start_state: State = State.MENU
+@export var levels: Levels
+@export var level_index: int = 0
+
 var current_state: State
+var current_level: Level
+var spawning: bool = false
+var _remaining_time: int = 0
+
+@onready var menu_screen_set: MainMenuSet = %MenuScreenSet
+@onready var ticker: Timer = $Ticker
+@onready var play_ui: PlayUi = %PlayUi
+@onready var level_select: LevelSelect = %LevelSelect
+@onready var main_screen: MainGameScreen = %MainScreen
+@onready var level_editor: LevelEditor = %LevelEditor3D
+@onready var completed_level_ui: CompletedLevelUi = %CompletedLevelUi
+@onready var try_again_level_ui: TryAgainLevelUi = %TryAgainLevelUi
 
 func _ready() -> void:
 	ticker.timeout.connect(_on_tick)
@@ -99,12 +97,12 @@ func _exit_state(state: State) -> void:
 		State.LEVEL_LOST:
 			try_again_level_ui.visible = false
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	match current_state:
 		State.PLAY:
 			if event.is_action_pressed("restart"):
-				get_viewport().set_input_as_handled()
 				reload_current_level()
+				get_viewport().set_input_as_handled()
 			elif event.is_action_pressed("escape"):
 				_transition_state(State.LEVEL_SELECT)
 		State.LEVEL_SELECT:
@@ -130,11 +128,10 @@ func spawn_level(level_data: LevelData) -> void:
 	current_level.lost.connect(_on_level_lost, CONNECT_ONE_SHOT)
 	current_level.ignitor_bomb_ignited.connect(_on_start_bomb_ignited, CONNECT_ONE_SHOT)
 	ticker.start()
-	_steps = 0
 	_remaining_time = 999
 	play_ui.set_time_remaining(_remaining_time)
 	play_ui.set_level_name("Stage " + str(level_data.stage))
-	play_ui.set_steps(_steps)
+	play_ui.set_steps(0)
 	connect_character.call_deferred()
 	add_child(current_level)
 	spawning = false
@@ -150,7 +147,7 @@ func _on_start_bomb_ignited() -> void:
 	play_ui.count_down_number.visible = false
 
 func connect_character():
-	current_level._character.coords_changed.connect(_on_character_moved)
+	current_level._character.coords_changed.connect(_on_steps_changed)
 	current_level._character.died.connect(_on_level_lost)
 	
 func clear_current_level():
@@ -171,9 +168,8 @@ func _on_pressed_level_select_button() -> void:
 func _on_pressed_main_menu_button() -> void:
 	_transition_state(State.MENU)
 
-func _on_character_moved():
-	_steps += 1
-	play_ui.set_steps(_steps)
+func _on_steps_changed():
+	play_ui.set_steps(current_level.steps)
 
 func _on_tick() -> void:
 	_remaining_time -= 1

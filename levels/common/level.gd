@@ -12,11 +12,12 @@ const TOGGLE_CAMERA_DURATION: float = 0.3
 const START_CAMERA_DURATION: float = 1
 const START_CAMERA_DELAY: float = 0.4
 
+var steps: int = 0
 var ignitor_bomb: StartBomb:
 	get:
 		return _ignitor_bomb
 var _ignitor_bomb: StartBomb
-var _history: ActionHistory = ActionHistory.new()
+#var _history: ActionHistory = ActionHistory.new()
 var _top_down_camera: Camera3D
 var _animation_camera: Camera3D
 var _coords_to_tile: Dictionary[Vector2i, Node3D] = {}
@@ -26,6 +27,7 @@ var _bomb_count: int = 0
 var _character: Character
 var _stream_player: AudioStreamPlayer3D
 var _camera_toogle_tween: Tween
+var _undo_redo: UndoRedo = UndoRedo.new()
 
 func _ready() -> void:
 	_init_tiles()
@@ -33,28 +35,22 @@ func _ready() -> void:
 	
 	_character = get_tree().get_first_node_in_group(CHARACTER_GROUP)
 	_character.died.connect(_on_character_died)
+	_character.moved.connect(_on_character_moved)
+	_character.stopped.connect(_on_character_stopped)
 	
 	_add_top_down_camera()
 	_add_animation_camera()
 	_add_audio_stream_player()
 	all_bombs_detonated.connect(_on_level_completed)
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_camera"):
 		_toggle_camera()
-	if event.is_action_pressed("undo"):
-		undo_action()
-	elif  event.is_action_pressed("redo"):
-		redo_action()
-
-func add_action(action: Action) -> void:
-	_history.add(action)
-	
-func redo_action() -> void:
-	_history.redo()
-
-func undo_action() -> void:
-	_history.undo()
+		
+	if event.is_action_pressed("undo") and _undo_redo.has_undo():
+		_undo_redo.undo()
+	elif event.is_action_pressed("redo") and _undo_redo.has_redo():
+		_undo_redo.redo()
 
 func world_to_map(global_point: Vector3) -> Vector2i:
 	# NOTE: Assumes the cell size is 1 meter
@@ -142,6 +138,8 @@ func _init_tiles() -> void:
 		if tile is Tile and NodeUtils.is_decedent(self, tile):
 			tile.initalize(self)
 			_coords_to_tile.set(tile.coords, tile)
+			if tile is FallawayTile:
+				tile.fell.connect(_on_tile_fell.bind(tile)) 
 
 func _init_entities():
 	for entity in get_tree().get_nodes_in_group(Entity.ENTITY_GROUP):
@@ -152,9 +150,11 @@ func _init_entities():
 			if entity is Bomb:
 				_bomb_count += 1
 				entity.detonated.connect(_on_bomb_detonated)
+				entity.moved.connect(_bomb_pushed.bind(entity))
 			if entity is StartBomb:
 				_ignitor_bomb = entity
 				_ignitor_bomb.ignited.connect(ignitor_bomb_ignited.emit)
+			
 
 func _toggle_camera() -> void:
 	if not _top_down_camera or not _character:
@@ -215,3 +215,37 @@ func _on_level_completed() -> void:
 		return
 	_on_win()
 	
+func _bomb_pushed(bomb: Bomb) -> void:
+	print("turn" + str(steps))
+	prints(bomb.name, "pushed", bomb.coords, bomb.last_coords)
+	_undo_redo.create_action("turn" + str(steps), UndoRedo.MERGE_ALL)
+	_undo_redo.add_do_method(bomb.set_grid_position.bind(bomb.coords))
+	_undo_redo.add_undo_method(bomb.set_grid_position.bind(bomb.last_coords))
+	_undo_redo.commit_action(false)
+
+func _on_character_stopped() -> void:
+	print("turn" + str(steps))
+	prints("character moved", _character.coords, _character.last_coords)
+	_undo_redo.create_action("turn" + str(steps), UndoRedo.MERGE_ALL)
+	_undo_redo.add_do_method(_character.set_grid_position.bind(_character.coords))
+	_undo_redo.add_undo_method(_character.set_grid_position.bind(_character.last_coords))
+	_undo_redo.commit_action(false)
+
+func _on_character_moved() -> void:
+	var old_step_count = steps
+	var new_step_count = steps + 1
+	steps = new_step_count
+	print("turn" + str(steps))
+	prints("character moved", _character.coords, _character.last_coords)
+	_undo_redo.create_action("turn" + str(steps), UndoRedo.MERGE_ALL)
+	_undo_redo.add_do_property(self, "steps", new_step_count)
+	_undo_redo.add_undo_property(self, "steps", old_step_count)
+	_undo_redo.commit_action(false)
+
+
+func _on_tile_fell(fallawayTile: FallawayTile) -> void:
+	prints(fallawayTile.name, "fell")
+	_undo_redo.create_action("turn" + str(steps), UndoRedo.MERGE_ALL)
+	_undo_redo.add_do_method(fallawayTile.fall)
+	_undo_redo.add_undo_method(fallawayTile.raise)
+	_undo_redo.commit_action(false)

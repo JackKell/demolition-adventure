@@ -6,11 +6,14 @@ const MOVE_SPEED: float = 3
 
 var last_move_direction: Vector2i
 var last_coords: Vector2i
+var _coords: Vector2i
 var coords: Vector2i:
+	get:
+		return _coords
 	set(value):
-		if value != coords:
-			last_coords = coords
-			coords = value
+		if value != _coords:
+			last_coords = _coords
+			_coords = value
 			coords_changed.emit()
 var level: Level
 
@@ -73,6 +76,11 @@ func _on_stopped() -> void:
 	if tile.type == Tile.TileType.ICY:
 		if can_move_to(last_move_direction):
 			move(last_move_direction)
+
+func set_grid_position(new_coords: Vector2i) -> void:
+	# This might mess things up
+	coords = new_coords
+	global_position = level.map_to_world(coords)
 
 func move(direction: Vector2i) -> void:
 	last_move_direction = direction

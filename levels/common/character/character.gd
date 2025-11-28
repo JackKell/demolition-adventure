@@ -33,7 +33,13 @@ const SQUISH_DURATION: float = 0.05
 
 var is_panicked: bool = false
 var is_alive: bool = true
-var face_direction: Vector2i = Vector2i.DOWN
+var face_direction: Vector2i = Vector2i.DOWN:
+	set(value):
+		if value == face_direction:
+			return
+		last_face_direction = face_direction
+		face_direction = value
+var last_face_direction: Vector2i = Vector2i.DOWN
 var target_position: Vector3 =  Vector3.ZERO
 var is_animating: bool = false
 var has_input_direction: bool:
@@ -147,27 +153,26 @@ func _handle_move(direction: Vector2i) -> void:
 	var entity: Entity = level.get_entity(target_coords)
 	if entity:
 		if entity is Bomb and entity.pushable:
-			var push_action: PushAction = PushAction.new(self, entity)
+			#var push_action: PushAction = PushAction.new(self, entity)
 			var tile: Tile = level.get_tile(coords)
 			if tile.type == Tile.TileType.OIL:
 				struggle()
 			else:
-				var blocking_entity: Entity = level.get_entity(coords + direction * 2)
-				if blocking_entity:
-					if blocking_entity is Bouncer:
-						entity.move(-direction)
+				var bouncer: Entity = level.get_entity(coords + direction * 2)
+				if bouncer:
+					if bouncer is Bouncer:
 						move(direction)
 						squish()
-						blocking_entity.bounce(-direction)
-						level.add_action(push_action)
+						entity.move(-direction)
+						bouncer.bounce(-direction)
 					else:
 						state_machine.transition(idle_state)
 				else:
-					var can_push: bool = entity.try_move(direction)
+					var can_push: bool = entity.can_move_to(direction)
 					if can_push:
-						state_machine.transition(pushing_state)
-						level.add_action(push_action)
 						move(direction)
+						state_machine.transition(pushing_state)
+						entity.move(direction)
 					else:
 						state_machine.transition(idle_state)
 		else:
@@ -177,11 +182,10 @@ func _handle_move(direction: Vector2i) -> void:
 		var move_happened: bool = try_move(direction)
 		if move_happened:
 			state_machine.transition(walk_state)
-			level.add_action(CharacterMoveAction.new(self, level.map_to_world(target_coords)))
 		else:
 			state_machine.transition(idle_state)
 	face_direction = direction
-	_update_body_facing_direction(direction)
+	update_body_facing_direction(direction)
 
 func idle_input() -> void:
 	if is_moving or !has_input_direction:
@@ -195,7 +199,7 @@ func try_ignite() -> void:
 		var check_coords: Vector2i = coords + direction
 		var start_bomb: StartBomb = level.get_ignitor_bomb(check_coords)
 		if start_bomb and !start_bomb.is_ignited:
-			_update_body_facing_direction(direction)
+			update_body_facing_direction(direction)
 			await _play_animation("ignite")
 			start_bomb.ignite()
 			is_panicked = true
@@ -208,7 +212,7 @@ func _play_animation(animation_name: String) -> bool:
 	state_machine.transition(idle_state)
 	return true
 
-func _update_body_facing_direction(direction: Vector2i) -> void:
+func update_body_facing_direction(direction: Vector2i) -> void:
 	body.rotation.y = Vector2(direction * Vector2i(1, -1)).angle() + QUARTER_TURN
 
 func _turn_around() -> void:
