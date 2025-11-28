@@ -229,16 +229,12 @@ func _on_level_completed() -> void:
 	_on_win()
 	
 func _bomb_pushed(bomb: Bomb) -> void:
-	print("turn" + str(steps))
-	prints(bomb.name, "pushed", bomb.coords, bomb.last_coords)
 	_undo_redo.create_action("turn" + str(steps), UndoRedo.MERGE_ALL)
 	_undo_redo.add_do_method(bomb.set_grid_position.bind(bomb.coords))
 	_undo_redo.add_undo_method(bomb.set_grid_position.bind(bomb.last_coords))
 	_undo_redo.commit_action(false)
 
 func _on_character_stopped() -> void:
-	print("turn" + str(steps))
-	prints("character moved", _character.coords, _character.last_coords)
 	_undo_redo.create_action("turn" + str(steps), UndoRedo.MERGE_ALL)
 	_undo_redo.add_do_method(_character.set_grid_position.bind(_character.coords))
 	_undo_redo.add_undo_method(_character.set_grid_position.bind(_character.last_coords))
@@ -248,8 +244,6 @@ func _on_character_moved() -> void:
 	var old_step_count = steps
 	var new_step_count = steps + 1
 	steps = new_step_count
-	print("turn" + str(steps))
-	prints("character moved", _character.coords, _character.last_coords)
 	_undo_redo.create_action("turn" + str(steps), UndoRedo.MERGE_ALL)
 	_undo_redo.add_do_property(self, "steps", new_step_count)
 	_undo_redo.add_undo_property(self, "steps", old_step_count)
@@ -257,7 +251,6 @@ func _on_character_moved() -> void:
 
 
 func _on_tile_fell(fallawayTile: FallawayTile) -> void:
-	prints(fallawayTile.name, "fell")
 	_undo_redo.create_action("turn" + str(steps), UndoRedo.MERGE_ALL)
 	_undo_redo.add_do_method(fallawayTile.fall)
 	_undo_redo.add_undo_method(fallawayTile.raise)
