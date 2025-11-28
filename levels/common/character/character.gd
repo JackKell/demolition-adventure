@@ -268,8 +268,7 @@ func _death_exit() -> void:
 	visible = true
 
 func _sliding_enter() -> void:
-	# TODO: Remake sliding animation
-	animation_player.play("walk")
+	animation_player.play("slide")
 
 func _idle_enter() -> void:
 	animation_player.play("idle")
