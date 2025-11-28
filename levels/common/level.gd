@@ -99,6 +99,19 @@ func add_entity(entity: Entity, coords: Vector2i) -> void:
 		_bomb_count += 1
 		entity.detonated.connect(_on_bomb_detonated)
 
+func get_entity_count(coords: Vector2i) -> int:
+	var count: int = 0
+	for entity: Entity in _entities:
+		if entity.coords == coords:
+			count += 1 
+	return count
+
+func has_other_entities_at_coords(coords: Vector2i, checking_entity: Entity) -> bool:
+	for entity: Entity in _entities:
+		if entity != checking_entity and entity.coords == coords:
+			return true
+	return false
+
 func _add_audio_stream_player() -> void:
 	_stream_player = AudioStreamPlayer3D.new()
 	_stream_player.volume_db = -10
