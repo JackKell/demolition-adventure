@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq85emc3uo15v"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_f8v6i"]
-size = Vector3(1, 0.1, 1)
+[ext_resource type="PackedScene" uid="uid://c0ui40cd8ri53" path="res://levels/common/bridge/bridge.glb" id="1_hmgci"]
+[ext_resource type="Material" uid="uid://dcvd31turskbt" path="res://levels/common/bridge/tropical_bridge.tres" id="2_eblfs"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6hwb"]
-albedo_color = Color(0.2, 0.036000002, 0.036000002, 1)
+[node name="Bridge" instance=ExtResource("1_hmgci")]
 
-[node name="bridge" type="MeshInstance3D"]
-mesh = SubResource("BoxMesh_f8v6i")
-surface_material_override/0 = SubResource("StandardMaterial3D_f6hwb")
+[node name="Cube_001" parent="." index="0"]
+material_override = ExtResource("2_eblfs")
