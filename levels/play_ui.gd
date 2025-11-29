@@ -5,6 +5,7 @@ extends Control
 @onready var steps_count_label: Label = %StepsCountLabel
 @onready var time_remaining_label: Label = %TimeRemainingLabel
 @onready var count_down_number: Label = %CountDownNumber
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const STEPS_FORMAT: String = "%04d"
 const TIME_FORMAT: String = "%03d"
@@ -17,3 +18,6 @@ func set_time_remaining(remaining_time: int) -> void:
 
 func set_steps(steps: int) -> void:
 	steps_count_label.text = STEPS_FORMAT % steps
+	
+func count_down() -> void:
+	animation_player.play("countdown")

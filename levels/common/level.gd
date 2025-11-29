@@ -29,7 +29,8 @@ var _stream_player: AudioStreamPlayer3D
 var _camera_toogle_tween: Tween
 var _undo_redo: UndoRedo = UndoRedo.new()
 
-func _ready() -> void:
+
+func _ready() -> void:	
 	_init_tiles()
 	_init_entities()
 	

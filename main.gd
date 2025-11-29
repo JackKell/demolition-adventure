@@ -75,6 +75,14 @@ func _enter_state(state: State) -> void:
 		State.LEVEL_SELECT:
 			level_select.visible = true
 		State.LEVEL_WON:
+			var level_data: LevelData = levels.levels.get(level_index)
+			print(current_level.steps)
+			if level_data.save_data.steps > current_level.steps:
+				level_data.save_data.steps = current_level.steps
+			level_data.save_data.has_completed = true
+			level_data.save()
+			level_select.update()
+			
 			completed_level_ui.visible = true
 		State.LEVEL_LOST:
 			try_again_level_ui.visible = true
@@ -137,14 +145,7 @@ func spawn_level(level_data: LevelData) -> void:
 	spawning = false
 
 func _on_start_bomb_ignited() -> void:
-	play_ui.count_down_number.visible = true
-	play_ui.count_down_number.text = "3"
-	await get_tree().create_timer(1).timeout
-	play_ui.count_down_number.text = "2"
-	await get_tree().create_timer(1).timeout
-	play_ui.count_down_number.text = "1"
-	await get_tree().create_timer(1).timeout
-	play_ui.count_down_number.visible = false
+	play_ui.count_down()
 
 func connect_character():
 	current_level._character.coords_changed.connect(_on_steps_changed)

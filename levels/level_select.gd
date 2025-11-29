@@ -27,6 +27,10 @@ func _ready() -> void:
 		level_options.add_child(level_option)
 	_on_tab_changed(0)
 
+func update():
+	for option: LevelOption in level_options_objects:
+		option.update()
+
 func _on_tab_changed(tab: int):
 	selected_world = tab + 1
 	for level_option: LevelOption in level_options_objects:

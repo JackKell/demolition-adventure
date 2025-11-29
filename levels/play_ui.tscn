@@ -1,8 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://bydj2us25qme5"]
+[gd_scene load_steps=7 format=3 uid="uid://bydj2us25qme5"]
 
 [ext_resource type="Script" uid="uid://vaf7lceqripc" path="res://levels/play_ui.gd" id="1_h12cl"]
 [ext_resource type="Theme" uid="uid://cfkyvoqxvawux" path="res://levels/my_theme.tres" id="1_v0im6"]
 [ext_resource type="Texture2D" uid="uid://cxqm6v1670c28" path="res://misc/medal.png" id="3_hembb"]
+
+[sub_resource type="Animation" id="Animation_hembb"]
+resource_name = "countdown"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CountDownNumber:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["3", "2", "1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CountDownNumber:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1wqeq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CountDownNumber:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["3"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CountDownNumber:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e3i0a"]
+_data = {
+&"RESET": SubResource("Animation_1wqeq"),
+&"countdown": SubResource("Animation_hembb")
+}
 
 [node name="PlayUi" type="Control"]
 layout_mode = 3
@@ -111,3 +172,8 @@ theme_override_font_sizes/font_size = 70
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e3i0a")
+}

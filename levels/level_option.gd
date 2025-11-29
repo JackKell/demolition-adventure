@@ -4,7 +4,8 @@ extends Panel
 @export var level_data: LevelData 
 
 @onready var image: TextureRect = $Image
-@onready var level_name_label: Label = $LevelNameLabel
+@onready var level_name_label: Label = %LevelNameLabel
+@onready var completed_icon: TextureRect = %CompletedIcon
 
 signal clicked
 
@@ -14,6 +15,10 @@ func _ready() -> void:
 		return
 	image.texture = level_data.thumbnail
 	level_name_label.text = str(level_data.world) + " - " + str(level_data.stage)
+	update()
+
+func update():
+	completed_icon.visible = level_data.save_data.has_completed
 
 func _gui_input(event):
 	if event is InputEventMouseButton:

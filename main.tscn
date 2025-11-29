@@ -19,6 +19,7 @@ levels = ExtResource("2_1bvp3")
 
 [node name="PlayUi" parent="CanvasLayer" instance=ExtResource("19_cegan")]
 unique_name_in_owner = true
+visible = false
 offset_left = 1.0
 offset_right = 1.0
 
@@ -28,7 +29,6 @@ visible = false
 
 [node name="MainScreen" parent="CanvasLayer" instance=ExtResource("5_lquwl")]
 unique_name_in_owner = true
-visible = false
 
 [node name="CompletedLevelUi" parent="CanvasLayer" instance=ExtResource("6_efxa6")]
 unique_name_in_owner = true
@@ -42,7 +42,6 @@ visible = false
 
 [node name="MenuScreenSet" parent="." instance=ExtResource("3_5vw27")]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("4_kek77")
 
 [node name="LevelEditor3D" parent="." instance=ExtResource("5_7mycd")]
