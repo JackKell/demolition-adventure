@@ -20,10 +20,10 @@ func transition(new_state: SMState):
 		return
 	var old_state = current_state
 	if has_current_state and current_state.exit:
-		current_state.exit.call()
+		await current_state.exit.call()
 	current_state = new_state
 	if has_current_state and current_state.enter:
-		current_state.enter.call()
+		await current_state.enter.call()
 	state_changed.emit(old_state, new_state)
 
 func process(delta: float) -> void:

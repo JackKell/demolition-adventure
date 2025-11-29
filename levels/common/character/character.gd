@@ -76,6 +76,7 @@ func _init() -> void:
 	flatten_state.enter = _flatten_enter
 	walk_state.enter = _walk_enter
 	pushing_state.enter = _pushing_enter
+	pushing_state.exit = _pushing_exit
 	death_state.enter = _death_enter
 	death_state.exit = _death_exit
 	sliding_state.enter = _sliding_enter
@@ -281,7 +282,13 @@ func _walk_enter() -> void:
 
 func _pushing_enter() -> void:
 	audio_stream_player_3d.play()
+	animation_player.play("push_enter")
+	await animation_player.animation_finished
 	animation_player.play("push")
+
+func _pushing_exit() -> void:
+	animation_player.play_backwards("push_enter")
+	await animation_player.animation_finished
 
 func _flatten_enter() -> void:
 	animation_player.play("flatten")
