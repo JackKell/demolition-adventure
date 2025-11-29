@@ -288,7 +288,6 @@ func _pushing_enter() -> void:
 
 func _pushing_exit() -> void:
 	animation_player.play_backwards("push_enter")
-	await animation_player.animation_finished
 
 func _flatten_enter() -> void:
 	animation_player.play("flatten")

@@ -16,6 +16,7 @@ enum State {
 var current_state: State
 var current_level: Level
 var spawning: bool = false
+var should_play_intro_animation: bool = true
 var _remaining_time: int = 0
 
 @onready var menu_screen_set: MainMenuSet = %MenuScreenSet
@@ -47,8 +48,8 @@ func _on_pressed_retry_button() -> void:
 
 func _on_level_selected(level_data: LevelData) -> void:
 	level_index = levels.levels.find(level_data)
-	_transition_state(State.PLAY)
 	spawn_level(level_data)
+	_transition_state(State.PLAY)
 	
 func _transition_state(state: State) -> void:
 	if state == current_state:
@@ -68,6 +69,8 @@ func _enter_state(state: State) -> void:
 		State.PLAY:
 			play_ui.visible = true
 			ticker.start()
+			if should_play_intro_animation:
+				await current_level.play_intro_animation()
 		State.EDITOR:
 			level_editor.visible = true
 			level_editor.ui.visible = true
@@ -120,7 +123,8 @@ func _input(event: InputEvent) -> void:
 			level_editor.update_input(event)
 
 func reload_current_level() -> void:
-	spawn_level(levels.levels.get(level_index))
+	await spawn_level(levels.levels.get(level_index))
+	should_play_intro_animation = false
 	_transition_state(State.PLAY)
 	
 func spawn_level(level_data: LevelData) -> void:
@@ -143,6 +147,8 @@ func spawn_level(level_data: LevelData) -> void:
 	connect_character.call_deferred()
 	add_child(current_level)
 	spawning = false
+	should_play_intro_animation = true
+	await current_level.ready
 
 func _on_start_bomb_ignited() -> void:
 	play_ui.count_down()

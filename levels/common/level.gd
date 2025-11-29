@@ -43,6 +43,7 @@ func _ready() -> void:
 	_add_animation_camera()
 	_add_audio_stream_player()
 	all_bombs_detonated.connect(_on_level_completed)
+	_character.camera.make_current()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_camera"):
@@ -122,10 +123,12 @@ func _add_audio_stream_player() -> void:
 func _add_animation_camera() -> void:
 	_animation_camera = Camera3D.new()
 	add_child(_animation_camera)
-	_animation_camera.global_transform = _top_down_camera.global_transform
-	_animation_camera.make_current()
+	_animation_camera.global_transform = _character.camera.global_transform
 
+func play_intro_animation() -> void:
 	var t = create_tween()
+	t.tween_callback(_animation_camera.make_current)
+	t.tween_property(_animation_camera, "global_transform", _top_down_camera.global_transform, 0)
 	t.tween_property(
 		_animation_camera, 
 		"global_transform", 
@@ -133,6 +136,7 @@ func _add_animation_camera() -> void:
 		START_CAMERA_DURATION
 	).set_delay(START_CAMERA_DELAY)
 	t.tween_callback(_character.camera.make_current)
+	await t.finished
 
 func _add_top_down_camera() -> void:
 	var points: Array[Vector3]
